@@ -2,7 +2,7 @@ import * as mongoose from "mongoose";
 import IVotes from "./IVotes";
 import User from "./User";
 
-class Post {
+export default class Post extends mongoose.Document {
     public Title: String;
     public PostBy: User;
     public Price: Number;

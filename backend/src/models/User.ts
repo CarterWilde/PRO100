@@ -1,4 +1,6 @@
-const mongoose = require('mongoose')
+import * as mongoose from "mongoose";
+import User from "../../../shared/ts/Post";
+
 const userSchema = new mongoose.Schema({
    username:{
        type:String
@@ -13,4 +15,4 @@ const userSchema = new mongoose.Schema({
    }
 })
 
-mongoose.model("USER", userSchema)
+export default mongoose.model<User>("User", userSchema)

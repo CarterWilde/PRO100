@@ -1,13 +1,14 @@
-const mongoose = require('mongoose')
-const {ObjectId} = mongoose.Schema.Types
+import * as mongoose from "mongoose";
+import Post from "../../../shared/ts/Post";
+
 const postSchema = new mongoose.Schema({
     title:{
         type:String,
         required:true
     },
     posted_by:{
-        type:ObjectId,
-        ref:"USER"
+        type:mongoose.Schema.Types.Buffer,
+        ref:"User"
     },
     price:{
         type:Number,
@@ -25,12 +26,12 @@ const postSchema = new mongoose.Schema({
             required:true
         },
         up:{
-            users: [{type:ObjectId, ref: "USER"}]
+            users: [{type:mongoose.Schema.Types.Buffer, ref: "User"}]
         },
         down:{
-            users: [{type:ObjectId, ref: "USER"}]
+            users: [{type:mongoose.Schema.Types.Buffer, ref: "User"}]
         }
     }
 })
 
-mongoose.model("POST", postSchema)
+export default mongoose.model<Post>("Post", postSchema)

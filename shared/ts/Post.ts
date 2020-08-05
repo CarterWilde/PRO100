@@ -3,10 +3,10 @@ import IVotes from "./IVotes";
 import User from "./User";
 
 export default class Post extends mongoose.Document {
-    public Title: String;
+    public Title: string;
     public PostBy: User;
-    public Price: Number;
+    public Price: number;
     public Image: mongoose.Schema.Types.Buffer;
-    public Content: String;
+    public Content: string;
     public Votes: IVotes;
 }

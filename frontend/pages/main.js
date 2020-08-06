@@ -36,6 +36,7 @@ export default function Main() {
       }
     };
     */
+  }
   return (
       <div class="topnav">
       <a class ="Logoe" style="" href="#home">Logo</a>

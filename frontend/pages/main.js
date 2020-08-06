@@ -1,5 +1,5 @@
 export default function Main() {
-  
+  /*
   render() 
   {
     /*
@@ -35,8 +35,9 @@ export default function Main() {
         color: white;
       }
     };
-    */
+    
   }
+  */
   return (
       <div class="topnav">
       <a class ="Logoe" style="" href="#home">Logo</a>

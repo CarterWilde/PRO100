@@ -8,7 +8,8 @@ const postSchema = new mongoose.Schema({
     },
     posted_by:{
         type:mongoose.Schema.Types.Buffer,
-        ref:"User"
+        ref:"User",
+        required:true
     },
     price:{
         type:Number,
@@ -26,10 +27,10 @@ const postSchema = new mongoose.Schema({
             required:true
         },
         up:{
-            users: [{type:mongoose.Schema.Types.Buffer, ref: "User"}]
+            users: [{type:mongoose.Schema.Types.Buffer, ref: "User", required:true}]
         },
         down:{
-            users: [{type:mongoose.Schema.Types.Buffer, ref: "User"}]
+            users: [{type:mongoose.Schema.Types.Buffer, ref: "User", required:true}]
         }
     }
 })

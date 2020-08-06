@@ -1,10 +1,10 @@
 import Test from "./test"
-import Main from "./main"
+import topNav from "./topNav"
 
 export default function Home() {
   return (
     <div>
-        <Main/>
+        <topNav/>
         <Test/>
     </div>
   )

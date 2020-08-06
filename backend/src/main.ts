@@ -1,34 +1,14 @@
 import express from "express";
-import mongoose from "mongoose";
+import cors from "cors";
 
-
-import {MONGOURL} from "./keys";
-
-import User from "./models/User";
-import Post from "./models/Post";
-
+import config from "./Configuration"
 
 const app: express.Application = express();
-import cors from "cors";
+const router: express.Router = express.Router();
 const port: number = 8080; // default port to listen
 
-app.get("/", (req: express.Request, res: express.Response) => {
-    res.send( "Hello world!" );
-});
-
 app.use(cors());
-
-try {
-    mongoose.connect(MONGOURL,{
-        useNewUrlParser:true,
-        useUnifiedTopology:true
-    })
-} catch (err) {
-    console.log('error connecting to mongoDB', err)
-}
-mongoose.connection.on('connected',()=>{
-    console.log('connected to mongoDB')
-})
+const con = new config(app);
 
 
 app.listen(port, () => {

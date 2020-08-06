@@ -1,1 +1,6 @@
-export const MONGOURL = "mongodb+srv://ripple:LUfq9ZLZlfdi0Koe@ripple.6hai9.mongodb.net/PRO100?retryWrites=true&w=majority"
+import dotenv from "dotenv";
+const parsed = dotenv.config();
+if(parsed instanceof Error) {
+    console.error("Error Parsing .env");
+}
+export const MONGOURL = process.env.REACT_APP_MONGOURL

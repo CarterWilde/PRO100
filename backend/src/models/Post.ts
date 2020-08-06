@@ -1,5 +1,5 @@
 import * as mongoose from "mongoose";
-import Post from "../../../shared/ts/Post";
+import Post from "shared/ts/Post";
 
 const postSchema = new mongoose.Schema({
     title:{

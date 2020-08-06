@@ -1,5 +1,4 @@
 export default function topNav() {
-
   return (
       <div class="topnav">
       <a class ="Logoe" style="" href="#home">Logo</a>
@@ -8,6 +7,5 @@ export default function topNav() {
       <a href="#Create">Create New</a>
       <a href="#Sign In">Sign in</a>
     </div>
-
     )
   }

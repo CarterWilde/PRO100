@@ -1,5 +1,5 @@
 export default function topNav() {
-  import '../styles/topNav.css'
+
   return (
       <div class="topnav">
       <a class ="Logoe" style="" href="#home">Logo</a>

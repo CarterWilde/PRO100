@@ -1,6 +1,10 @@
 import express from "express";
-import { ERequestType } from "./ts/ERequestType";
+
+import {ERequestType} from "./ts/ERequestType";
 import Route from "./ts/Route";
+
+import Post from "./models/Post";
+import User from "./models/User";
 
 export const Routes: Route[] = [
     {
@@ -13,54 +17,9 @@ export const Routes: Route[] = [
     {
         url: "/posts",
         type: ERequestType.GET,
-        handler: (req: express.Request, res: express.Response) => {
-            res.json([
-                {
-                    "title": "How to Survive a Plague",
-                    "posted_by": {
-                        "$oid": "5f2c4880fc13ae6ec2000000"
-                    },
-                    "price": "$5.11",
-                    "image": null,
-                    "content": "Lotstring"
-                },
-                {
-                    "title": "Funny Games U.S.",
-                    "posted_by": {
-                        "$oid": "5f2c4880fc13ae6ec2000001"
-                    },
-                    "price": "$0.97",
-                    "image": null,
-                    "content": "Namfix"
-                },
-                {
-                    "title": "Breakin' All the Rules",
-                    "posted_by": {
-                        "$oid": "5f2c4880fc13ae6ec2000002"
-                    },
-                    "price": "$2.66",
-                    "image": null,
-                    "content": "Biodex"
-                },
-                {
-                    "title": "King Ralph",
-                    "posted_by": {
-                        "$oid": "5f2c4880fc13ae6ec2000003"
-                    },
-                    "price": "$9.11",
-                    "image": null,
-                    "content": "Flexidy"
-                },
-                {
-                    "title": "Crash Reel, The",
-                    "posted_by": {
-                        "$oid": "5f2c4880fc13ae6ec2000004"
-                    },
-                    "price": "$5.65",
-                    "image": null,
-                    "content": "Bytecard"
-                }
-            ]);
+        handler: async (req: express.Request, res: express.Response) => {
+            const posts = await Post.find().populate('posts')
+            res.json(posts)
         }
     },
     {
@@ -73,8 +32,9 @@ export const Routes: Route[] = [
     {
         url: "/user",
         type: ERequestType.GET,
-        handler: (req: express.Request, res: express.Response) => {
-            res.json({"username":"epasfield0","email":"kjanuary0@gmpg.org","password":"jgitIdU9xlVY"});
+        handler: async (req: express.Request, res: express.Response) => {
+            const user = await User.find().populate('user')
+            res.json(user)
         }
     },
     {

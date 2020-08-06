@@ -15,20 +15,11 @@ frontend/out/
 # production
 frontend/build
 backend/dist
-
+*/**/.env
 # misc
 frontend/.DS_Store
 frontend/*.pem
-
-# debug
-frontend/npm-debug.log*
-frontend/yarn-debug.log*
-frontend/yarn-error.log*
-
-# local env files
-frontend/.env.local
-frontend/.env.development.local
-frontend/.env.test.local
+t.local
 frontend/.env.production.local
 
 # vercel

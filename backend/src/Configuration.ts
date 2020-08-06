@@ -16,30 +16,14 @@ export default class Configuration {
         this.connectToMongoose();
     }
 
-    private configureRoutes(routes: Route[]): void {
-        // tslint:disable:no-eval
-        routes.forEach(route => { eval(`this.app.${ERequestType[route.type.valueOf()].toLowerCase()}(route.url, route.handler)`)});
-        // tslint:enable:no-eval
+    private prop(obj: any, key: string) {
+        return obj[key].bind(obj);
     }
 
-    // private setupRoutes(routes: Route[], type: ERequestType): void {
-    //     console.log("Hello: " + typeof(type));
-    //     switch (type) {
-    //         case ERequestType.PUT:
-    //             routes.forEach(route => { this.app.put(route.url, route.handler); });
-    //             break;
-    //         case ERequestType.POST :
-    //             routes.forEach(route => { this.app.post(route.url, route.handler); });
-    //             break;
-    //         case ERequestType.DELETE:
-    //             routes.forEach(route => { this.app.delete(route.url, route.handler); });
-    //             break;
-    //         case ERequestType.GET:
-    //         default:
-    //             routes.forEach(route => { this.app.get(route.url, route.handler); });
-    //             break;
-    //     }
-    // }
+    private configureRoutes(routes: Route[]): void {
+        routes.forEach(route => { this.prop(this.app, ERequestType[route.type.valueOf()].toLowerCase())(route.url, route.handler)});
+        // routes.forEach(route => { eval(`this.app.${ERequestType[route.type.valueOf()].toLowerCase()}(route.url, route.handler)`)});
+    }
 
     public connectToMongoose(dburl?: string): void {
         try {

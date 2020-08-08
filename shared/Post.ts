@@ -17,5 +17,4 @@ export default class Post extends Typegoose{
     @prop({required: true})
     public Votes: Votes;
 }
-
 export const PostModel = new Post().getModelForClass(Post);

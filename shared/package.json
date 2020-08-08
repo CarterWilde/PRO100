@@ -2,13 +2,10 @@
     "name": "shared",
     "version": "1.0.0",
     "description": "",
-    "main": "dist/shared.js",
+    "main": "lib/Post.js",
     "scripts": {
         "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
-        "build": "tsc",
-        "prestart": "npm run build",
-        "start": "node .",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "build": "tsc"
     },
     "author": "",
     "license": "ISC",

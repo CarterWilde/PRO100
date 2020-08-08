@@ -4,3 +4,4 @@ if(parsed instanceof Error) {
     console.error("Error Parsing .env");
 }
 export const MONGOURL = process.env.REACT_APP_MONGOURL
+export const SESSION = process.env.SESSION

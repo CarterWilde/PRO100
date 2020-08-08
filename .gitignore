@@ -28,3 +28,4 @@ frontend/.vercel
 */**/package-lock.json
 */**/*.tgz
 backend/.env
+backend/.env

@@ -1,37 +1,35 @@
 import * as mongoose from "mongoose";
-import Post from "shared/ts/Post";
 
-const postSchema = new mongoose.Schema({
-    title:{
-        type:String,
-        required:true
+import Post from "shared/ts/Post";
+import { UserSchema } from "./User";
+
+export const postSchema = new mongoose.Schema({
+    Title: {
+        type: String,
+        required: true
     },
-    posted_by:{
-        type:mongoose.Schema.Types.Buffer,
-        ref:"User",
-        required:true
+    PostedBy: {
+        type: UserSchema,
+        ref: "User",
+        required: true
     },
-    price:{
-        type:Number,
-        required:true
+    Price: {
+        type: Number,
+        required: true
     },
-    image:{
-        type:Buffer
+    Image: {
+        type: Buffer
     },
-    content:{
-        type:String
+    Content: {
+        type: String
     },
-    votes:{
-        total:{
-            type:Number,
-            required:true
+    Votes: {
+        Total: {
+            type: Number,
+            required: true
         },
-        up:{
-            users: [{type:mongoose.Schema.Types.Buffer, ref: "User", required:true}]
-        },
-        down:{
-            users: [{type:mongoose.Schema.Types.Buffer, ref: "User", required:true}]
-        }
+        Up: [{ type: UserSchema, ref: "User", required: true }],
+        Down: [{ type: UserSchema, ref: "User", required: true }]
     }
 })
 

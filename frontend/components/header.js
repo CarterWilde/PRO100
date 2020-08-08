@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { DefaultButton, PrimaryButton, Stack } from 'office-ui-fabric-react';
 import { SearchBox } from '@fluentui/react';
-import { initializeIcons } from '@uifabric/icons';
-initializeIcons();
 import Login from './login'
 
 export default class Header extends Component {

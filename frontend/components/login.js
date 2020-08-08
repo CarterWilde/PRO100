@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import { Stack, TextField, DefaultButton, IconButton, Icon, PrimaryButton, ActionButton, Label } from '@fluentui/react';
-import { initializeIcons } from '@uifabric/icons';
-initializeIcons();
 
 
 export default class Login extends Component {

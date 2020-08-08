@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import { DefaultButton, PrimaryButton, Stack } from 'office-ui-fabric-react';
 import { SearchBox } from '@fluentui/react';
 import Login from './login'
+import Post from './post'
+
 
 export default class Header extends Component {
     constructor(props) {
         super(props);
-        this.state = {addModalShow: false}
+        this.state = {addLoginModal: false, addPostModal: false}
     }
 
     SearchForPosts = (val) => {
@@ -21,7 +23,8 @@ export default class Header extends Component {
     }
 
     render() {
-        let addModalClose = () => this.setState({ addModalShow: false })
+        let closeLoginModal = () => this.setState({ addLoginModal: false })
+        let closePostModal = () => this.setState({ addPostModal: false })
         const stackTokens = { childrenGap: 10 };
         const searchBoxStyles = { root: { width: 200 } }
     
@@ -42,9 +45,10 @@ export default class Header extends Component {
                     </div>
                     <div className="right nav-col">
                         <Stack horizontal tokens={stackTokens}>
-                            <DefaultButton text="Post" onClick={() => this.setState({ addModalShow: true })} style={{ outline: 'none' }}/>
-                            <PrimaryButton text="Login" onClick={() => this.setState({ addModalShow: true })} style={{ outline: 'none' }}/>
-                            <Login show={this.state.addModalShow} onHide={addModalClose} />
+                            <DefaultButton text="Post" onClick={() => this.setState({ addPostModal: true })} style={{ outline: 'none' }}/>
+                            <PrimaryButton text="Login" onClick={() => this.setState({ addLoginModal: true })} style={{ outline: 'none' }}/>
+                            <Login show={this.state.addLoginModal} onHide={closeLoginModal} />
+                            <Post show={this.state.addPostModal} onHide={closePostModal} />
                         </Stack>
                     </div>
                 </div>

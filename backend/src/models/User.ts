@@ -7,11 +7,23 @@ export const UserSchema = new mongoose.Schema({
     },
     Email: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        validate: {
+            validator: (value: any):any => {
+                return Model.find({Email: value as string}).exec((err, users) => {
+                    if(err) console.error(err);
+                    return users.length === 0;
+                });
+            }
+        }
     },
     Password: {
         type: String,
         required: true
     }
 })
-export default mongoose.model<User>("User", UserSchema)
+
+const Model = mongoose.model<User>("User", UserSchema)
+
+export default Model;

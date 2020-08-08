@@ -7,6 +7,7 @@ import Post from "./models/Post";
 import User from "./models/User";
 
 import { localStrategy } from "./Strategies";
+import TUser from "shared/User";
 
 export const Routes: Route[] = [
     {
@@ -68,6 +69,14 @@ export const Routes: Route[] = [
         handler: passport.authenticate(localStrategy),
         callback: (req, res) => {
             res.redirect('/posts')
+        }
+    },
+    {
+        url: "/createuser",
+        type: ERequestType.POST,
+        handler: (req, res) => {
+            const user = JSON.parse(req.headers['new-user-object'] as string) as TUser;
+            res.redirect('/');
         }
     },
     {

@@ -12,6 +12,7 @@
     "@fluentui/react": "^7.126.2",
     "@uifabric/icons": "^7.3.70",
     "bootstrap": "^4.5.2",
+    "jpeg-js": "^0.4.1",
     "next": "9.5.1",
     "next-images": "^1.4.1",
     "react": "16.13.1",

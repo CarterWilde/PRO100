@@ -4,7 +4,6 @@ import '../styles/navbar.css'
 import '../styles/footer.css'
 import { initializeIcons } from '@uifabric/icons';
 initializeIcons();
-
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
 }

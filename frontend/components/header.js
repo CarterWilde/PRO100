@@ -4,6 +4,7 @@ import { SearchBox } from '@fluentui/react';
 import Login from './login'
 import Post from './post'
 
+
 export default class Header extends Component {
     constructor(props) {
         super(props);

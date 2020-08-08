@@ -1,4 +1,5 @@
 import passport from "passport";
+import {MongoError} from "mongodb"
 
 import { ERequestType } from "./ts/ERequestType";
 import Route from "./ts/Route";
@@ -7,6 +8,7 @@ import Post from "./models/Post";
 import User from "./models/User";
 
 import { localStrategy } from "./Strategies";
+import TUser from "shared/User";
 
 export const Routes: Route[] = [
     {
@@ -68,6 +70,23 @@ export const Routes: Route[] = [
         handler: passport.authenticate(localStrategy),
         callback: (req, res) => {
             res.redirect('/posts')
+        }
+    },
+    {
+        url: "/createuser",
+        type: ERequestType.POST,
+        handler: (req, res) => {
+            const user = JSON.parse(req.headers['new-user-object'] as string) as TUser;
+            User.create(user).then(result => {
+                console.log(`Added User ${user.Email}`);
+            })
+            .catch((err: MongoError) => {
+                if(err.code === 11000) {
+                    res.json({"error": {"type": "EmailTaken", "Email": user.Email}, "message": "That email is already taken!"})
+                } else {
+                    console.error('Unknown Error While Creating User!')
+                }
+            });
         }
     },
     {

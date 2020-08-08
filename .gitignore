@@ -27,5 +27,5 @@ frontend/.env.production.local
 frontend/.vercel
 */**/package-lock.json
 */**/*.tgz
-backend/.env
+*/**/.env
 backend/.env

@@ -1,5 +1,5 @@
 import * as mongoose from "mongoose";
-import User from "shared/ts/User";
+import User from "shared/User";
 
 export const UserSchema = new mongoose.Schema({
     Username: {

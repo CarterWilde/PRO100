@@ -1,5 +1,5 @@
 import * as mongoose from "mongoose";
-import IVotes from "./IVotes";
+import Votes from "./Votes";
 import User from "./User";
 
 export default class Post extends mongoose.Document {
@@ -8,5 +8,5 @@ export default class Post extends mongoose.Document {
     public Price: number;
     public Image: mongoose.Schema.Types.Buffer;
     public Content: string;
-    public Votes: IVotes;
+    public Votes: Votes;
 }

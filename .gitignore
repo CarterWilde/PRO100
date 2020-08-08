@@ -15,6 +15,7 @@ frontend/out/
 # production
 frontend/build
 backend/dist
+shared/lib
 */**/.env
 # misc
 frontend/.DS_Store
@@ -24,5 +25,5 @@ frontend/.env.production.local
 
 # vercel
 frontend/.vercel
-package-lock.json
+*/**/package-lock.json
 */**/*.tgz

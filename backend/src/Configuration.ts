@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import express from "express";
 
 import { MONGOURL } from "./keys";
-import { Routes } from "./routes";
+import { Routes } from "./Routes";
 
 import Route from "./ts/Route";
 import { ERequestType } from "./ts/ERequestType";

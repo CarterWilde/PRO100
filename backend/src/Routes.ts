@@ -69,7 +69,7 @@ export const Routes: Route[] = [
         type: ERequestType.POST,
         handler: passport.authenticate(localStrategy),
         callback: (req, res) => {
-            res.redirect('/posts')
+            res.sendStatus(200);
         }
     },
     {

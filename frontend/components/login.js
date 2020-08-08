@@ -95,13 +95,14 @@ export default class Login extends Component {
                 }
                 return this.setState({showInvalidEmailError:true})
             }
+            const hashPass = shajs('sha256').update(this.pass).digest('hex');
             //fetch here 
-            axios.post("http://localhost:8080/createuser", {}, {
+            const error = axios.post("http://localhost:8080/createuser", {}, {
                 headers: {
                     "new-user-object": JSON.stringify({
-                        "Username": "",
+                        "Username": this.username,
                         "Email": this.email,
-                        "Password": this.pass
+                        "Password": hashPass
                     })
                 }
             })

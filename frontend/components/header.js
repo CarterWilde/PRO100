@@ -39,13 +39,13 @@ export default class Header extends Component {
                                 onChange={(_, newValue) => this.setSearch(newValue)}
                                 onSearch={newValue => this.SearchForPosts(newValue)}
                             />
-                            <PrimaryButton text="Search" onClick={() => this.SearchForPosts(document.getElementById('ser').value)} />
+                            <PrimaryButton text="Search" onClick={() => this.SearchForPosts(document.getElementById('ser').value)} style={{ outline: 'none' }} />
                         </Stack>
                     </div>
                     <div className="right nav-col">
                         <Stack horizontal tokens={stackTokens}>
-                            <DefaultButton text="Post" onClick={() => this.setState({ addModalShow: true })} />
-                            <PrimaryButton text="Login" onClick={() => this.setState({ addModalShow: true })} />
+                            <DefaultButton text="Post" onClick={() => this.setState({ addModalShow: true })} style={{ outline: 'none' }}/>
+                            <PrimaryButton text="Login" onClick={() => this.setState({ addModalShow: true })} style={{ outline: 'none' }}/>
                             <Login show={this.state.addModalShow} onHide={addModalClose} />
                         </Stack>
                     </div>

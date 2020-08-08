@@ -42,6 +42,7 @@ export default class Login extends Component {
     render() {
         const stackTokens = { childrenGap: 20 }
         const iconMail = { iconName: 'Mail' }
+        const iconUser = { iconName: 'Contact' }
         const iconPass = { iconName: 'PasswordField' }
         const forgotIcon = { iconName: 'Permissions' };
         const backIcon = { iconName: 'Back' }
@@ -85,7 +86,7 @@ export default class Login extends Component {
         const Register = () => {
             this.ResetVals()
             if(emailNotValid) {
-                if(!this.email || !this.pass || this.veriPass) {
+                if(!this.email || !this.username || !this.pass || this.veriPass) {
                     return this.setState({showFillInFieldsError:true})
                 }
                 if(!(this.pass === this.veriPass)) {
@@ -104,7 +105,7 @@ export default class Login extends Component {
                 }
             })
             //set state of the user exists if email exists in database
-            console.log("EMAIL: ", this.email, ", PASS: ", this.pass)
+            console.log("EMAIL: ", this.email, ", USERNAME: ", this.username, ", PASS: ", this.pass)
         }
 
         return (
@@ -136,25 +137,26 @@ export default class Login extends Component {
                                     <TextField onChange={(_, newValue) => {this.pass = newValue; this.ResetState()}} type="password" label="Password" iconProps={iconPass} />
                                 </Stack>
                                 : <Stack tokens={stackTokens}>
-                                    <TextField label="Email" iconProps={iconMail} />
-                                    <TextField type="password" label="Password" iconProps={iconPass} />
-                                    <TextField type="password" label="Verify password" iconProps={iconPass} />
+                                    <TextField label="Email" iconProps={iconMail} onChange={(_, newValue) => {this.email = newValue; this.ResetState()}}/>
+                                    <TextField label="Username" iconProps={iconUser} onChange={(_, newValue) => {this.username = newValue; this.ResetState()}}/>
+                                    <TextField type="password" label="Password" iconProps={iconPass} onChange={(_, newValue) => {this.pass = newValue; this.ResetState()}}/>
+                                    <TextField type="password" label="Verify password" iconProps={iconPass} onChange={(_, newValue) => {this.veriPass = newValue; this.ResetState()}}/>
                                 </Stack>
                             }
                           </>
                         : <Stack>
                             <Label disabled>Enter email for password reset.</Label>
-                            <TextField label="Email" iconProps={iconMail} />
+                            <TextField label="Email" iconProps={iconMail} onChange={(_, newValue) => {this.email = newValue; this.ResetState()}}/>
                           </Stack>
                     }
                     { !this.state.showPassForgot
                         ? <>
                             { !this.state.showRegister
-                                ? <ActionButton iconProps={forgotIcon} text="Forgot Password? Click here." style={{ outline: 'none' }} onClick={() => {this.setState({ showPassForgot: !this.state.showPassForgot }); this.ResetVals()}} />
-                                : <ActionButton iconProps={backIcon} text="Back" style={{ outline: 'none' }} onClick={() => {this.setState({ showRegister: !this.state.showRegister}); this.ResetVals()}} />
+                                ? <ActionButton iconProps={forgotIcon} text="Forgot Password? Click here." style={{ outline: 'none' }} onClick={() => {this.setState({ showPassForgot: !this.state.showPassForgot }); this.ResetVals(); this.ResetState()}} />
+                                : <ActionButton iconProps={backIcon} text="Back" style={{ outline: 'none' }} onClick={() => {this.setState({ showRegister: !this.state.showRegister}); this.ResetVals(); this.ResetState()}} />
                             }
                           </>
-                        : <ActionButton iconProps={backIcon} text="Back" style={{ outline: 'none' }} onClick={() => {this.setState({ showPassForgot: !this.state.showPassForgot }); this.ResetVals()}} />
+                        : <ActionButton iconProps={backIcon} text="Back" style={{ outline: 'none' }} onClick={() => {this.setState({ showPassForgot: !this.state.showPassForgot }); this.ResetVals(); this.ResetState()}} />
                     }
 
                 </Modal.Body>

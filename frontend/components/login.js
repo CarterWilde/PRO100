@@ -36,27 +36,49 @@ export default class Login extends Component {
                 </Modal.Header>
                 <Modal.Body>
                     {this.state.showPassForgot
-                        ? <Stack tokens={stackTokens}>
-                            <TextField label="Email" iconProps={iconMail} />
-                            <TextField id='field' type="password" label="Password" iconProps={iconPass} />
-                          </Stack>
+                        ? <>
+                        { this.state.showRegister
+                            ? <Stack tokens={stackTokens}>
+                                <TextField label="Email" iconProps={iconMail} />
+                                <TextField id='field' type="password" label="Password" iconProps={iconPass} />
+                              </Stack>
+                            : <Stack tokens={stackTokens}>
+                                <TextField label="Email" iconProps={iconMail} />
+                                <TextField id='field' type="password" label="Password" iconProps={iconPass} />
+                                <TextField id='field' type="password" label="Verify password" iconProps={iconPass} />
+                              </Stack>
+
+                        }
+                          </>
                         : <Stack>
                             <Label disabled>Enter email for password Reset.</Label>
                             <TextField label="Email" iconProps={iconMail} />
                           </Stack>
                     }
                     {this.state.showPassForgot
-                        ? <ActionButton iconProps={forgotIcon} text="Forgot Password? Click Here." style={{ outline: 'none' }} onClick={() => this.setState({ showPassForgot: !this.state.showPassForgot })} />
+                        ? <>
+                        { this.state.showRegister
+                            ? <ActionButton iconProps={forgotIcon} text="Forgot Password? Click here." style={{ outline: 'none' }} onClick={() => this.setState({ showPassForgot: !this.state.showPassForgot })} />
+                            : <ActionButton iconProps={backIcon} text="Back" style={{ outline: 'none' }} onClick={() => this.setState({ showRegister: !this.state.showRegister})} />
+                        }
+                          </>
                         : <ActionButton iconProps={backIcon} text="Back" style={{ outline: 'none' }} onClick={() => this.setState({ showPassForgot: !this.state.showPassForgot })} />
                     }
 
                 </Modal.Body>
                 <Modal.Footer>
                     {this.state.showPassForgot
-                        ? <Stack horizontal tokens={inStackTokens}>
-                            <PrimaryButton text="Login" style={{ outline: 'none' }} />
-                            <DefaultButton text="Register" style={{ outline: 'none' }} />
-                          </Stack>
+                        ? <>
+                        { this.state.showRegister
+                            ? <Stack horizontal tokens={inStackTokens}>
+                                <PrimaryButton text="Login" style={{ outline: 'none' }} />
+                                <DefaultButton text="Register" style={{ outline: 'none' }} onClick={() => this.setState({showRegister: !this.state.showRegister})}/>
+                             </Stack>
+                            : <Stack horizontal tokens={inStackTokens}>
+                                <PrimaryButton text="Register" style={{ outline: 'none' }} />
+                              </Stack>
+                        }
+                          </>
                         : <Stack horizontal tokens={inStackTokens}>
                             <PrimaryButton text="Send" style={{ outline: 'none' }} />
                           </Stack>

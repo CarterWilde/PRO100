@@ -9,12 +9,6 @@ export default class Login extends Component {
         this.state = { showPassForgot: false, showRegister: false }
     }
 
-    closed = () => {
-        this.setState({ showPassForgot: false, showRegister: false })
-        this.props.onHide()
-    }
-
-
     render() {
         const stackTokens = { childrenGap: 20 }
         const iconMail = { iconName: 'Mail' }
@@ -25,7 +19,7 @@ export default class Login extends Component {
 
 
         return (
-            <Modal {...this.props} size="sm" aria-labelledby="contained-modal-title-vcenter" centered onHide={() => this.closed()}>
+            <Modal {...this.props} size="sm" aria-labelledby="contained-modal-title-vcenter" centered onExited={() => this.setState({ showPassForgot: false, showRegister: false })}>
                 <Modal.Header closeButton>
                     { !this.state.showPassForgot
                         ? <>

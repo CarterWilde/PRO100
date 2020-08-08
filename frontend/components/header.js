@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import {useHistory} from 'react-router-dom'
-// import { Button, ButtonToolbar, Navbar, Nav, Form, FormControl } from 'react-bootstrap'
 import { DefaultButton, PrimaryButton, Stack } from 'office-ui-fabric-react';
 import { SearchBox } from '@fluentui/react';
 import { initializeIcons } from '@uifabric/icons';
@@ -10,7 +8,7 @@ import Login from './login'
 export default class Header extends Component {
     constructor(props) {
         super(props);
-        this.state = { deps: [], addModalShow: false }
+        this.state = {addModalShow: false}
     }
 
     SearchForPosts = (val) => {

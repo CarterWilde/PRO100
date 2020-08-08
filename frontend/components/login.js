@@ -26,11 +26,11 @@ export default class Login extends Component {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" placeholder="Password" />
                         </Form.Group>
-                        <Form.Group controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox" label="Check me out" />
-                        </Form.Group>
-                        <Button variant="primary" onClick={this.props.onHide}>
+                        <Button variant="outline-success mr-1" onClick={this.props.onHide}>
                             Submit
+                        </Button>
+                        <Button variant="outline-secondary" onClick={this.props.onHide}>
+                            Register
                         </Button>
                     </Form>
                 </Modal.Body>

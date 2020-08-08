@@ -38,18 +38,18 @@ export default class Login extends Component {
                         { this.state.showRegister
                             ? <Stack tokens={stackTokens}>
                                 <TextField label="Email" iconProps={iconMail} />
-                                <TextField id='field' type="password" label="Password" iconProps={iconPass} />
+                                <TextField type="password" label="Password" iconProps={iconPass} />
                               </Stack>
                             : <Stack tokens={stackTokens}>
                                 <TextField label="Email" iconProps={iconMail} />
-                                <TextField id='field' type="password" label="Password" iconProps={iconPass} />
-                                <TextField id='field' type="password" label="Verify password" iconProps={iconPass} />
+                                <TextField type="password" label="Password" iconProps={iconPass} />
+                                <TextField type="password" label="Verify password" iconProps={iconPass} />
                               </Stack>
 
                         }
                           </>
                         : <Stack>
-                            <Label disabled>Enter email for password Reset.</Label>
+                            <Label disabled>Enter email for password reset.</Label>
                             <TextField label="Email" iconProps={iconMail} />
                           </Stack>
                     }

@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import { Stack, TextField, DefaultButton, MessageBar, MessageBarType, MessageBarButton, PrimaryButton, ActionButton, Label } from '@fluentui/react';
+import axios from 'axios';
+import shajs from "sha.js";
+
 import {EmailError} from './popups-errors/invlaidemail'
 import {FeildError} from './popups-errors/filinfields'
 import {PasswordErrorInvalid} from './popups-errors/invalidpassword'
@@ -45,7 +48,7 @@ export default class Login extends Component {
         const inStackTokens = { childrenGap: 10, reversed: true }
         const emailNotValid = !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email)
 
-        const Login = () => {
+        const Login = async () => {
             this.ResetState()
             if(emailNotValid){
                 if(!this.email || !this.pass) {
@@ -54,6 +57,13 @@ export default class Login extends Component {
                 return this.setState({showInvalidEmailError:true})
             }
             //fetch here 
+            const hashPass = shajs('sha256').update(this.pass).digest('hex');
+            try {
+                await axios.post('http://localhost:8080/login', {"Email": this.email.toLowerCase(), "Password": hashPass});
+            } catch(error) {
+                console.log(error);
+            }
+
             //set state of the user already exists if user exists  
             //set state of the invalid password if passwords dont match 
             console.log("EMAIL: ", this.email, ", PASS: ", this.pass)
@@ -84,6 +94,15 @@ export default class Login extends Component {
                 return this.setState({showInvalidEmailError:true})
             }
             //fetch here 
+            axios.post("http://localhost:8080/createuser", {}, {
+                headers: {
+                    "new-user-object": JSON.stringify({
+                        "Username": "",
+                        "Email": this.email,
+                        "Password": this.pass
+                    })
+                }
+            })
             //set state of the user exists if email exists in database
             console.log("EMAIL: ", this.email, ", PASS: ", this.pass)
         }

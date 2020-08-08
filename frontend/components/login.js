@@ -84,7 +84,7 @@ export default class Login extends Component {
         }
         
         const Register = () => {
-            this.ResetVals()
+            this.ResetState()
             if(emailNotValid) {
                 if(!this.email || !this.username || !this.pass || this.veriPass) {
                     return this.setState({showFillInFieldsError:true})
@@ -169,7 +169,7 @@ export default class Login extends Component {
                                     <DefaultButton text="Register" style={{ outline: 'none' }} onClick={() => {this.setState({showRegister: !this.state.showRegister}); this.ResetVals()}}/>
                                   </Stack>
                                 : <Stack horizontal tokens={inStackTokens}>
-                                    <PrimaryButton text="Register" style={{ outline: 'none' }} />
+                                    <PrimaryButton text="Register" style={{ outline: 'none' }} onClick={() => Register()}/>
                                   </Stack>
                             }
                           </>

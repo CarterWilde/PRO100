@@ -10,7 +10,7 @@ export default class Login extends Component {
         return (
             <Modal {...this.props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">Login</Modal.Title>
+                    <Modal.Title id="contained-modal-title-vcenter">Create Post</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className="container">

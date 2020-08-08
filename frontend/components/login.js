@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import { Stack, TextField, DefaultButton, IconButton, Icon, PrimaryButton, ActionButton, Label } from '@fluentui/react';
+import { Stack, TextField, DefaultButton, MessageBar, MessageBarType, MessageBarButton, PrimaryButton, ActionButton, Label } from '@fluentui/react';
 
 
 export default class Login extends Component {
@@ -44,7 +44,6 @@ export default class Login extends Component {
                                     <TextField type="password" label="Password" iconProps={iconPass} />
                                     <TextField type="password" label="Verify password" iconProps={iconPass} />
                                 </Stack>
-
                             }
                           </>
                         : <Stack>
@@ -80,7 +79,6 @@ export default class Login extends Component {
                             <PrimaryButton text="Send" style={{ outline: 'none' }} />
                           </Stack>
                     }
-
                 </Modal.Footer>
             </Modal>
         )

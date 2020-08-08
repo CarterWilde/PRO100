@@ -3,6 +3,7 @@ import { Modal } from 'react-bootstrap'
 import { Stack, TextField, DefaultButton, MessageBar, MessageBarType, MessageBarButton, PrimaryButton, ActionButton, Label } from '@fluentui/react';
 import {EmailError} from './popups-errors/invlaidemail'
 import {FeildError} from './popups-errors/filinfields'
+import {PasswordErrorInvalid} from './popups-errors/invalidpassword'
 
 export default class Login extends Component {
     constructor(props) {
@@ -11,8 +12,13 @@ export default class Login extends Component {
             showPassForgot: false, 
             showRegister: false, 
             showInvalidEmailError: false,
-            showFillInFieldsError: false
+            showFillInFieldsError: false,
+            showInvalidPasswordError: false
          }
+    }
+
+    ResetState = () => {
+        this.setState({showFillInFieldsError:false, showInvalidEmailError:false})
     }
 
     
@@ -24,15 +30,18 @@ export default class Login extends Component {
         const forgotIcon = { iconName: 'Permissions' };
         const backIcon = { iconName: 'Back' }
         const inStackTokens = { childrenGap: 10, reversed: true }
-        Login = () => {
-            //fetch for login 
-            this.setState({showFillInFieldsError:false, showInvalidEmailError:false})
-            if(!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email)){
+        const emailValid = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email)
+
+        const Login = () => {
+            this.ResetState()
+            if(!emailValid){
                 if(!this.email || !this.pass) {
                    return this.setState({showFillInFieldsError:true})
                 }
                 return this.setState({showInvalidEmailError:true})
             }
+            //fetch here 
+            //set state of the invalid password if passwords dont match 
             console.log("EMAIL: ", this.email, ", PASS: ", this.pass)
         }
         
@@ -54,13 +63,14 @@ export default class Login extends Component {
                     <Stack horizontal>
                         { this.state.showInvalidEmailError ? <EmailError/> : null}
                         { this.state.showFillInFieldsError ? <FeildError/> : null}
+                        { this.state.showInvalidPasswordError ? <PasswordErrorInvalid/> : null}
                     </Stack>
                     { !this.state.showPassForgot
                         ? <>
                             { !this.state.showRegister
                                 ? <Stack tokens={stackTokens}>
-                                    <TextField onChange={(_, newValue) => {this.email = newValue; this.setState({showFillInFieldsError:false, showInvalidEmailError:false})}} label="Email" iconProps={iconMail} />
-                                    <TextField onChange={(_, newValue) => {this.pass = newValue; this.setState({showFillInFieldsError:false, showInvalidEmailError:false})}} type="password" label="Password" iconProps={iconPass} />
+                                    <TextField onChange={(_, newValue) => {this.email = newValue; this.ResetState()}} label="Email" iconProps={iconMail} />
+                                    <TextField onChange={(_, newValue) => {this.pass = newValue; this.ResetState()}} type="password" label="Password" iconProps={iconPass} />
                                 </Stack>
                                 : <Stack tokens={stackTokens}>
                                     <TextField label="Email" iconProps={iconMail} />

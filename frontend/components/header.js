@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
-import { Button, ButtonToolbar, Navbar, Nav, Form, FormControl } from 'react-bootstrap'
+import {useHistory} from 'react-router-dom'
+// import { Button, ButtonToolbar, Navbar, Nav, Form, FormControl } from 'react-bootstrap'
+import { DefaultButton, PrimaryButton, Stack } from 'office-ui-fabric-react';
+import { SearchBox } from '@fluentui/react';
+import { initializeIcons } from '@uifabric/icons';
+initializeIcons();
 import Login from './login'
 
 export default class Header extends Component {
@@ -8,33 +13,45 @@ export default class Header extends Component {
         this.state = { deps: [], addModalShow: false }
     }
 
-    SearchForPosts = () =>{
-        // fetch and display posts 
+    SearchForPosts = (val) => {
+        this.setSearch(val)
+        console.log("SEARCH: ", this.search)
+        //Fetch and display results
+    }
+
+    setSearch = (val) => { 
+        this.search = val
+        console.log(this.search)
     }
 
     render() {
-        const { deps } = this.state
         let addModalClose = () => this.setState({ addModalShow: false })
-
+        const stackTokens = { childrenGap: 10 };
+        const searchBoxStyles = { root: { width: 200 } }
+    
         return (
             <>
-                <Navbar bg="dark" variant="dark">
-                    <Navbar.Brand href="/">Ripple</Navbar.Brand>
-                    <Nav className='mr-auto'>
-                        <Form inline>
-                            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                            <Button variant="outline-info">Search</Button>
-                        </Form>
-                    </Nav>
-                    
-                    <ButtonToolbar inline>
-                        <Button variant='primary' className='container' onClick={() => this.setState({ addModalShow: true })}>
-                            Login
-                        </Button>
-                        <Login show={this.state.addModalShow} onHide={addModalClose} />
-                    </ButtonToolbar>
-                </Navbar>
-
+                <div className="nav-bar">
+                    <div className="left nav-col"><img className="img" src="/images/logo.png" /></div>
+                    <div className="center nav-col">
+                        <Stack horizontal tokens={stackTokens}>
+                            <SearchBox id="ser" styles={searchBoxStyles} placeholder="Search"
+                                onEscape={() => {}}
+                                onClear={() => {this.setSearch("")}}
+                                onChange={(_, newValue) => this.setSearch(newValue)}
+                                onSearch={newValue => this.SearchForPosts(newValue)}
+                            />
+                            <PrimaryButton text="Search" onClick={() => this.SearchForPosts(document.getElementById('ser').value)} />
+                        </Stack>
+                    </div>
+                    <div className="right nav-col">
+                        <Stack horizontal tokens={stackTokens}>
+                            <DefaultButton text="Post" onClick={() => this.setState({ addModalShow: true })} />
+                            <PrimaryButton text="Login" onClick={() => this.setState({ addModalShow: true })} />
+                            <Login show={this.state.addModalShow} onHide={addModalClose} />
+                        </Stack>
+                    </div>
+                </div>
             </>
         )
     }

@@ -131,11 +131,11 @@ export default class Login extends Component {
                     { !this.state.showPassForgot
                         ? <>
                             { !this.state.showRegister
-                                ? <ActionButton iconProps={forgotIcon} text="Forgot Password? Click here." style={{ outline: 'none' }} onClick={() => {this.setState({ showPassForgot: !this.state.showPassForgot }); this.ResetVals()}} />
-                                : <ActionButton iconProps={backIcon} text="Back" style={{ outline: 'none' }} onClick={() => {this.setState({ showRegister: !this.state.showRegister}); this.ResetVals()}} />
+                                ? <ActionButton iconProps={forgotIcon} text="Forgot Password? Click here." style={{ outline: 'none' }} onClick={() => {this.setState({ showPassForgot: !this.state.showPassForgot }); this.ResetVals(); this.ResetState()}} />
+                                : <ActionButton iconProps={backIcon} text="Back" style={{ outline: 'none' }} onClick={() => {this.setState({ showRegister: !this.state.showRegister}); this.ResetVals(); this.ResetState()}} />
                             }
                           </>
-                        : <ActionButton iconProps={backIcon} text="Back" style={{ outline: 'none' }} onClick={() => {this.setState({ showPassForgot: !this.state.showPassForgot }); this.ResetVals()}} />
+                        : <ActionButton iconProps={backIcon} text="Back" style={{ outline: 'none' }} onClick={() => {this.setState({ showPassForgot: !this.state.showPassForgot }); this.ResetVals(); this.ResetState()}} />
                     }
 
                 </Modal.Body>

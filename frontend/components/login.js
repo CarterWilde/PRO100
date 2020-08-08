@@ -86,7 +86,7 @@ export default class Login extends Component {
             }
             //fetch here 
             //set state of the user exists if email exists in database
-            console.log("EMAIL: ", this.email, ", PASS: ", this.pass)
+            console.log("EMAIL: ", this.email, ", USERNAME: ", this.username, ", PASS: ", this.pass)
         }
 
         return (

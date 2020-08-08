@@ -41,7 +41,8 @@ export const Routes: Route[] = [
         url: "/post",
         type: ERequestType.POST,
         handler: (req: express.Request, res: express.Response) => {
-            res.send("Hi");
+            Post.create(JSON.parse(req.headers['post-object'] as string));
+            res.redirect("/posts");
         }
     },
     {

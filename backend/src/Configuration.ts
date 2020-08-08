@@ -6,6 +6,8 @@ import { Routes } from "./routes";
 
 import Route from "./ts/Route";
 import { ERequestType } from "./ts/ERequestType";
+import Post from "./models/Post";
+import User from "./models/User";
 
 export default class Configuration {
     dbURL: string = MONGOURL;
@@ -36,6 +38,8 @@ export default class Configuration {
             console.log('error connecting to mongoDB', err)
         }
         mongoose.connection.on('connected', () => {
+            Post.createCollection();
+            User.createCollection();
             console.log('connected to mongoDB')
         })
     }

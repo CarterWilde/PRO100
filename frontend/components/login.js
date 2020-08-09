@@ -47,11 +47,13 @@ export default class Login extends Component {
         const forgotIcon = { iconName: 'Permissions' };
         const backIcon = { iconName: 'Back' }
         const inStackTokens = { childrenGap: 10, reversed: true }
-        const emailNotValid = !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email)
+        const emailNotValid = () => {
+            return !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email)
+        }
 
         const Login = async () => {
             this.ResetState()
-            if(emailNotValid){
+            if(emailNotValid()){
                 if(!this.email || !this.pass) {
                    return this.setState({showFillInFieldsError:true})
                 }
@@ -72,7 +74,7 @@ export default class Login extends Component {
 
         const ResetPassword = () => {
             this.ResetState()
-            if(emailNotValid) {
+            if(emailNotValid()) {
                 if(!this.email) {
                     return this.setState({showFillInFieldsError:true})
                 }
@@ -86,14 +88,16 @@ export default class Login extends Component {
         const Register = () => {
             this.ResetState()
             console.log("EMAIL: ", this.email, ", USERNAME: ", this.username, ", PASS: ", this.pass, ", VERI: ", this.veriPass)
-            if(emailNotValid) {
-                if(!this.email || !this.username || !this.pass || !this.veriPass) {
-                    return this.setState({showFillInFieldsError:true})
+            if(!this.email || !this.username || !this.pass || !this.veriPass) {
+                return this.setState({showFillInFieldsError:true})
+            }
+            else {
+                if(emailNotValid()) {
+                    return this.setState({showInvalidEmailError:true})
                 }
-                if(!(this.pass === this.veriPass)) {
+                if(this.pass !== this.veriPass) {
                     return this.setState({showPasswordNoMatchError:true})
                 }
-                return this.setState({showInvalidEmailError:true})
             }
             const hashPass = shajs('sha256').update(this.pass).digest('hex');
             //fetch here 
@@ -107,7 +111,7 @@ export default class Login extends Component {
                 }
             })
             //set state of the user exists if email exists in database
-            console.log("EMAIL: ", this.email, ", USERNAME: ", this.username, ", PASS: ", this.pass)
+            console.log("EMAIL: ", this.email, ", USERNAME: ", this.username, ", PASS: ", this.pass, ", VERI: ", this.veriPass)
         }
 
         return (
@@ -141,7 +145,7 @@ export default class Login extends Component {
                                 : <Stack tokens={stackTokens}>
                                     <TextField label="Email" iconProps={iconMail} onChange={(_, newValue) => {this.email = newValue; this.ResetState()}}/>
                                     <TextField label="Username" iconProps={iconUser} onChange={(_, newValue) => {this.username = newValue; this.ResetState()}}/>
-                                    <TextField type="password" label="Password" iconProps={iconPass} onChange={(_, newValue) => {this.pass = newValue; this.ResetState()}}/>
+                                    <TextField type="password" label="Password" iconProps={iconPass} onChange={(_, newValue) => {this.pass = newValue; console.log(newValue); this.ResetState()}}/>
                                     <TextField type="password" label="Verify password" iconProps={iconPass} onChange={(_, newValue) => {this.veriPass = newValue; this.ResetState()}}/>
                                 </Stack>
                             }

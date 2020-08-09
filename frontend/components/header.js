@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { DefaultButton, PrimaryButton, Stack } from 'office-ui-fabric-react';
 import { SearchBox } from '@fluentui/react';
 import PopUpController from './PopUpController'
-import Post from './post'
+import Post from './PostController'
 
 
 export default class Header extends Component {
@@ -46,7 +46,7 @@ export default class Header extends Component {
                     <div className="right nav-col">
                         <Stack horizontal tokens={stackTokens}>
                             <DefaultButton text="Post" onClick={() => this.setState({ addPostModal: true })} style={{ outline: 'none' }}/>
-                            <PopUpController></PopUpController>
+                            <PopUpController/>
                             <Post show={this.state.addPostModal} onHide={closePostModal} />
                         </Stack>
                     </div>

@@ -6,18 +6,19 @@ import {iconUser, iconMail, iconPass, emailNotValid, backIcon} from "./SharedPop
 export default class Register extends Component {
     constructor(props) {
         super(props)
+        this.state = {error: "0"}
     }
 
     RegisterHandler = async () => {
         if (!this.email || !this.username || !this.pass || !this.veriPass) {
-            return this.setState({ showFillInFieldsError: true })
+            return this.setState({error: "2"})
         }
         else {
             if (emailNotValid(this.email)) {
-                return this.setState({ showInvalidEmailError: true })
+                return this.setState({error: "1"})
             }
             if (this.pass !== this.veriPass) {
-                return this.setState({ showPasswordNoMatchError: true })
+                return this.setState({error: "5"})
             }
         }
         const hashPass = shajs('sha256').update(this.pass).digest('hex');
@@ -34,7 +35,7 @@ export default class Register extends Component {
             console.log(err)
         })
         if (error.data.error.type === "EmailTaken") {
-            this.setState({ showUserExistsError: true })
+            this.setState({error: "4"})
         }
     }
     render() {
@@ -44,6 +45,7 @@ export default class Register extends Component {
                     <Modal.Title id="contained-modal-title-vcenter">Register</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <ErrorView error={this.state.error}/>
                     <Stack tokens={{childrenGap: 20}}>
                         <TextField label="Email" iconProps={iconMail} onChange={(_, newValue) => { this.email = newValue}} />
                         <TextField label="Username" iconProps={iconUser} onChange={(_, newValue) => { this.username = newValue}} />

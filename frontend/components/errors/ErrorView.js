@@ -1,19 +1,33 @@
 import React, { Component } from 'react'
-import { Stack, TextField, DefaultButton, PrimaryButton, ActionButton, Label } from '@fluentui/react';
+import {EmailError} from '../errors/invlaidemail'
+import {FieldError} from '../errors/filinfields'
+import {InvalidPasswordError} from '../errors/invalidpassword'
+import {UserExistsError} from '../errors/userExists'
+import {PasswordNoMatchError} from '../errors/passwordnomatch'
 
-export default class ErrorView extends Component {
+export class ErrorView extends Component {
     constructor(props) {
         super(props)
+        console.log(props)
     }
+
+    RenderComponent(props){
+        console.log(props.info)
+        switch(props.info) {
+            case "1": return <EmailError/> /* ERROR 1 InvalidEmailError*/
+            case "2": return <FieldError/> /* ERROR 2 FillInFieldsError*/
+            case "3": return <InvalidPasswordError/> /* ERROR 3 InvalidPasswordError*/
+            case "4": return <UserExistsError/> /* ERROR 4 UserExistsError*/
+            case "5": return <PasswordNoMatchError/> /* ERROR 5 PasswordNoMatchError*/
+            default: return <></>
+        }
+    }
+
     render() {
         return (
-            <Stack horizontal>
-                { this.props.showInvalidEmailError ? <EmailError/> : null}
-                { this.props.showFillInFieldsError ? <FeildError/> : null}
-                { this.props.showInvalidPasswordError ? <PasswordErrorInvalid/> : null}
-                { this.props.showUserExistsError ? <UserExistsError/> : null}
-                { this.props.showPasswordNoMatchError ? <PasswordNoMatchError/> : null}
-            </Stack>
+            <>
+                <this.RenderComponent info={this.props.error}/>
+            </>
         );
     }
 }

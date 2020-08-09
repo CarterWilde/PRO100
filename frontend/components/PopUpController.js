@@ -42,9 +42,9 @@ export default class PopUpController extends Component {
     render() {
 
         return (
-            // <Login  {...this.props}></Login>
+            <Login  {...this.props}></Login>
             // <Register {...this.props}></Register>
-            <Reset {...this.props}></Reset>
+            // <Reset {...this.props}></Reset>
         )
     }
 }

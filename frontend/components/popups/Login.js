@@ -6,19 +6,20 @@ import shajs from "sha.js";
 
 import {Stack, TextField, DefaultButton, PrimaryButton, ActionButton} from '@fluentui/react';
 import {forgotIcon, iconMail, iconPass, emailNotValid} from "./SharedPopup";
-import ErrorView from '../errors/ErrorView'
+import {ErrorView} from '../errors/ErrorView'
 
 export default class Login extends Component {
     constructor(props) {
         super(props)
+        this.state = {error: "0"}
     }
 
     LoginHandler = async () => {
         if (emailNotValid(this.email)) {
             if (!this.email || !this.pass) {
-                return this.setState({ showFillInFieldsError: true })
+                return this.setState({error:"2"})
             }
-            return this.setState({ showInvalidEmailError: true })
+            return this.setState({error: "1"})
         }
         //fetch here 
         const hashPass = shajs('sha256').update(this.pass).digest('hex');
@@ -32,12 +33,12 @@ export default class Login extends Component {
 
     render() {
         return (
-            <Modal {...this.props} size="sm" aria-labelledby="contained-modal-title-vcenter" centered>
+            <Modal {...this.props} size="sm" aria-labelledby="contained-modal-title-vcenter" centered >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">Login</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <ErrorView/>
+                    <ErrorView error={this.state.error}/>
                     <Stack tokens={{childrenGap: 20}}>
                         <TextField onChange={(_, newValue) => { this.email = newValue;}} label="Email" iconProps={iconMail} />
                         <TextField onChange={(_, newValue) => { this.pass = newValue;}} type="password" label="Password" iconProps={iconPass} />

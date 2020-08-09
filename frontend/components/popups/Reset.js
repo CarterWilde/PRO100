@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Modal } from 'react-bootstrap';
-import ErrorView from '../errors/ErrorView';
+import {ErrorView} from '../errors/ErrorView';
 import { Stack, TextField, PrimaryButton, ActionButton, Label } from '@fluentui/react';
 import {iconMail, emailNotValid, backIcon} from "./SharedPopup";
 
@@ -9,14 +9,15 @@ import {iconMail, emailNotValid, backIcon} from "./SharedPopup";
 export default class Reset extends Component {
     constructor(props) {
         super(props)
+        this.state = {error: "0"}
     }
 
     ResetPassword = () => {
         if (emailNotValid(this.email)) {
             if (!this.email) {
-                return this.setState({ showFillInFieldsError: true })
+                return this.setState({error: "2"})
             }
-            return this.setState({ showInvalidEmailError: true })
+            return this.setState({error: "1"})
         }
         //fetch here 
         //set state of the invalid email if email deosnt exist in database
@@ -30,7 +31,7 @@ export default class Reset extends Component {
                     <Modal.Title id="contained-modal-title-vcenter">Reset Password</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <ErrorView />
+                    <ErrorView error={this.state.error}/>
                     <Stack>
                         <Label disabled>Enter email for password reset.</Label>
                         <TextField label="Email" iconProps={iconMail} onChange={(_, newValue) => { this.email = newValue}} />

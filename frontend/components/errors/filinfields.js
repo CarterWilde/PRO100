@@ -1,6 +1,6 @@
 import {MessageBar, MessageBarType} from '@fluentui/react';
 
-export const FeildError = () => {
+export const FieldError = () => {
     return (
         <MessageBar
             messageBarType={MessageBarType.error}

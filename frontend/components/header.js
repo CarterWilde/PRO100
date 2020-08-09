@@ -47,7 +47,7 @@ export default class Header extends Component {
                         <Stack horizontal tokens={stackTokens}>
                             <DefaultButton text="Post" onClick={() => this.setState({ addPostModal: true })} style={{ outline: 'none' }}/>
                             <PrimaryButton text="Login" onClick={() => this.setState({ addLoginModal: true })} style={{ outline: 'none' }}/>
-                            <PopUpController show={this.state.addLoginModal} onHide={closeLoginModal} />
+                            <PopUpController showLogin={true} show={this.state.addLoginModal} onHide={closeLoginModal}></PopUpController>
                             <Post show={this.state.addPostModal} onHide={closePostModal} />
                         </Stack>
                     </div>

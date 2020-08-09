@@ -1,50 +1,32 @@
 import React, { Component } from 'react'
-import { Modal } from 'react-bootstrap'
-import { Stack, TextField, DefaultButton, PrimaryButton, ActionButton, Label } from '@fluentui/react';
-import axios from 'axios';
-import shajs from "sha.js";
 
-import ErrorView from './errors/ErrorView'
-
-import Login from "./popups/Login";
+import Login from './popups/Login'
 import Register from './popups/Register'
 import Reset from './popups/Reset'
 
 export default class PopUpController extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            showPassForgot: false,
+            showLogin: false,
             showRegister: false,
-            showInvalidEmailError: false,
-            showFillInFieldsError: false,
-            showInvalidPasswordError: false,
-            showUserExistsError: false,
-            showPasswordNoMatchError: false
+            showReset: false
         }
     }
 
-    ResetState = () => {
-        this.setState({
-            showInvalidEmailError: false,
-            showFillInFieldsError: false,
-            showInvalidPasswordError: false,
-            showUserExistsError: false,
-            showPasswordNoMatchError: false
-        })
-    }
-
-    ResetVals = () => {
-        this.email = undefined
-        this.pass = undefined
+    componentDidUpdate(prevProps) {
+        if(this.props.showLogin !== prevProps.showLogin) this.setState({showLogin: this.props.showLogin});
+        if(this.props.showRegister !== prevProps.showRegister) this.setState({showRegister: this.props.showRegister});
+        if(this.props.showReset !== prevProps.showReset) this.setState({showReset: this.props.showReset});
     }
 
     render() {
-
         return (
-            <Login  {...this.props}></Login>
-            // <Register {...this.props}></Register>
-            // <Reset {...this.props}></Reset>
-        )
+            <div>
+                {this.state.showLogin ? <Login {...this.props}></Login>: null}
+                {this.state.showRegister ? <Register {...this.props}></Register>: null}
+                {this.state.showReset ? <Reset {...this.props}></Reset>: null}
+            </div>
+        );
     }
 }

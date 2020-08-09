@@ -2,6 +2,9 @@ import { Modal } from 'react-bootstrap'
 import React, { Component } from 'react'
 import { Stack, TextField, PrimaryButton, ActionButton } from '@fluentui/react';
 import {iconUser, iconMail, iconPass, emailNotValid, backIcon} from "./SharedPopup";
+import {ErrorView} from '../errors/ErrorView'
+import shajs from "sha.js";
+import axios from 'axios';
 
 export default class Register extends Component {
     constructor(props) {
@@ -40,8 +43,8 @@ export default class Register extends Component {
     }
     render() {
         return (
-            <Modal {...this.props} size="sm" aria-labelledby="contained-modal-title-vcenter" centered>
-                <Modal.Header>
+            <div>
+                <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">Register</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -52,14 +55,14 @@ export default class Register extends Component {
                         <TextField type="password" label="Password" iconProps={iconPass} onChange={(_, newValue) => { this.pass = newValue }} />
                         <TextField type="password" label="Verify password" iconProps={iconPass} onChange={(_, newValue) => { this.veriPass = newValue}} />
                     </Stack>
-                    <ActionButton iconProps={backIcon} text="Back" style={{ outline: 'none' }} onClick={() => {}} />
+                    <ActionButton iconProps={backIcon} text="Back" style={{ outline: 'none' }} onClick={() => {this.props.backToLogin()}} />
                 </Modal.Body>
                 <Modal.Footer>
                     <Stack horizontal tokens={{ childrenGap: 10, reversed: true }}>
                         <PrimaryButton text="Register" style={{ outline: 'none' }} onClick={() => this.RegisterHandler()} />
                     </Stack>
                 </Modal.Footer>
-            </Modal>
+            </div>
         )
     }
 }

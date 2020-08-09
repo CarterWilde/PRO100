@@ -8,11 +8,9 @@ import {PasswordNoMatchError} from '../errors/passwordnomatch'
 export class ErrorView extends Component {
     constructor(props) {
         super(props)
-        console.log(props)
     }
 
     RenderComponent(props){
-        console.log(props.info)
         switch(props.info) {
             case "1": return <EmailError/> /* ERROR 1 InvalidEmailError*/
             case "2": return <FieldError/> /* ERROR 2 FillInFieldsError*/

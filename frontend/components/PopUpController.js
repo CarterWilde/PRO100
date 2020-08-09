@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-
+import { Modal } from 'react-bootstrap';
+import {PrimaryButton} from 'office-ui-fabric-react';
 import Login from './popups/Login'
 import Register from './popups/Register'
 import Reset from './popups/Reset'
@@ -8,24 +9,42 @@ export default class PopUpController extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showLogin: false,
+            showLogin: true,
             showRegister: false,
-            showReset: false
+            showReset: false,
+            show: false
         }
     }
 
-    componentDidUpdate(prevProps) {
-        if(this.props.showLogin !== prevProps.showLogin) this.setState({showLogin: this.props.showLogin});
-        if(this.props.showRegister !== prevProps.showRegister) this.setState({showRegister: this.props.showRegister});
-        if(this.props.showReset !== prevProps.showReset) this.setState({showReset: this.props.showReset});
+    showLogin = () => {
+        this.setState({ showLogin: true, showRegister: false, showReset: false });
+    }
+
+    showRegister = () => {
+        this.setState({ showLogin: false, showRegister: true, showReset: false });
+    }
+
+    showReset = () => {
+        this.setState({ showLogin: false, showRegister: false, showReset: true });
+    }
+
+    handleClose = () => {
+        this.setState({show: false});
+    }
+
+    handleExited = () => {
+        this.setState({ showLogin: true, showRegister: false, showReset: false });
     }
 
     render() {
         return (
             <div>
-                {this.state.showLogin ? <Login {...this.props}></Login>: null}
-                {this.state.showRegister ? <Register {...this.props}></Register>: null}
-                {this.state.showReset ? <Reset {...this.props}></Reset>: null}
+                <PrimaryButton text="Login" onClick={() => {this.setState({show: true})}} style={{ outline: 'none' }}/>
+                <Modal show={this.state.show} onHide={this.handleClose} onExited={this.handleExited} size="sm" aria-labelledby="contained-modal-title-vcenter" centered >
+                    {this.state.showLogin ? <Login showRegister={this.showRegister} showReset={this.showReset} /> : null}
+                    {this.state.showRegister ? <Register backToLogin={this.showLogin} /> : null}
+                    {this.state.showReset ? <Reset backToLogin={this.showLogin} /> : null}
+                </Modal>
             </div>
         );
     }

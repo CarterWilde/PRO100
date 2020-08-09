@@ -5,10 +5,13 @@
         "target": "es6",
         "noImplicitAny": true,
         "moduleResolution": "node",
+        "declaration": true,
+        "declarationMap": true,
         "sourceMap": true,
-        "outDir": "dist",
+        "outDir": "lib",
         "baseUrl": ".",
-        "typeRoots": ["@types"],
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
         "paths": {
             "*": [
                 "node_modules/*"
@@ -16,6 +19,6 @@
         }
     },
     "include": [
-        "src/**/*"
+        "./**/*"
     ]
 }

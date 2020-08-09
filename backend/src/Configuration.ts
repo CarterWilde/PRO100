@@ -1,19 +1,28 @@
 import mongoose from "mongoose";
-import express from "express";
+import {Application} from "express";
+import passport from "passport";
+import flash from "connect-flash";
+import session from "express-session";
 
-import { MONGOURL } from "./keys";
-import { Routes } from "./routes";
+import { MONGOURL, SESSION } from "./keys";
+import { Routes } from "./Routes";
+import {localStrategy} from "./Strategies"
 
 import Route from "./ts/Route";
 import { ERequestType } from "./ts/ERequestType";
+import Post from "./models/Post";
+import User from "./models/User";
+
+import * as TUser from "shared/User";
 
 export default class Configuration {
     dbURL: string = MONGOURL;
-    app: express.Application;
-    constructor(instance: express.Application) {
+    app: Application;
+    constructor(instance: Application) {
         this.app = instance;
-        this.configureRoutes(Routes);
         this.connectToMongoose();
+        this.passportConfiguration();
+        this.configureRoutes(Routes);
     }
 
     private prop(obj: any, key: string) {
@@ -21,8 +30,28 @@ export default class Configuration {
     }
 
     private configureRoutes(routes: Route[]): void {
-        routes.forEach(route => { this.prop(this.app, ERequestType[route.type.valueOf()].toLowerCase())(route.url, route.handler)});
+        routes.forEach(route => { this.prop(this.app, ERequestType[route.type.valueOf()].toLowerCase())(route.url, route.handler, route.callback? route.callback: () => {/**/})});
         // routes.forEach(route => { eval(`this.app.${ERequestType[route.type.valueOf()].toLowerCase()}(route.url, route.handler)`)});
+    }
+
+    public passportConfiguration(): void {
+        this.app.use(flash());
+        this.app.use(session({ secret: SESSION }))
+
+        this.app.use(passport.initialize());
+        this.app.use(passport.session());
+
+        passport.use(localStrategy);
+
+        passport.serializeUser((user: TUser.default, done) => {
+            done(null, user._id);
+        });
+
+        passport.deserializeUser(async (id, done) => {
+            User.findById(id, (err, user) => {
+                done(err, user);
+            });
+        });
     }
 
     public connectToMongoose(dburl?: string): void {
@@ -36,6 +65,8 @@ export default class Configuration {
             console.log('error connecting to mongoDB', err)
         }
         mongoose.connection.on('connected', () => {
+            Post.createCollection();
+            User.createCollection();
             console.log('connected to mongoDB')
         })
     }

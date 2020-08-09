@@ -1,18 +1,29 @@
 import * as mongoose from "mongoose";
-import User from "shared/ts/User";
+import User from "shared/User";
 
-const userSchema = new mongoose.Schema({
-   username:{
-       type:String
-   },
-   email:{
-       type:String,
-       required:true
-   },
-   password:{
-       type:String,
-       required:true
-   }
+export const UserSchema = new mongoose.Schema({
+    Username: {
+        type: String
+    },
+    Email: {
+        type: String,
+        required: true,
+        unique: true,
+        validate: {
+            validator: (value: any):any => {
+                return Model.find({Email: value as string}).exec((err, users) => {
+                    if(err) console.error(err);
+                    return users.length === 0;
+                });
+            }
+        }
+    },
+    Password: {
+        type: String,
+        required: true
+    }
 })
 
-export default mongoose.model<User>("User", userSchema)
+const Model = mongoose.model<User>("User", UserSchema)
+
+export default Model;

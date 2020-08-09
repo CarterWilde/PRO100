@@ -85,9 +85,8 @@ export default class Login extends Component {
             console.log("EMAIL: ", this.email)
         }
         
-        const Register = () => {
+        const Register = async ()  => {
             this.ResetState()
-            console.log("EMAIL: ", this.email, ", USERNAME: ", this.username, ", PASS: ", this.pass, ", VERI: ", this.veriPass)
             if(!this.email || !this.username || !this.pass || !this.veriPass) {
                 return this.setState({showFillInFieldsError:true})
             }
@@ -101,7 +100,7 @@ export default class Login extends Component {
             }
             const hashPass = shajs('sha256').update(this.pass).digest('hex');
             //fetch here 
-            const error = axios.post("http://localhost:8080/createuser", {}, {
+            const error = await axios.post("http://localhost:8080/createuser", {}, {
                 headers: {
                     "new-user-object": JSON.stringify({
                         "Username": this.username,
@@ -109,9 +108,14 @@ export default class Login extends Component {
                         "Password": hashPass
                     })
                 }
+            }).catch(err=>{
+                console.log(err)
             })
+            console.log(error)
+            if(error.data.error.type === "EmailTaken") {
+                this.setState({showUserExistsError:true})
+            }
             //set state of the user exists if email exists in database
-            console.log("EMAIL: ", this.email, ", USERNAME: ", this.username, ", PASS: ", this.pass, ", VERI: ", this.veriPass)
         }
 
         return (
@@ -145,7 +149,7 @@ export default class Login extends Component {
                                 : <Stack tokens={stackTokens}>
                                     <TextField label="Email" iconProps={iconMail} onChange={(_, newValue) => {this.email = newValue; this.ResetState()}}/>
                                     <TextField label="Username" iconProps={iconUser} onChange={(_, newValue) => {this.username = newValue; this.ResetState()}}/>
-                                    <TextField type="password" label="Password" iconProps={iconPass} onChange={(_, newValue) => {this.pass = newValue; console.log(newValue); this.ResetState()}}/>
+                                    <TextField type="password" label="Password" iconProps={iconPass} onChange={(_, newValue) => {this.pass = newValue; this.ResetState()}}/>
                                     <TextField type="password" label="Verify password" iconProps={iconPass} onChange={(_, newValue) => {this.veriPass = newValue; this.ResetState()}}/>
                                 </Stack>
                             }

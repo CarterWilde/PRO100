@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { DefaultButton, PrimaryButton, Stack } from 'office-ui-fabric-react';
 import { SearchBox } from '@fluentui/react';
-import Login from './login'
+import PopUpController from './PopUpController'
 import Post from './post'
 
 
@@ -47,7 +47,7 @@ export default class Header extends Component {
                         <Stack horizontal tokens={stackTokens}>
                             <DefaultButton text="Post" onClick={() => this.setState({ addPostModal: true })} style={{ outline: 'none' }}/>
                             <PrimaryButton text="Login" onClick={() => this.setState({ addLoginModal: true })} style={{ outline: 'none' }}/>
-                            <Login show={this.state.addLoginModal} onHide={closeLoginModal} />
+                            <PopUpController show={this.state.addLoginModal} onHide={closeLoginModal} />
                             <Post show={this.state.addPostModal} onHide={closePostModal} />
                         </Stack>
                     </div>

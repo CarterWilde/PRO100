@@ -1,11 +1,11 @@
 import {MessageBar, MessageBarType} from '@fluentui/react';
 
-export const EmailError = () => {
+export const InvalidPasswordError = () => {
     return (
         <MessageBar
             messageBarType={MessageBarType.error}
             isMultiline={false}
             dismissButtonAriaLabel="Close"
-        >Invalid Email.</MessageBar>
+        >Incorrect password.</MessageBar>
     )
 }

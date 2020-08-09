@@ -21,29 +21,29 @@ export class CardHorizontalExample extends React.Component{
         fontWeight: FontWeights.regular,
       },
     };
-    const helpfulTextStyles: ITextStyles = {
+    const helpfulTextStyles = {
       root: {
         color: '#333333',
         fontWeight: FontWeights.regular,
       },
     };
-    const iconStyles: IIconStyles = {
+    const iconStyles = {
       root: {
         color: '#0078D4',
         fontSize: 16,
         fontWeight: FontWeights.regular,
       },
     };
-    const footerCardSectionStyles: ICardSectionStyles = {
+    const footerCardSectionStyles = {
       root: {
         alignSelf: 'stretch',
         borderLeft: '1px solid #F3F2F1',
       },
     };
 
-    const sectionStackTokens: IStackTokens = { childrenGap: 20 };
-    const cardTokens: ICardTokens = { childrenMargin: 12 };
-    const footerCardSectionTokens: ICardSectionTokens = { padding: '0px 0px 0px 12px' };
+    const sectionStackTokens = { childrenGap: 20 };
+    const cardTokens = { childrenMargin: 12 };
+    const footerCardSectionTokens = { padding: '0px 0px 0px 12px' };
 
     return (
       <Stack tokens={sectionStackTokens}>

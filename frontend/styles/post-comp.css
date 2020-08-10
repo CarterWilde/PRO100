@@ -1,0 +1,13 @@
+
+#post-popup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    overflow: auto;
+}
+
+#post{
+    height: 250px !important;
+    width: 500px !important;
+}

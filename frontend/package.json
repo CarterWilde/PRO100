@@ -11,6 +11,8 @@
     "@expo/next-adapter": "^2.1.22",
     "@fluentui/react": "^7.126.2",
     "@uifabric/icons": "^7.3.70",
+    "@uifabric/react-cards": "^0.110.18",
+    "@uifabric/styling": "^7.14.10",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
     "jpeg-js": "^0.4.1",

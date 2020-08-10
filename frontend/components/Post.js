@@ -1,13 +1,11 @@
-// @codepen
 import * as React from 'react';
 import { Card, ICardTokens, ICardSectionStyles, ICardSectionTokens } from '@uifabric/react-cards';
 import { FontWeights } from '@uifabric/styling';
 import { Icon, IIconStyles, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
-
 const alertClicked = () => {
   alert('Clicked');
 };
-export class CardHorizontalExample extends React.Component{
+export class Post extends React.Component {
    render() {
     const siteTextStyles = {
       root: {
@@ -47,7 +45,7 @@ export class CardHorizontalExample extends React.Component{
 
     return (
       <Stack tokens={sectionStackTokens}>
-        <Card aria-label="Basic horizontal card" horizontal tokens={cardTokens}>
+        <Card aria-label="Basic card" horizontal tokens={cardTokens}>
           <Card.Item>
             <Text>Basic horizontal card</Text>
           </Card.Item>
@@ -55,13 +53,13 @@ export class CardHorizontalExample extends React.Component{
 
         <Card aria-label="Clickable horizontal card " horizontal onClick={alertClicked} tokens={cardTokens}>
           <Card.Item fill>
-            <Image src="https://placehold.it/180x135" alt="Placeholder image." />
+            <Image src="https://i.kym-cdn.com/entries/icons/original/000/018/012/this_is_fine.jpeg" alt="Placeholder image." />
           </Card.Item>
           <Card.Section>
             <Text variant="small" styles={siteTextStyles}>
-              Contoso
+              Title PlaceHolder
             </Text>
-            <Text styles={descriptionTextStyles}>Contoso Denver expansion design marketing hero guidelines</Text>
+            <Text styles={descriptionTextStyles}>Details PlacHolder</Text>
             <Text variant="small" styles={helpfulTextStyles}>
               Is this recommendation helpful?
             </Text>
@@ -78,4 +76,6 @@ export class CardHorizontalExample extends React.Component{
       </Stack>
     );
   }
+  
 }
+export default Post;

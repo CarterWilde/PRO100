@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import { Stack, TextField, DefaultButton, PrimaryButton, ActionButton, DefaultPalette } from '@fluentui/react';
 import {moneyIcon, titleIcon} from "./popups/SharedPopup";
-import {Post} from "../components/Post"
+import Post from './Post';
+
 
 export default class Login extends Component {
     constructor(props) {

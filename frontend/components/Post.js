@@ -13,9 +13,17 @@ export class Post extends React.Component {
         fontWeight: FontWeights.semibold,
       },
     };
+    const postTextStyles = {
+      root: {
+        color: '#333333',
+        frontSize: 15,
+        fontWeight: FontWeights.regular,
+      },
+    };
     const descriptionTextStyles = {
       root: {
         color: '#333333',
+        frontSize: 12,
         fontWeight: FontWeights.regular,
       },
     };
@@ -39,31 +47,45 @@ export class Post extends React.Component {
         borderLeft: '1px solid #F3F2F1',
       },
     };
-
+    const infoCardSectionStyles = {
+      root: {
+        alignSelf: 'stretch',
+        borderLeft: '1px solid #F3F2F1',
+      },
+    };
+    const priceTextStyles = {
+      root: {
+        color: '#333333',
+        fontSize: 20,
+        fontWeight: FontWeights.regular,
+      },
+    };
     const sectionStackTokens = { childrenGap: 20 };
-    const cardTokens = { childrenMargin: 12 };
+    const cardTokens = { childrenMargin: 10};
     const footerCardSectionTokens = { padding: '0px 0px 0px 12px' };
-
+    const infoCardSectionTokens = { padding: '0px 100px 0px 20px' };
     return (
       <Stack tokens={sectionStackTokens}>
         <Card aria-label="Basic card" horizontal tokens={cardTokens}>
           <Card.Item>
-            <Text>Basic horizontal card</Text>
+            <Text>Basic Post</Text>
           </Card.Item>
         </Card>
 
         <Card aria-label="Clickable horizontal card " horizontal onClick={alertClicked} tokens={cardTokens}>
           <Card.Item fill>
-            <Image src="https://i.kym-cdn.com/entries/icons/original/000/018/012/this_is_fine.jpeg" alt="Placeholder image." />
+            <Image src="https://vignette.wikia.nocookie.net/smite/images/e/e1/2826.jpg/revision/latest?cb=20140511201423" alt="Placeholder image."/>
           </Card.Item>
-          <Card.Section>
+          <Card.Section styles={infoCardSectionStyles} tokens={infoCardSectionTokens}>
             <Text variant="small" styles={siteTextStyles}>
-              Title PlaceHolder
+             Bancroft's Talon
             </Text>
-            <Text variant="small" styles={helpfulTextStyles}>
-              $100 
+            <Text variant="small" styles={postTextStyles}>
+              Posted by: Smite
             </Text>
-            <Text styles={descriptionTextStyles}>Details PlacHolder</Text>
+            <Text variant="small" styles={priceTextStyles}>
+              $2500 
+            </Text>
           </Card.Section>
           <Card.Section styles={footerCardSectionStyles} tokens={footerCardSectionTokens}>
             <Icon iconName="RedEye" styles={iconStyles} />

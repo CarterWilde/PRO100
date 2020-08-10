@@ -66,12 +66,6 @@ export class Post extends React.Component {
     const infoCardSectionTokens = { padding: '0px 100px 0px 20px' };
     return (
       <Stack tokens={sectionStackTokens}>
-        <Card aria-label="Basic card" horizontal tokens={cardTokens}>
-          <Card.Item>
-            <Text>Basic Post</Text>
-          </Card.Item>
-        </Card>
-
         <Card aria-label="Clickable horizontal card " horizontal onClick={alertClicked} tokens={cardTokens}>
           <Card.Item fill>
             <Image src="https://vignette.wikia.nocookie.net/smite/images/e/e1/2826.jpg/revision/latest?cb=20140511201423" alt="Placeholder image."/>

@@ -22,6 +22,7 @@ export class Post extends React.Component {
     const helpfulTextStyles = {
       root: {
         color: '#333333',
+        fontSize: 23,
         fontWeight: FontWeights.regular,
       },
     };
@@ -59,10 +60,10 @@ export class Post extends React.Component {
             <Text variant="small" styles={siteTextStyles}>
               Title PlaceHolder
             </Text>
-            <Text styles={descriptionTextStyles}>Details PlacHolder</Text>
             <Text variant="small" styles={helpfulTextStyles}>
-              Is this recommendation helpful?
+              $100 
             </Text>
+            <Text styles={descriptionTextStyles}>Details PlacHolder</Text>
           </Card.Section>
           <Card.Section styles={footerCardSectionStyles} tokens={footerCardSectionTokens}>
             <Icon iconName="RedEye" styles={iconStyles} />

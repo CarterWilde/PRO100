@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import { Stack, TextField, DefaultButton, PrimaryButton, ActionButton, DefaultPalette } from '@fluentui/react';
+import { Stack, TextField, DefaultButton, PrimaryButton} from '@fluentui/react';
 import {moneyIcon, titleIcon} from "./popups/SharedPopup";
+import {PostComp} from '../components/postComp'
 
 export default class Login extends Component {
     constructor(props) {
@@ -32,7 +33,7 @@ export default class Login extends Component {
                                 <TextField label="Description" multiline resizable={false} style={{height:"200px"}}/>
                             </Stack>
                             <Stack verticalAlign="space-around" horizontalAlign="center" style={{width:"50%"}}>
-                                Post component goes here
+                                <PostComp/>
                             </Stack>
                         </Stack>
                     </Modal.Body>

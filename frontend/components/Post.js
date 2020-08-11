@@ -7,6 +7,10 @@ const alertClicked = () => {
 };
 export class Post extends React.Component {
    render() {
+    constructor(props) {
+      super(props)
+      this.state = {error: "0", comp: "login"}
+  }
     const siteTextStyles = {
       root: {
         color: '#025F52',
@@ -64,6 +68,7 @@ export class Post extends React.Component {
     const cardTokens = { childrenMargin: 10};
     const footerCardSectionTokens = { padding: '0px 0px 0px 12px' };
     const infoCardSectionTokens = { padding: '0px 100px 0px 20px' };
+
     return (
       <Stack tokens={sectionStackTokens}>
         <Card aria-label="Clickable horizontal card " horizontal onClick={alertClicked} tokens={cardTokens}>
@@ -72,13 +77,13 @@ export class Post extends React.Component {
           </Card.Item>
           <Card.Section styles={infoCardSectionStyles} tokens={infoCardSectionTokens}>
             <Text variant="small" styles={siteTextStyles}>
-             Bancroft's Talon
+            {this.title}
             </Text>
             <Text variant="small" styles={postTextStyles}>
               Posted by: Smite
             </Text>
             <Text variant="small" styles={priceTextStyles}>
-              $2500 
+            {this.price} 
             </Text>
           </Card.Section>
           <Card.Section styles={footerCardSectionStyles} tokens={footerCardSectionTokens}>

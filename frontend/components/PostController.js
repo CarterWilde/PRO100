@@ -4,8 +4,8 @@ import { Stack, TextField, DefaultButton, PrimaryButton} from '@fluentui/react';
 import {moneyIcon, titleIcon} from "./popups/SharedPopup";
 import Post from './Post';
 
-
 export default class Login extends Component {
+     
     constructor(props) {
         super(props)
         this.state = {
@@ -29,9 +29,9 @@ export default class Login extends Component {
                     <Modal.Body>
                         <Stack horizontal horizontalAlign="space-around"  tokens={{childrenGap: 20}}>
                             <Stack verticalAlign="center" tokens={{childrenGap: 20}} style={{width:"50%"}}>
-                                <TextField label="Title:" underlined iconProps={titleIcon}/>
-                                <TextField label="Price:" prefix='$' underlined iconProps={moneyIcon}/> {/* /^(\d*([.,](?=\d{3}))?\d+)+((?!\2)[.,]\d\d)?$/ */}
-                                <TextField label="Description" multiline resizable={false} style={{height:"200px"}}/>
+                                <TextField onChange={(_, newValue) => { this.title = newValue;}} label="Title:" underlined iconProps={titleIcon}/>
+                                <TextField onChange={(_, newValue) => { this.price = newValue;}} label="Price:" prefix='$' underlined iconProps={moneyIcon}/> {/* /^(\d*([.,](?=\d{3}))?\d+)+((?!\2)[.,]\d\d)?$/ */}
+                                <TextField onChange={(_, newValue) => { this.descirption = newValue;}} label="Description" multiline resizable={false} style={{height:"200px"}}/>
                             </Stack>
                             <Stack verticalAlign="space-around" horizontalAlign="center" style={{width:"50%"}}>
                               <Post/> 

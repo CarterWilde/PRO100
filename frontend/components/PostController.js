@@ -9,7 +9,11 @@ export default class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: false
+            show: false,
+            title: null,
+            price: null,
+            descirption: null
+
         }
     }
 
@@ -29,12 +33,12 @@ export default class Login extends Component {
                     <Modal.Body>
                         <Stack horizontal horizontalAlign="space-around"  tokens={{childrenGap: 20}}>
                             <Stack verticalAlign="center" tokens={{childrenGap: 20}} style={{width:"50%"}}>
-                                <TextField onChange={(_, newValue) => { this.title = newValue;}} label="Title:" underlined iconProps={titleIcon}/>
-                                <TextField onChange={(_, newValue) => { this.price = newValue;}} label="Price:" prefix='$' underlined iconProps={moneyIcon}/> {/* /^(\d*([.,](?=\d{3}))?\d+)+((?!\2)[.,]\d\d)?$/ */}
-                                <TextField onChange={(_, newValue) => { this.descirption = newValue;}} label="Description" multiline resizable={false} style={{height:"200px"}}/>
+                                <TextField onChange={(_, newValue) => {this.setState({title: newValue})}}label="Title:" underlined iconProps={titleIcon}/>
+                                <TextField onChange={(_, newValue) => {this.setState({price: newValue})}} label="Price:" prefix='$' underlined iconProps={moneyIcon}/> {/* /^(\d*([.,](?=\d{3}))?\d+)+((?!\2)[.,]\d\d)?$/ */}
+                                <TextField onChange={(_, newValue) => {this.setState({descirption: newValue})}} label="Description" multiline resizable={false} style={{height:"200px"}}/>
                             </Stack>
                             <Stack verticalAlign="space-around" horizontalAlign="center" style={{width:"50%"}}>
-                              <Post/> 
+                              <Post title={this.state.title} price={this.state.price} descirption ={this.state.descirption}/> 
                             </Stack>
                         </Stack>
                     </Modal.Body>

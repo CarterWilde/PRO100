@@ -6,11 +6,10 @@ const alertClicked = () => {
   alert('Clicked');
 };
 export class Post extends React.Component {
-   render() {
-    constructor(props) {
-      super(props)
-      this.state = {error: "0", comp: "login"}
-  }
+  constructor(props) {
+    super(props)
+} 
+  render() {
     const siteTextStyles = {
       root: {
         color: '#025F52',
@@ -77,13 +76,13 @@ export class Post extends React.Component {
           </Card.Item>
           <Card.Section styles={infoCardSectionStyles} tokens={infoCardSectionTokens}>
             <Text variant="small" styles={siteTextStyles}>
-            {this.title}
+            {this.props.title}
             </Text>
             <Text variant="small" styles={postTextStyles}>
-              Posted by: Smite
+            {this.props.price}
             </Text>
             <Text variant="small" styles={priceTextStyles}>
-            {this.price} 
+            {this.props.descirption}
             </Text>
           </Card.Section>
           <Card.Section styles={footerCardSectionStyles} tokens={footerCardSectionTokens}>

@@ -29,7 +29,7 @@ export default class Login extends Component {
                     <Modal.Body>
                         <Stack horizontal horizontalAlign="space-around"  tokens={{childrenGap: 20}}>
                             <Stack verticalAlign="center" tokens={{childrenGap: 20}} style={{width:"50%"}}>
-                                <TextField label="Title:" underlined iconProps={titleIcon}/>
+                                <TextField label="Title:" underlined iconProps={titleIcon} onChange={(_, newValue) => { console.log(newValue)}}/>
                                 <TextField label="Price:" prefix='$' underlined iconProps={moneyIcon}/> {/* /^(\d*([.,](?=\d{3}))?\d+)+((?!\2)[.,]\d\d)?$/ */}
                                 <TextField label="Description" multiline resizable={false} style={{height:"200px"}}/>
                             </Stack>

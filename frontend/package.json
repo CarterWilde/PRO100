@@ -10,6 +10,7 @@
   "dependencies": {
     "@expo/next-adapter": "^2.1.22",
     "@fluentui/react": "^7.126.2",
+    "@microsoft/sp-office-ui-fabric-core": "^1.11.0",
     "@uifabric/icons": "^7.3.70",
     "@uifabric/react-cards": "^0.110.19",
     "@uifabric/styling": "^7.14.10",

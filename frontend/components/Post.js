@@ -1,12 +1,24 @@
 import * as React from 'react';
 import { Card, ICardTokens, ICardSectionStyles, ICardSectionTokens } from '@uifabric/react-cards';
 import { FontWeights } from '@uifabric/styling';
-import { Icon, IIconStyles, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
+import { Icon, IIconStyles, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
+import { Image, IImageProps, ImageFit } from 'office-ui-fabric-react/lib/Image';
+
 const alertClicked = () => {
   alert('Clicked');
 };
 export class Post extends React.Component {
-   render() {
+  constructor(props) {
+    super(props)
+} 
+  render() {
+
+    const imageProps= {
+      src: 'http://placehold.it/500x500',
+      imageFit: ImageFit.cover,
+      maximizeFrame: true,
+    };
+
     const siteTextStyles = {
       root: {
         color: '#025F52',
@@ -64,27 +76,25 @@ export class Post extends React.Component {
     const cardTokens = { childrenMargin: 10};
     const footerCardSectionTokens = { padding: '0px 0px 0px 12px' };
     const infoCardSectionTokens = { padding: '0px 100px 0px 20px' };
+
     return (
       <Stack tokens={sectionStackTokens}>
-        <Card aria-label="Basic card" horizontal tokens={cardTokens}>
-          <Card.Item>
-            <Text>Basic Post</Text>
-          </Card.Item>
-        </Card>
-
         <Card aria-label="Clickable horizontal card " horizontal onClick={alertClicked} tokens={cardTokens}>
           <Card.Item fill>
+            <div style={{ width: '200px', height: '100px' }}>
+               <Image {...imageProps} alt="Example of the maximizeFrame property with a landscape container." />
+             </div>
             <Image src="https://vignette.wikia.nocookie.net/smite/images/e/e1/2826.jpg/revision/latest?cb=20140511201423" alt="Placeholder image."/>
           </Card.Item>
           <Card.Section styles={infoCardSectionStyles} tokens={infoCardSectionTokens}>
             <Text variant="small" styles={siteTextStyles}>
-             Bancroft's Talon
+            {this.props.title}
             </Text>
             <Text variant="small" styles={postTextStyles}>
-              Posted by: Smite
+            {this.props.price}
             </Text>
             <Text variant="small" styles={priceTextStyles}>
-              $2500 
+            {this.props.descirption}
             </Text>
           </Card.Section>
           <Card.Section styles={footerCardSectionStyles} tokens={footerCardSectionTokens}>

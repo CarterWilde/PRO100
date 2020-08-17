@@ -39,6 +39,7 @@ export default class Login extends Component {
                                 <TextField onChange={(_, newValue) => {this.setState({imageUrl: newValue})}}label="Image Url:" underlined iconProps={titleIcon}/>
                                 <TextField onChange={(_, newValue) => {this.setState({descirption: newValue})}} label="Description" multiline resizable={false} style={{height:"200px"}}/>
                             </Stack>
+                            
                             <Stack verticalAlign="space-around" horizontalAlign="center" style={{width:"50%"}}>
                               <Post title={this.state.title} price={this.state.price} descirption ={this.state.descirption}/> 
                             </Stack>

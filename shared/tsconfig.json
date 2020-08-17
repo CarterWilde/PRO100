@@ -10,8 +10,8 @@
         "sourceMap": true,
         "outDir": "lib",
         "baseUrl": ".",
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
+        "typeRoots": ["@types"],
+        "types": ["node"],
         "paths": {
             "*": [
                 "node_modules/*"

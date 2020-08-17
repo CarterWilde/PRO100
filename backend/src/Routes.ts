@@ -5,10 +5,11 @@ import { ERequestType } from "./ts/ERequestType";
 import Route from "./ts/Route";
 
 import Post from "./models/Post";
-import User from "./models/User";
+import * as UserModel from "./models/User";
 
 import { localStrategy } from "./Strategies";
-import TUser from "shared/User";
+import User from "shared/User"
+import AuthUser from "shared/AuthorizationUser"
 
 export const Routes: Route[] = [
     {
@@ -45,7 +46,7 @@ export const Routes: Route[] = [
         url: "/user",
         type: ERequestType.GET,
         handler: async (req, res) => {
-            const user = await User.find().populate('user')
+            const user = await UserModel.default.find().populate('user')
             res.json(user)
         }
     },
@@ -69,6 +70,7 @@ export const Routes: Route[] = [
         type: ERequestType.POST,
         handler: passport.authenticate(localStrategy),
         callback: (req, res) => {
+            console.log(new User(req.user.Email, req.user.Username));
             res.sendStatus(200);
         }
     },
@@ -76,8 +78,8 @@ export const Routes: Route[] = [
         url: "/createuser",
         type: ERequestType.POST,
         handler: (req, res) => {
-            const user = JSON.parse(req.headers['new-user-object'] as string) as TUser;
-            User.create(user).then(result => {
+            const user = JSON.parse(req.headers['new-user-object'] as string) as AuthUser;
+            UserModel.default.create(user).then(result => {
                 console.log(`Added User ${user.Email}`);
             })
             .catch((err: MongoError) => {

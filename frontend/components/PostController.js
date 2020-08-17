@@ -12,7 +12,8 @@ export default class Login extends Component {
             show: false,
             title: null,
             price: null,
-            descirption: null
+            descirption: null,
+            imageUrl: null
 
         }
     }
@@ -35,6 +36,7 @@ export default class Login extends Component {
                             <Stack verticalAlign="center" tokens={{childrenGap: 20}} style={{width:"50%"}}>
                                 <TextField onChange={(_, newValue) => {this.setState({title: newValue})}}label="Title:" underlined iconProps={titleIcon}/>
                                 <TextField onChange={(_, newValue) => {this.setState({price: newValue})}} label="Price:" prefix='$' underlined iconProps={moneyIcon}/> {/* /^(\d*([.,](?=\d{3}))?\d+)+((?!\2)[.,]\d\d)?$/ */}
+                                <TextField onChange={(_, newValue) => {this.setState({imageUrl: newValue})}}label="Image Url:" underlined iconProps={titleIcon}/>
                                 <TextField onChange={(_, newValue) => {this.setState({descirption: newValue})}} label="Description" multiline resizable={false} style={{height:"200px"}}/>
                             </Stack>
                             <Stack verticalAlign="space-around" horizontalAlign="center" style={{width:"50%"}}>

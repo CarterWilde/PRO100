@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Card, ICardTokens, ICardSectionStyles, ICardSectionTokens } from '@uifabric/react-cards';
-import { FontWeights } from '@uifabric/styling';
-import { Icon, IIconStyles, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
-import { Image, IImageProps, ImageFit } from 'office-ui-fabric-react/lib/Image';
+import { FontWeights} from '@uifabric/styling';
+import { Icon, IIconStyles, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
 
 const alertClicked = () => {
   alert('Clicked');
@@ -12,40 +11,33 @@ export class Post extends React.Component {
     super(props)
 } 
   render() {
-
-    const imageProps= {
-      src: 'http://placehold.it/500x500',
-      imageFit: ImageFit.cover,
-      maximizeFrame: true,
-    };
-
-    const siteTextStyles = {
-      root: {
-        color: '#025F52',
-        fontWeight: FontWeights.semibold,
-      },
-    };
-    const postTextStyles = {
+    const titleTextStyles = {
       root: {
         color: '#333333',
-        frontSize: 15,
+        fontSize: 25,
+        fontWeight: FontWeights.regular,
+      },
+    };
+    const priceTextStyles = {
+      root: {
+        color: '#333333',
+        fontSize: 15,
         fontWeight: FontWeights.regular,
       },
     };
     const descriptionTextStyles = {
       root: {
         color: '#333333',
-        frontSize: 12,
+        fontSize: 12,
         fontWeight: FontWeights.regular,
+        flexDirection:'row',
+        flex: 1,
+        flexWrap: 'wrap',
+        flexShrink: 1
+        
       },
     };
-    const helpfulTextStyles = {
-      root: {
-        color: '#333333',
-        fontSize: 23,
-        fontWeight: FontWeights.regular,
-      },
-    };
+
     const iconStyles = {
       root: {
         color: '#0078D4',
@@ -65,38 +57,35 @@ export class Post extends React.Component {
         borderLeft: '1px solid #F3F2F1',
       },
     };
-    const priceTextStyles = {
-      root: {
-        color: '#333333',
-        fontSize: 20,
-        fontWeight: FontWeights.regular,
-      },
-    };
+    
     const sectionStackTokens = { childrenGap: 20 };
     const cardTokens = { childrenMargin: 10};
     const footerCardSectionTokens = { padding: '0px 0px 0px 12px' };
-    const infoCardSectionTokens = { padding: '0px 100px 0px 20px' };
+    const infoCardSectionTokens = { maxWidth: "115px",maxHeight: "180px",margin: '10px 10px 10px 10px'};
+    const ImageTokens = {maxWidth: "145px",maxHeight: "180px"};
 
     return (
       <Stack tokens={sectionStackTokens}>
         <Card aria-label="Clickable horizontal card " horizontal onClick={alertClicked} tokens={cardTokens}>
-          <Card.Item fill>
-            <div style={{ width: '200px', height: '100px' }}>
-               <Image {...imageProps} alt="Example of the maximizeFrame property with a landscape container." />
-             </div>
-            <Image src="https://vignette.wikia.nocookie.net/smite/images/e/e1/2826.jpg/revision/latest?cb=20140511201423" alt="Placeholder image."/>
-          </Card.Item>
-          <Card.Section styles={infoCardSectionStyles} tokens={infoCardSectionTokens}>
-            <Text variant="small" styles={siteTextStyles}>
+
+          <Card.Section styles={infoCardSectionTokens} tokens={infoCardSectionTokens}>
+            <Text  variant="small" styles={titleTextStyles}>
             {this.props.title}
             </Text>
-            <Text variant="small" styles={postTextStyles}>
+            <Text variant="small" styles={priceTextStyles}>
             {this.props.price}
             </Text>
-            <Text variant="small" styles={priceTextStyles}>
+            <Text variant="small" styles={descriptionTextStyles}>
             {this.props.descirption}
             </Text>
           </Card.Section>
+
+          <Card.Item styles={ImageTokens}>
+            <div styles={ImageTokens}>
+            <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQKNi3LO7KsxAUHYOT57knh3884q574tL0ZSQ&usqp=CAU" />
+             </div>
+          </Card.Item>
+
           <Card.Section styles={footerCardSectionStyles} tokens={footerCardSectionTokens}>
             <Icon iconName="RedEye" styles={iconStyles} />
             <Icon iconName="SingleBookmark" styles={iconStyles} />

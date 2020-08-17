@@ -1,10 +1,10 @@
-import {Request, Response, NextFunction} from "express";
+import {Response, NextFunction} from "express";
 import {ERequestType} from "./ERequestType";
+import UserRequest from "shared/UserRequest"
 
 export default interface Route {
     url: string;
     type: ERequestType;
-    handler: (req: Request, res: Response, next?: NextFunction) => any;
-    // TODO: Add user object to request type
-    callback?: (req: Request, res: Response, ...args: any[]) => any;
+    handler: (req: UserRequest, res: Response, next?: NextFunction) => any;
+    callback?: (req: UserRequest, res: Response, ...args: any[]) => any;
 }

@@ -13,7 +13,7 @@ import { ERequestType } from "./ts/ERequestType";
 import Post from "./models/Post";
 import User from "./models/User";
 
-import * as TUser from "shared/User";
+import * as AuthUser from "shared/AuthorizationUser";
 
 export default class Configuration {
     dbURL: string = MONGOURL;
@@ -43,7 +43,7 @@ export default class Configuration {
 
         passport.use(localStrategy);
 
-        passport.serializeUser((user: TUser.default, done) => {
+        passport.serializeUser((user: AuthUser.default, done) => {
             done(null, user._id);
         });
 

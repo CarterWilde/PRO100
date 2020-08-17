@@ -7,9 +7,6 @@ import shajs from "sha.js";
 import {Stack, TextField, DefaultButton, PrimaryButton, ActionButton} from '@fluentui/react';
 import {forgotIcon, iconMail, iconPass, emailNotValid} from "./SharedPopup";
 import {ErrorView} from '../errors/ErrorView'
-import { SearchBox } from '@fluentui/react';
-import PopUpController from '../PopUpController'
-import Register from '../popups/Register'
 
 export default class Login extends Component {
     constructor(props) {
@@ -44,7 +41,7 @@ export default class Login extends Component {
                 <Modal.Body>
                     <ErrorView error={this.state.error}/>
                     <Stack tokens={{childrenGap: 20}}>
-                        <TextField onChange={(_, newValue) => { this.email = newValue;}} label="Email" iconProps={iconMail} />
+                        <TextField onChange={(_, newValue) => { this.email = newValue;}} label="Email" iconProps={iconMail}/>
                         <TextField onChange={(_, newValue) => { this.pass = newValue;}} type="password" label="Password" iconProps={iconPass} />
                     </Stack>
                     <ActionButton iconProps={forgotIcon} text="Forgot password? Click here." style={{ outline: 'none' }} onClick={() => {this.props.showReset()}} />

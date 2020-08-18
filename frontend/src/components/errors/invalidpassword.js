@@ -1,3 +1,4 @@
+import React from 'react';
 import {MessageBar, MessageBarType} from '@fluentui/react';
 
 export const InvalidPasswordError = () => {

@@ -69,7 +69,7 @@ module.exports = {
             },
             {
                 test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
+                exclude: /(node_modules)/,
                 use: {
                     loader: "source-map-loader",
                     loader: "babel-loader"

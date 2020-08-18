@@ -1,12 +1,10 @@
-
 .nav-bar {
     height: 60px;
     width: 100%;
     background-color: black;
     color: white;
-    box-shadow: 0 3px 2px 0px gray;
+    box-shadow: 0 3px 2px 0 #979797;
 }
-
 
 .nav-col {
     float: left;
@@ -17,22 +15,22 @@
 .left {
     text-align: left;
 }
+
 .center {
     text-align: center;
 }
+
 .right {
     text-align: right;
-    
 }
 
 .nav-bar .left .img {
     margin-left: 10px;
     max-height: 60px;
-    object-fit: scale-down;
     text-align: left;
 }
 
-.nav-bar .center  {
+.nav-bar .center {
     display: flex;
     align-items: center;
     justify-content: center;

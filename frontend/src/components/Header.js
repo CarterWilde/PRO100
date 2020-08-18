@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { DefaultButton, PrimaryButton, Stack } from 'office-ui-fabric-react';
-import { SearchBox } from '@fluentui/react';
+//import { DefaultButton, PrimaryButton, Stack } from 'office-ui-fabric-react';
+import { SearchBox, PrimaryButton, Stack } from '@fluentui/react';
 import PopUpController from './PopUpController'
 import PostController from './PostController'
+import Logo from "../public/images/logo.png"
 
 
 export default class Header extends Component {
@@ -31,7 +32,7 @@ export default class Header extends Component {
         return (
             <>
                 <div className="nav-bar">
-                    <div className="left nav-col"><img className="img" src="/images/logo.png" /></div>
+                    <div className="left nav-col"><img className="img" src={Logo} /></div>
                     <div className="center nav-col">
                         <Stack horizontal tokens={stackTokens}>
                             <SearchBox id="ser" styles={searchBoxStyles} placeholder="Search"

@@ -1,4 +1,5 @@
 import {MessageBar, MessageBarType} from '@fluentui/react';
+import React from 'react';
 
 export const PasswordNoMatchError = () => {
     return (

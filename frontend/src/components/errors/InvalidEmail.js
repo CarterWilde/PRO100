@@ -1,11 +1,12 @@
 import {MessageBar, MessageBarType} from '@fluentui/react';
+import React from 'react';
 
-export const FieldError = () => {
+export const EmailError = () => {
     return (
         <MessageBar
             messageBarType={MessageBarType.error}
             isMultiline={false}
             dismissButtonAriaLabel="Close"
-        >Fill in all fields.</MessageBar>
+        >Invalid Email.</MessageBar>
     )
 }

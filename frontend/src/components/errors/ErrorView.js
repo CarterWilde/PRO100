@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import {EmailError} from '../errors/invlaidemail'
-import {FieldError} from '../errors/filinfields'
-import {InvalidPasswordError} from '../errors/invalidpassword'
-import {UserExistsError} from '../errors/userExists'
-import {PasswordNoMatchError} from '../errors/passwordnomatch'
+import {EmailError} from '../errors/InvalidEmail'
+import {FieldError} from '../errors/FieldError'
+import {InvalidPasswordError} from '../errors/InvalidPassword'
+import {UserExistsError} from '../errors/UserExists'
+import {PasswordNoMatchError} from '../errors/PasswordNoMatchError'
 
 export class ErrorView extends Component {
     constructor(props) {

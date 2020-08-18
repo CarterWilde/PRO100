@@ -39,10 +39,6 @@ export class Post extends React.Component {
         color: '#333333',
         fontSize: 12,
         fontWeight: FontWeights.regular,
-        flexDirection:'row',
-        flex: 1,
-        flexWrap: 'wrap',
-        flexShrink: 1
         
       },
     };
@@ -70,7 +66,7 @@ export class Post extends React.Component {
     const sectionStackTokens = { childrenGap: 20 };
     const cardTokens = { childrenMargin: 10};
     const footerCardSectionTokens = { padding: '0px 0px 0px 12px' };
-    const infoCardSectionTokens = { maxWidth: "115px",maxHeight: "180px",margin: '10px 10px 10px 10px'};
+    const infoCardSectionTokens = { maxWidth: "120px",maxHeight: "173px",margin: '5px 5px 5px 10px', width:"100px"};
     const ImageTokens = {maxWidth: "145px",maxHeight: "180px"};
 
     return (
@@ -78,20 +74,20 @@ export class Post extends React.Component {
         <Card aria-label="Clickable horizontal card " horizontal onClick={alertClicked} tokens={cardTokens}>
 
           <Card.Section styles={infoCardSectionTokens} tokens={infoCardSectionTokens}>
-            <Text  variant="small" styles={titleTextStyles}>
+            <Text maxLength = {8} maxlength="10" className = "word-wrap"  variant="small" styles={titleTextStyles}>
             {this.props.title}
             </Text>
             <Text variant="small" styles={priceTextStyles}>
             {this.props.price}
             </Text>
-            <Text variant="small" styles={descriptionTextStyles}>
+            <Text className = "overflow" variant="small" styles={descriptionTextStyles}>
             {this.props.descirption}
             </Text>
           </Card.Section>
 
           <Card.Item styles={ImageTokens}>
             <div styles={ImageTokens}>
-            <Image src={this.props.imageUrl} />
+            <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQe39OMLvdNbssmihH4-cwvagbbR9ehAzJ89w&usqp=CAU" />
              </div>
           </Card.Item>
 

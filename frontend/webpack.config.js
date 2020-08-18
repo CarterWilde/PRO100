@@ -1,8 +1,10 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+const { devtool } = require("./webpack.development")
 
 module.exports = {
     entry: "./src/index.js",
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -70,9 +72,10 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                  loader: "babel-loader"
+                    loader: "source-map-loader",
+                    loader: "babel-loader"
                 }
-              }
+            }
         ]
     },
     plugins: [

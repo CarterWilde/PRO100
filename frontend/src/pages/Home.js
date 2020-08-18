@@ -3,9 +3,6 @@ import React from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer'
 
-// import { initializeIcons } from '@fluentui/icons';
-// initializeIcons();
-
 import '../styles/globals.css'
 import '../styles/navbar.css'
 import '../styles/footer.css'
@@ -16,6 +13,7 @@ export default class Home extends React.Component {
         return (
               <div className="wrapper">
                   <Header />
+                  <Footer />
               </div>
         );
     }

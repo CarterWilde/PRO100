@@ -1,4 +1,3 @@
-
 #post-popup-container {
     display: flex;
     justify-content: center;
@@ -7,7 +6,7 @@
     overflow: auto;
 }
 
-#post{
+#post {
     height: 250px !important;
     width: 500px !important;
 }

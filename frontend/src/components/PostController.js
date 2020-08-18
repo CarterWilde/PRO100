@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import { Stack, TextField, DefaultButton, PrimaryButton} from '@fluentui/react';
+import { Stack, TextField, DefaultButton, PrimaryButton } from '@fluentui/react';
 import {moneyIcon, titleIcon} from "./popups/SharedPopup";
 import Post from './Post';
 

@@ -93,8 +93,8 @@ export class Post extends React.Component {
     const sectionStackTokens = { childrenGap: 20 };
     const cardTokens = { childrenMargin: 10};
     const footerCardSectionTokens = { padding: '0px 0px 0px 12px' };
-    const infoCardSectionTokens = { maxWidth: "120px",maxHeight: "173px",margin: '5px 5px 5px 10px', width:"100px"};
-    const ImageTokens = {maxWidth: "145px",maxHeight: "180px"};
+    const infoCardSectionTokens = {maxWidth: "120px",maxHeight: "173px",margin: '5px 5px 5px 10px', width:"100px"};
+    const ImageTokens = {maxWidth: "300px",maxHeight: "150px"};
 
     return (
       <Stack tokens={sectionStackTokens}>
@@ -112,9 +112,10 @@ export class Post extends React.Component {
             </Text>
           </Card.Section>
 
-          <Card.Item styles={ImageTokens}>
-            <div styles={ImageTokens}>
-            <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQe39OMLvdNbssmihH4-cwvagbbR9ehAzJ89w&usqp=CAU" />
+          <Card.Item>
+            <div >
+            {this.props.imageUrl}
+            <Image style={ImageTokens} src= {this.props.imageUrl}/>
              </div>
           </Card.Item>
 

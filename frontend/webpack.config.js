@@ -1,6 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const { devtool } = require("./webpack.development")
 
 module.exports = {
     entry: "./src/index.js",

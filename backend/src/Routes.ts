@@ -1,5 +1,6 @@
 import passport from "passport";
-import {MongoError} from "mongodb"
+import { MongoError } from "mongodb"
+import { MessageBarType } from '@fluentui/react';
 
 import { ERequestType } from "./ts/ERequestType";
 import Route from "./ts/Route";
@@ -8,8 +9,10 @@ import Post from "./models/Post";
 import * as UserModel from "./models/User";
 
 import { localStrategy } from "./Strategies";
-import User from "shared/User"
-import AuthUser from "shared/AuthorizationUser"
+import User from "shared/User";
+import AuthUser from "shared/AuthorizationUser";
+import AuthenicatedUser from "shared/AuthenicatedUser";
+import Status from "shared/Status";
 
 export const Routes: Route[] = [
     {
@@ -70,8 +73,13 @@ export const Routes: Route[] = [
         type: ERequestType.POST,
         handler: passport.authenticate(localStrategy),
         callback: (req, res) => {
-            console.log(new User(req.user.Email, req.user.Username));
-            res.sendStatus(200);
+            res.status(200);
+            const user: User = new User(req.user.Email, req.user.Username);
+            const mes: AuthenicatedUser = new AuthenicatedUser(new Status(
+                "Succesfully Logged in!",
+                MessageBarType.success
+            ), user);
+            res.json(mes);
         }
     },
     {
@@ -82,13 +90,13 @@ export const Routes: Route[] = [
             UserModel.default.create(user).then(result => {
                 console.log(`Added User ${user.Email}`);
             })
-            .catch((err: MongoError) => {
-                if(err.code === 11000) {
-                    res.json({"error": {"type": "EmailTaken", "Email": user.Email}, "message": "That email is already taken!"})
-                } else {
-                    console.error('Unknown Error While Creating User!')
-                }
-            });
+                .catch((err: MongoError) => {
+                    if (err.code === 11000) {
+                        res.json({ "error": { "type": "EmailTaken", "Email": user.Email }, "message": "That email is already taken!" })
+                    } else {
+                        console.error('Unknown Error While Creating User!')
+                    }
+                });
         }
     },
     {

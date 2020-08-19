@@ -18,7 +18,7 @@ export default class PostComp extends Component {
         else {
             for(var i=0;i<this.props.JSON.search.length;i++){
                 if((i % 3 === 0) && (i !== 0)) { posts.push(<AdComp key={`ad${i}`}/>) }
-                posts.push(<Post key={`post${i}`} elements={this.props.JSON.search[i]}/>)
+                posts.push(<Post key={`post${i}`} title="Example" elements={this.props.JSON.search[i]}/>)
             }
         }
         return (

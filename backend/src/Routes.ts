@@ -13,6 +13,9 @@ import User from "./shared/User";
 import AuthUser from "./shared/AuthorizationUser";
 import AuthenicatedUser from "./shared/AuthenicatedUser";
 import Status from "./shared/Status";
+import Message from "./shared/Message";
+import Failure from "./shared/Failure";
+import { FailureCodes } from "./shared/FailureCodes";
 
 export const Routes: Route[] = [
     {
@@ -87,14 +90,19 @@ export const Routes: Route[] = [
         type: ERequestType.POST,
         handler: (req, res) => {
             const user = JSON.parse(req.headers['new-user-object'] as string) as AuthUser;
-            UserModel.default.create(user).then(result => {
-                console.log(`Added User ${user.Email}`);
-            })
-                .catch((err: MongoError) => {
-                    if (err.code === 11000) {
-                        res.json({ "error": { "type": "EmailTaken", "Email": user.Email }, "message": "That email is already taken!" })
-                    } else {
-                        console.error('Unknown Error While Creating User!')
+            UserModel.default.create(user)
+                .then(result => {
+                    console.log(`Added User ${user.Email}`);
+                })
+                .catch(err => {
+                    if (err instanceof MongoError) {
+                        const mes: Message = new Message(new Failure(
+                            "User already created!",
+                            MessageBarType.error,
+                            "The user provided was a duplicate!",
+                            FailureCodes.UserExists
+                        ));
+                        res.json(mes)
                     }
                 });
         }

@@ -22,7 +22,7 @@ export default class PostComp extends Component {
             }
         }
         return (
-            <div style={{marginBottom:"75px", width:"100%"}}>
+            <div style={{marginBottom:"50px", width:"100%", marginTop:"100px"}}>
                 {posts}
             </div>
         )

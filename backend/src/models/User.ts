@@ -1,5 +1,5 @@
 import * as mongoose from "mongoose";
-import User from "shared/AuthorizationUser";
+import {AuthorizationUserDocument as User} from "../shared/AuthorizationUser";
 
 export const UserSchema = new mongoose.Schema({
     Username: {

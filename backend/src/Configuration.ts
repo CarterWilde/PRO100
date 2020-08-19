@@ -13,7 +13,7 @@ import { ERequestType } from "./ts/ERequestType";
 import Post from "./models/Post";
 import User from "./models/User";
 
-import * as AuthUser from "shared/AuthorizationUser";
+import * as AuthUser from "./shared/AuthorizationUser";
 
 export default class Configuration {
     dbURL: string = MONGOURL;
@@ -64,9 +64,17 @@ export default class Configuration {
         } catch (err) {
             console.log('error connecting to mongoDB', err)
         }
-        mongoose.connection.on('connected', () => {
-            Post.createCollection();
-            User.createCollection();
+        mongoose.connection.on('connected', async () => {
+            try {
+                await Post.createCollection();
+            } catch (error) {
+                console.warn("Post Collection Already Created")
+            }
+            try {
+                await User.createCollection();
+            } catch (error) {
+                console.warn("Post Collection Already Created")
+            }
             console.log('connected to mongoDB')
         })
     }

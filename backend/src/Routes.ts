@@ -9,10 +9,10 @@ import Post from "./models/Post";
 import * as UserModel from "./models/User";
 
 import { localStrategy } from "./Strategies";
-import User from "shared/User";
-import AuthUser from "shared/AuthorizationUser";
-import AuthenicatedUser from "shared/AuthenicatedUser";
-import Status from "shared/Status";
+import User from "./shared/User";
+import AuthUser from "./shared/AuthorizationUser";
+import AuthenicatedUser from "./shared/AuthenicatedUser";
+import Status from "./shared/Status";
 
 export const Routes: Route[] = [
     {

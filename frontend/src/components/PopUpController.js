@@ -41,7 +41,7 @@ export default class PopUpController extends Component {
             <div>
                 <PrimaryButton text="Login" onClick={() => {this.setState({show: true})}} style={{ outline: 'none' }}/>
                 <Modal show={this.state.show} onHide={this.handleClose} onExited={this.handleExited} size="sm" aria-labelledby="contained-modal-title-vcenter" centered >
-                    {this.state.showLogin ? <Login showRegister={this.showRegister} showReset={this.showReset} /> : null}
+                    {this.state.showLogin ? <Login showRegister={this.showRegister} showReset={this.showReset} closePrompt={() => {this.handleClose(); this.setState({showLogin: false})}}/> : null}
                     {this.state.showRegister ? <Register backToLogin={this.showLogin} /> : null}
                     {this.state.showReset ? <Reset backToLogin={this.showLogin} /> : null}
                 </Modal>

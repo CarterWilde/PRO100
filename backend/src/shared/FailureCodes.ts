@@ -1,3 +1,3 @@
 export enum FailureCodes {
-    UserExits = 1
+    UserExists = 1
 }

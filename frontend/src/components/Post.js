@@ -107,23 +107,19 @@ export class Post extends React.Component {
 
           <Card.Section styles={infoCardSectionTokens} tokens={infoCardSectionTokens}>
             <Text  className = "word-wrap"  variant="small" styles={titleTextStyles}>
-            Example
             {this.props.title}
             </Text>
             <Text variant="small" styles={priceTextStyles}>
-              $1000
             {this.props.price}
             </Text>
-            <Text className = "overflow" variant="small" styles={descriptionTextStyles}>
-            This is exmaple of what you want to tell the people who see 
+            <Text className = "word-wrap" variant="small" styles={descriptionTextStyles}>
             {this.props.descirption}
             </Text>
           </Card.Section>
 
           <Card.Item>
-            <div >
-            {this.props.imageUrl}
-            <Image style={ImageTokens} src= "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0XsKvLjkn5XZG9XP1S2FO0qQp8qO5E6HJ5w&usqp=CAU"/>
+            <div>
+            <Image style={ImageTokens} src= {this.props.imageUrl} />
              </div>
           </Card.Item>
 

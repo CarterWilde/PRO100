@@ -12,6 +12,10 @@ import { TestImages } from '@uifabric/example-data';
 const DocumentCardActivityPeople = [{ name: 'Annie Lindqvist', profileImageSrc: TestImages.personaFemale }];
 <DocumentCardActivity activity="Created a few minutes ago" people={DocumentCardActivityPeople} />
 */
+
+/*
+
+*/
 const alertClicked = () => {
   alert('Clicked');
 };
@@ -102,7 +106,7 @@ export class Post extends React.Component {
         <Card aria-label="Clickable horizontal card " horizontal onClick={alertClicked} tokens={cardTokens}>
 
           <Card.Section styles={infoCardSectionTokens} tokens={infoCardSectionTokens}>
-            <Text maxLength = {8} maxlength="10" className = "word-wrap"  variant="small" styles={titleTextStyles}>
+            <Text  className = "word-wrap"  variant="small" styles={titleTextStyles}>
             Example
             {this.props.title}
             </Text>

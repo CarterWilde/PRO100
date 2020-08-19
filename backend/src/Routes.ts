@@ -90,6 +90,7 @@ export const Routes: Route[] = [
         type: ERequestType.POST,
         handler: (req, res) => {
             const user = JSON.parse(req.headers['new-user-object'] as string) as AuthUser;
+            user.Email = user.Email.toLowerCase();
             UserModel.default.create(user)
                 .then(result => {
                     console.log(`Added User ${user.Email}`);

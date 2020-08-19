@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose";
 
-import Post from "shared/Post";
+import Post from "../shared/Post";
 import { UserSchema } from "./User";
 
 export const postSchema = new mongoose.Schema({

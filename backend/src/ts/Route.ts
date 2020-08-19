@@ -1,6 +1,6 @@
 import {Response, NextFunction} from "express";
 import {ERequestType} from "./ERequestType";
-import UserRequest from "shared/UserRequest"
+import UserRequest from "../shared/UserRequest"
 
 export default interface Route {
     url: string;

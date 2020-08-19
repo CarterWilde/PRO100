@@ -90,25 +90,28 @@ export class Post extends React.Component {
       },
     };
     
-    const sectionStackTokens = { childrenGap: 20 };
+    const sectionStackTokens = { childrenGap: 20, margin: '5px 5px 5px 5px' };
     const cardTokens = { childrenMargin: 10};
     const footerCardSectionTokens = { padding: '0px 0px 0px 12px' };
-    const infoCardSectionTokens = {maxWidth: "160px",maxHeight: "173px",margin: '5px 5px 5px 10px'};
+    const infoCardSectionTokens = { width: "160px",maxWidth: "160px",maxHeight: "173px",margin: '5px 5px 5px 10px'};
     const ImageTokens = {maxWidth: "300px",maxHeight: "150px"};
 
     return (
-      <div id="post">
+      <div  id="post" >
       <Stack tokens={sectionStackTokens}>
         <Card aria-label="Clickable horizontal card " horizontal onClick={alertClicked} tokens={cardTokens}>
 
           <Card.Section styles={infoCardSectionTokens} tokens={infoCardSectionTokens}>
             <Text maxLength = {8} maxlength="10" className = "word-wrap"  variant="small" styles={titleTextStyles}>
+            Example
             {this.props.title}
             </Text>
             <Text variant="small" styles={priceTextStyles}>
+              $1000
             {this.props.price}
             </Text>
             <Text className = "overflow" variant="small" styles={descriptionTextStyles}>
+            This is exmaple of what you want to tell the people who see 
             {this.props.descirption}
             </Text>
           </Card.Section>

@@ -26,19 +26,25 @@ export default class Register extends Component {
         }
         const hashPass = shajs('sha256').update(this.pass).digest('hex');
         //fetch here 
-        const error = await axios.post("http://localhost:8080/createuser", {}, {
-            headers: {
-                "new-user-object": JSON.stringify({
-                    "Username": this.username,
-                    "Email": this.email,
-                    "Password": hashPass
-                })
+        try {
+            const res = await axios.post("http://localhost:8080/createuser", {}, {
+                headers: {
+                    "new-user-object": JSON.stringify({
+                        "Username": this.username,
+                        "Email": this.email,
+                        "Password": hashPass
+                    })
+                }
+            })
+            const status = res.data.Status;
+            if(status.FailureCode) {
+                this.setState({error: "4"});
+            } else {
+                this.props.closePrompt();
             }
-        }).catch(err => {
-            console.log(err)
-        })
-        if (error.data.error.type === "EmailTaken") {
-            this.setState({error: "4"})
+            
+        } catch(err) {
+            console.log("Couldn't Create User Request Error", err)
         }
     }
     render() {

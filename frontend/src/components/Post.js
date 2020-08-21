@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Card, ICardTokens, ICardSectionStyles, ICardSectionTokens } from '@uifabric/react-cards';
 import { FontWeights} from '@uifabric/styling';
 import { Icon, IIconStyles, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
+import { TestImages } from '@uifabric/example-data';
 
 
 /*
@@ -32,7 +33,6 @@ export class Post extends React.Component {
     super(props)
 
   // TODO: Brandon, The search will return the data needed to complete the post component. The JSON data
-  
     console.log(this.props.elements) //I added this so you can see it. as of now its only dumby data. It will say only a single string
 } 
   render() {
@@ -62,7 +62,7 @@ export class Post extends React.Component {
     const  postByTextStyles = {
       root: {
         color: '#333333',
-        fontSize: 12,
+        fontSize: 10,
         fontWeight: FontWeights.regular,      
       },
     };
@@ -93,6 +93,9 @@ export class Post extends React.Component {
     const infoCardSectionTokens = { width: "160px",maxWidth: "160px",maxHeight: "173px",margin: '5px 5px 5px 10px'};
     const ImageTokens = {maxWidth: "300px",maxHeight: "150px"};
 
+    //dump data 
+    const DocumentCardActivityPeople = [{ name: 'Annie Lindqvist', profileImageSrc: TestImages.personaFemale }];
+
     return (
       <div  id="post" >
       <Stack tokens={sectionStackTokens}>
@@ -115,9 +118,7 @@ export class Post extends React.Component {
           <Card.Item>
             <div>
             <Image style={ImageTokens} src= {this.props.imageUrl} />
-            <Text style = {postByTextStyles}>
-            <strong> By: </strong>  
-            </Text>
+             <strong style={postByTextStyles} >By:</strong>
              </div>
           </Card.Item>
 

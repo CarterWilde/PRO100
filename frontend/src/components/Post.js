@@ -9,17 +9,21 @@ Post By: and buttons
 
 Post By: https://developer.microsoft.com/en-us/fluentui#/controls/web/documentcard
 Work in Progess 
+
 import {
   DocumentCardActivity
 } from 'office-ui-fabric-react/lib/DocumentCard';
 import { TestImages } from '@uifabric/example-data';
+
 const DocumentCardActivityPeople = [{ name: 'Annie Lindqvist', profileImageSrc: TestImages.personaFemale }];
 <DocumentCardActivity activity="Created a few minutes ago" people={DocumentCardActivityPeople} />
 */
 
 /*
-
+   <Icon iconName="RedEye" styles={iconStyles}  onClick={_alertClicked}  allowDisabledFocus disabled={disabled} checked={checked} />
+   const { disabled, checked } = props;
 */
+
 const alertClicked = () => {
   alert('Clicked');
 };
@@ -52,6 +56,14 @@ export class Post extends React.Component {
         fontSize: 12,
         fontWeight: FontWeights.regular,
         
+      },
+    };
+
+    const  postByTextStyles = {
+      root: {
+        color: '#333333',
+        fontSize: 12,
+        fontWeight: FontWeights.regular,      
       },
     };
 
@@ -103,12 +115,17 @@ export class Post extends React.Component {
           <Card.Item>
             <div>
             <Image style={ImageTokens} src= {this.props.imageUrl} />
+            <Text style = {postByTextStyles}>
+            <strong> By: </strong>  
+            </Text>
              </div>
           </Card.Item>
 
           <Card.Section styles={footerCardSectionStyles} tokens={footerCardSectionTokens}>
-            <Icon iconName="RedEye" styles={iconStyles} />
+            <Icon iconName="RedEye" styles={iconStyles}/>
+    
             <Icon iconName="SingleBookmark" styles={iconStyles} />
+
             <Stack.Item grow={1}>
               <span />
             </Stack.Item>

@@ -18,7 +18,7 @@ export default class Login extends Component {
     }
 
     handleClose = () => {
-        this.setState({show: false,imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0XsKvLjkn5XZG9XP1S2FO0qQp8qO5E6HJ5w&usqp=CAU"});
+        this.setState({show: false,title: "Example",price: "$100",descirption: "This is exmaple of what you want to tell the people who see ",imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0XsKvLjkn5XZG9XP1S2FO0qQp8qO5E6HJ5w&usqp=CAU"});
     }
 
     render() {

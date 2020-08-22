@@ -34,6 +34,7 @@
     "react-svg-pan-zoom": "^3.8.0",
     "redux": "^4.0.5",
     "regenerator-runtime": "^0.13.7",
+    "remove-comments-loader": "^0.1.2",
     "sha.js": "^2.4.11",
     "style-loader": "^1.2.1"
   },

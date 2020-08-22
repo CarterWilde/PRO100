@@ -39,6 +39,8 @@ export default class Register extends Component {
             const status = res.data.Status;
             if(status.FailureCode) {
                 this.setState({error: "4"});
+            } else {
+                this.props.closePrompt();
             }
             
         } catch(err) {

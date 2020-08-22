@@ -16,6 +16,7 @@ import Status from "./shared/Status";
 import Message from "./shared/Message";
 import Failure from "./shared/Failure";
 import { FailureCodes } from "./shared/FailureCodes";
+import { profile } from "console";
 
 export const Routes: Route[] = [
     {
@@ -78,6 +79,7 @@ export const Routes: Route[] = [
         callback: (req, res) => {
             res.status(200);
             const user: User = new User(req.user.Email, req.user.Username);
+            req.login(user, (err) => {console.warn("Possilbe Login Fail")});
             const mes: AuthenicatedUser = new AuthenicatedUser(new Status(
                 "Succesfully Logged in!",
                 MessageBarType.success

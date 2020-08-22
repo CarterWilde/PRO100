@@ -25,7 +25,7 @@ export default class Login extends Component {
         const hashPass = shajs('sha256').update(this.pass).digest('hex');
         var login = null
         try {
-            login = await (await axios.post('http://localhost:8080/login', { "Email": this.email.toLowerCase(), "Password": hashPass })).data;
+            login = await (await axios.post('http://localhost:8080/login', { "Email": this.email.toLowerCase(), "Password": hashPass }, {withCredentials: true})).data;
             sessionStorage.setItem("user", JSON.stringify(login.User));
             this.props.closePrompt();
         } catch (error) {

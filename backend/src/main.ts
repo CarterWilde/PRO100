@@ -8,7 +8,7 @@ const app: express.Application = express();
 const port: number = 8080; // default port to listen
 
 
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:8081'}));
 app.use(bodyParser.json());
 
 const con = new config(app);

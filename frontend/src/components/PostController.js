@@ -21,18 +21,7 @@ export default class PostController extends Component {
     }
 
     handleClose = () => {
-        this.setState({ show: false, imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0XsKvLjkn5XZG9XP1S2FO0qQp8qO5E6HJ5w&usqp=CAU" });
-    }
-
-    submitHandler = async () => {
-        const user = {
-            ...JSON.parse(sessionStorage.getItem("user"))
-        }
-
-        //We have to send some sort of password, but we don't want to keep on to the hash of the password, so I guess we send N/A
-        const data = JSON.stringify({ "Title": this.state.title, "PostedBy": { "Username": user.Username, "Email": user.Email, "Password": "N/A" }, "Price": this.state.price, "Content": this.state.descirption, "Votes": { "Total": 0, "Up": [], "Down": [] } });
-        const response = await axios.post("http://localhost:8080/post", "", { withCredentials: true, headers: {"post-object": data}});
-        console.log(response);
+        this.setState({show: false,title: "Example",price: "$100",descirption: "This is exmaple of what you want to tell the people who see ",imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0XsKvLjkn5XZG9XP1S2FO0qQp8qO5E6HJ5w&usqp=CAU"});
     }
 
     render() {

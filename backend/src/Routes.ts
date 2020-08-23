@@ -112,7 +112,7 @@ export const Routes: Route[] = [
             UserModel.default.create(user)
                 .then(result => {
                     console.log(`Added User ${user.Email}`);
-                    const mes: Message = new AuthenicatedUser(new Status("Successfuly Created User!", MessageBarType.success), { Email: user.Password, Username: user.Username });
+                    const mes: Message = new AuthenicatedUser(new Status("Successfuly Created User!", MessageBarType.success), { Email: user.Email, Username: user.Username });
                     res.json(mes);
                 })
                 .catch(err => {

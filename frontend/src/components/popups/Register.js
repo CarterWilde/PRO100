@@ -5,10 +5,10 @@ import { iconUser, iconMail, iconPass, emailNotValid, backIcon } from "./SharedP
 
 import shajs from "sha.js";
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 import { ErrorView } from '../errors/ErrorView';
-
-import { connect } from 'react-redux';
+import { loggedIn } from '../../index';
 
 class Register extends Component {
     constructor(props) {
@@ -44,7 +44,12 @@ class Register extends Component {
             if (status.FailureCode) {
                 this.setState({ error: "4" });
             } else {
-                this.props.dispatch({ type: 'STORE_USER', data: { User: { Email: res.data.Email, Username: res.data.Username } } });
+                const data = await res.data
+                const usr = { Email: data.User.Email, Username: data.User.Username };
+                console.log(usr);
+                await axios.post("http://localhost:8080/login", {...usr, Password: hashPass});
+                this.props.dispatch({ type: 'STORE_USER', data: { User: usr}});
+                loggedIn();
                 this.props.closePrompt();
             }
 

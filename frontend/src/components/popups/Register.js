@@ -46,9 +46,8 @@ class Register extends Component {
             } else {
                 const data = await res.data
                 const usr = { Email: data.User.Email, Username: data.User.Username };
-                console.log(usr);
-                await axios.post("http://localhost:8080/login", {...usr, Password: hashPass});
-                this.props.dispatch({ type: 'STORE_USER', data: { User: usr}});
+                const login = await (await axios.post('http://localhost:8080/login', { "Email": usr.Email.toLowerCase(), "Password": hashPass }, { withCredentials: true })).data;
+                this.props.dispatch({ type: 'STORE_USER', data: { User: login.User } });
                 loggedIn();
                 this.props.closePrompt();
             }

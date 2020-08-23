@@ -18,7 +18,7 @@ export const postSchema = new mongoose.Schema({
         required: true
     },
     Image: {
-        type: Buffer
+        type: String
     },
     Content: {
         type: String

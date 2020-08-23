@@ -102,11 +102,11 @@ export class Post extends React.Component {
 
                         <Card.Section styles={infoCardSectionTokens} tokens={infoCardSectionTokens}>
                             <Text maxlength="4" variant="small" styles={titleTextStyles}>
-                                {this.props.title.substring(0, 12)}
+                                {this.props.title}
                             </Text>
 
                             <Text variant="small" styles={priceTextStyles}>
-                                {this.props.price.substring(0, 19)}
+                                {this.props.price}
                             </Text>
 
                             <Text className="overflow" variant="small" styles={descriptionTextStyles}>

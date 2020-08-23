@@ -21,6 +21,7 @@ export default class PostComp extends Component {
             })
         }
         else {
+            //query relevant posts per search 
             for(var i=0;i<this.props.JSON.search.length;i++){
                 if((i % 3 === 0) && (i !== 0)) { posts.push(<AdComp key={`ad${i}`}/>) }
                 posts.push(<Post key={`post${i}`} title="Example" elements={this.props.JSON.search[i]}/>)

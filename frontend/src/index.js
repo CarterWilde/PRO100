@@ -9,6 +9,14 @@ initializeIcons();
 import Home from './pages/Home';
 import store from './stores/configureStore';
 
+const getPosts = async () => {
+    let posts = await (await axios.get("http://localhost:8080/posts")).data
+    store.dispatch({type: 'GET_POSTS', data: {
+        Posts: posts
+    }});
+}
+getPosts();
+
 store.subscribe(()=>{console.log('Check Login', store.getState())})
 
 export const loggedIn = () => {

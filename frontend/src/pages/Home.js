@@ -16,16 +16,12 @@ export default class Home extends React.Component {
             searchJSON: null
         }
     }
-
-    setSearchJSON = JSON => {
-        this.setState({searchJSON:JSON})
-    }
-
+    
     render() {
         return (
               <div className="wrapper">
                   <Header setJSON={this.setSearchJSON}/>
-                  <PostDisplayer JSON={this.state.searchJSON}/>
+                  <PostDisplayer/>
                   <Footer />
               </div>
         );

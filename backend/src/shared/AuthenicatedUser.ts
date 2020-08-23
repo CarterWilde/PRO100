@@ -1,11 +1,11 @@
 import Message from "./Message";
-import User from "./User";
 import Status from "./Status";
+import IdUser from "./IdUser";
 
 export default class AuthenicatedUser extends Message {
-    public User?: User;
+    public User?: IdUser;
 
-    constructor(status: Status, user: User) {
+    constructor(status: Status, user: IdUser) {
         super(status);
         this.User = user;
     }

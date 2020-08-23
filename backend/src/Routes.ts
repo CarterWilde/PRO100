@@ -9,13 +9,13 @@ import Post from "./models/Post";
 import * as UserModel from "./models/User";
 
 import { localStrategy } from "./Strategies";
-import User from "./shared/User";
 import AuthUser from "./shared/AuthorizationUser";
 import AuthenicatedUser from "./shared/AuthenicatedUser";
 import Status from "./shared/Status";
 import Message from "./shared/Message";
 import Failure from "./shared/Failure";
 import { FailureCodes } from "./shared/FailureCodes";
+import IdUser from "./shared/IdUser";
 
 export const Routes: Route[] = [
     {
@@ -38,8 +38,9 @@ export const Routes: Route[] = [
         type: ERequestType.GET,
         handler: (req, res) => {
             if(req.isAuthenticated()) {
-                const usr = req.user as User;
+                const usr = req.user as IdUser;
                 res.json({
+                    _id: usr._id,
                     Email: usr.Email,
                     Username: usr.Username
                 });
@@ -94,7 +95,7 @@ export const Routes: Route[] = [
         handler: passport.authenticate(localStrategy),
         callback: (req, res) => {
             res.status(200);
-            const user: User = new User(req.user.Email, req.user.Username);
+            const user: IdUser = new IdUser(req.user.Email, req.user.Username, req.user._id);
             req.login(user, (err) => {console.warn("Possilbe Login Fail")});
             const mes: AuthenicatedUser = new AuthenicatedUser(new Status(
                 "Succesfully Logged in!",
@@ -112,7 +113,7 @@ export const Routes: Route[] = [
             UserModel.default.create(user)
                 .then(result => {
                     console.log(`Added User ${user.Email}`);
-                    const mes: Message = new AuthenicatedUser(new Status("Successfuly Created User!", MessageBarType.success), { Email: user.Email, Username: user.Username });
+                    const mes: Message = new AuthenicatedUser(new Status("Successfuly Created User!", MessageBarType.success), { _id: user._id , Email: user.Email, Username: user.Username });
                     res.json(mes);
                 })
                 .catch(err => {

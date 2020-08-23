@@ -1,11 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
-import {PrimaryButton} from 'office-ui-fabric-react';
-import Login from './popups/Login'
-import Register from './popups/Register'
-import Reset from './popups/Reset'
+import { PrimaryButton } from 'office-ui-fabric-react';
+import axios from 'axios';
 
-export default class PopUpController extends Component {
+import Login from './popups/Login';
+import Register from './popups/Register';
+import Reset from './popups/Reset';
+
+import { loggedIn } from '../index';
+
+
+class PopUpController extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,7 +35,7 @@ export default class PopUpController extends Component {
     }
 
     handleClose = () => {
-        this.setState({show: false});
+        this.setState({ show: false });
     }
 
     handleExited = () => {
@@ -39,13 +45,15 @@ export default class PopUpController extends Component {
     render() {
         return (
             <div>
-                <PrimaryButton text="Login" onClick={() => {this.setState({show: true})}} style={{ outline: 'none' }}/>
+                {!this.props.data.hasUser && !this.props.data.isLogged ? <PrimaryButton text="Login" onClick={() => { this.setState({ show: true }) }} style={{ outline: 'none' }} /> : <PrimaryButton text="Logout" onClick={() => { axios.get("http://localhost:8080/logout", { withCredentials: true }).then(() => { loggedIn() }) }}></PrimaryButton>}
                 <Modal show={this.state.show} onHide={this.handleClose} onExited={this.handleExited} size="sm" aria-labelledby="contained-modal-title-vcenter" centered >
-                    {this.state.showLogin ? <Login showRegister={this.showRegister} showReset={this.showReset} closePrompt={() => {this.handleClose(); this.setState({showLogin: false})}}/> : null}
-                    {this.state.showRegister ? <Register backToLogin={this.showLogin} closePrompt={() => {this.handleClose(); this.setState({showRegister: false})}}/> : null}
-                    {this.state.showReset ? <Reset backToLogin={this.showLogin} closePrompt={() => {this.handleClose(); this.setState({showReset: false})}}/> : null}
+                    {this.state.showLogin ? <Login showRegister={this.showRegister} showReset={this.showReset} closePrompt={() => { this.handleClose(); this.setState({ showLogin: false }) }} /> : null}
+                    {this.state.showRegister ? <Register backToLogin={this.showLogin} closePrompt={() => { this.handleClose(); this.setState({ showRegister: false }) }} /> : null}
+                    {this.state.showReset ? <Reset backToLogin={this.showLogin} closePrompt={() => { this.handleClose(); this.setState({ showReset: false }) }} /> : null}
                 </Modal>
             </div>
         );
     }
 }
+
+export default connect((state) => ({ ...state }))(PopUpController);

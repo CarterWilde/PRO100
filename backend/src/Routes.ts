@@ -16,7 +16,6 @@ import Status from "./shared/Status";
 import Message from "./shared/Message";
 import Failure from "./shared/Failure";
 import { FailureCodes } from "./shared/FailureCodes";
-import { profile } from "console";
 
 export const Routes: Route[] = [
     {
@@ -32,6 +31,21 @@ export const Routes: Route[] = [
         handler: (req, res) => {
             req.logout();
             res.redirect('/');
+        }
+    },
+    {
+        url: "/islogged",
+        type: ERequestType.GET,
+        handler: (req, res) => {
+            if(req.isAuthenticated()) {
+                const usr = req.user as User;
+                res.json({
+                    Email: usr.Email,
+                    Username: usr.Username
+                });
+            } else {
+                res.send();
+            }
         }
     },
     {

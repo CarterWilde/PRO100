@@ -1,34 +1,47 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import { Stack, TextField, DefaultButton, PrimaryButton } from '@fluentui/react';
-import { moneyIcon, titleIcon, imageIcon } from "./popups/SharedPopup";
-import axios from "axios";
+import { moneyIcon, titleIcon, imageIcon } from './popups/SharedPopup';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
 import Post from './Post';
+import {loggedIn} from '../index';
 
+const defaultState = {
+    show: false,
+    title: "Example",
+    price: "100",
+    descirption: "This is exmaple of what you want to tell the people who see ",
+    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0XsKvLjkn5XZG9XP1S2FO0qQp8qO5E6HJ5w&usqp=CAU"
+};
 
-export default class PostController extends Component {
-
+class PostController extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: false,
-            title: "Example",
-            price: "100",
-            descirption: "This is exmaple of what you want to tell the people who see ",
-            imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0XsKvLjkn5XZG9XP1S2FO0qQp8qO5E6HJ5w&usqp=CAU"
+            ...defaultState
         }
     }
 
     handleClose = () => {
-        this.setState({show: false,title: "Example",price: "$100",descirption: "This is exmaple of what you want to tell the people who see ",imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0XsKvLjkn5XZG9XP1S2FO0qQp8qO5E6HJ5w&usqp=CAU"});
+        this.setState({...defaultState});
+    }
+
+    submitHandler = async () => {
+        //We have to send some sort of password, but we don't want to keep on to the hash of the password, so I guess we send N/A
+        loggedIn()
+        if(this.props.data.User != 'undefined') {
+            const data = JSON.stringify({ "Title": this.state.title, "PostedBy": { "Username": this.props.data.User.Username, "Email": this.props.data.User.Email, "Password": "N/A" }, "Price": this.state.price, "Content": this.state.descirption, "Votes": { "Total": 0, "Up": [], "Down": [] } });
+            const response = await axios.post("http://localhost:8080/post", "", { withCredentials: true, headers: {"post-object": data}});
+            this.setState({show: false});
+        }
     }
 
     render() {
-
         return (
             <div>
-                <DefaultButton text="Post" onClick={() => { this.setState({ show: true }) }} style={{ outline: 'none' }} />
+                {this.props.data.hasUser && this.props.data.isLogged ? <DefaultButton text="Post" onClick={() => { this.setState({ show: true }) }} style={{ outline: 'none' }} /> : <></>}
                 <Modal show={this.state.show} onHide={this.handleClose} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">Create Post</Modal.Title>
@@ -54,3 +67,4 @@ export default class PostController extends Component {
         )
     }
 }
+export default connect((state) => ({...state}))(PostController);

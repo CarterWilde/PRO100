@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Card, ICardTokens, ICardSectionStyles, ICardSectionTokens } from '@uifabric/react-cards';
 import { FontWeights } from '@uifabric/styling';
-import { Icon, IIconStyles, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
-import { connect } from 'react-redux';
+import { IconButton, IIconStyles, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
 
 /*
 Post By: and buttons 
@@ -35,34 +34,35 @@ export class Post extends React.Component {
         console.log(this.props.elements) //I added this so you can see it. as of now its only dumby data. It will say only a single string
     }
     render() {
+        const fontStyle = {
+            color: '#333333',
+            fontWeight: FontWeights.regular,
+        }
+
         const titleTextStyles = {
             root: {
-                color: '#333333',
-                fontSize: 25,
-                fontWeight: FontWeights.regular,
+                ...fontStyle,
+                fontSize: 25
             },
         };
         const priceTextStyles = {
             root: {
-                color: '#333333',
-                fontSize: 15,
-                fontWeight: FontWeights.regular,
+                ...fontStyle,
+                fontSize: 15
             },
         };
         const descriptionTextStyles = {
             root: {
-                color: '#333333',
-                fontSize: 12,
-                fontWeight: FontWeights.regular,
+                ...fontStyle,
+                fontSize: 12
 
             },
         };
 
         const postByTextStyles = {
             root: {
-                color: '#333333',
-                fontSize: 10,
-                fontWeight: FontWeights.regular,
+                ...fontStyle,
+                fontSize: 10
             },
         };
 
@@ -73,13 +73,7 @@ export class Post extends React.Component {
                 fontWeight: FontWeights.regular,
             },
         };
-        const footerCardSectionStyles = {
-            root: {
-                alignSelf: 'stretch',
-                borderLeft: '1px solid #F3F2F1',
-            },
-        };
-        const infoCardSectionStyles = {
+        const CardSectionStyles = {
             root: {
                 alignSelf: 'stretch',
                 borderLeft: '1px solid #F3F2F1',
@@ -98,7 +92,7 @@ export class Post extends React.Component {
         return (
             <div id="post" >
                 <Stack tokens={sectionStackTokens}>
-                    <Card aria-label="Clickable horizontal card " horizontal onClick={alertClicked} tokens={cardTokens}>
+                    <Card aria-label="Clickable horizontal card " horizontal tokens={cardTokens} >
 
                         <Card.Section styles={infoCardSectionTokens} tokens={infoCardSectionTokens}>
                             <Text maxlength="4" variant="small" styles={titleTextStyles}>
@@ -117,19 +111,21 @@ export class Post extends React.Component {
                         <Card.Item>
                             <div>
                                 <Image style={ImageTokens} src={this.props.imageUrl} />
-                                <strong style={postByTextStyles} >By: {this.props.data.User.Username}</strong>
+                                <strong style={postByTextStyles} >By: {this.props.username}</strong>
                             </div>
                         </Card.Item>
 
-                        <Card.Section styles={footerCardSectionStyles} tokens={footerCardSectionTokens}>
-                            <Icon iconName="RedEye" styles={iconStyles} />
+                        <Card.Section styles={CardSectionStyles} tokens={footerCardSectionTokens}>
+                            <Stack>
+                                <IconButton iconProps={{ iconName: "CaretUpSolid8" }} styles={iconStyles} onClick={() => { console.log("upvote") }} style={{ outline: 'none' }} />
 
-                            <Icon iconName="SingleBookmark" styles={iconStyles} />
+                                <Text style={{textAlign:"center", fontWeight:FontWeights.bold}}>{this.props.votes}</Text>
 
-                            <Stack.Item grow={1}>
-                                <span />
-                            </Stack.Item>
-                            <Icon iconName="MoreVertical" styles={iconStyles} />
+                                {/* <Stack.Item grow={1}>
+                                    <span />
+                                </Stack.Item> */}
+                                <IconButton iconProps={{ iconName: "CaretDownSolid8" }} styles={iconStyles} onClick={() => { console.log("downvote") }} style={{ outline: 'none' }} />
+                            </Stack>
                         </Card.Section>
                     </Card>
                 </Stack>
@@ -138,4 +134,4 @@ export class Post extends React.Component {
     }
 
 }
-export default connect(state => ({...state}))(Post);
+export default Post;

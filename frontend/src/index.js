@@ -9,7 +9,7 @@ initializeIcons();
 import Home from './pages/Home';
 import store from './stores/configureStore';
 
-const getPosts = async () => {
+export const getPosts = async () => {
     let posts = await (await axios.get("http://localhost:8080/posts")).data
     store.dispatch({type: 'GET_POSTS', data: {
         Posts: posts

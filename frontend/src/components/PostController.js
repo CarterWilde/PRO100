@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import Post from './Post';
-import {loggedIn} from '../index';
+import {loggedIn, getPosts} from '../index';
 
 const defaultState = {
     show: false,
@@ -32,9 +32,10 @@ class PostController extends Component {
         //We have to send some sort of password, but we don't want to keep on to the hash of the password, so I guess we send N/A
         loggedIn()
         if(this.props.data.User != 'undefined') {
+            this.setState({show: false});
             const data = JSON.stringify({ "Title": this.state.title, "PostedBy": { "Username": this.props.data.User.Username, "Email": this.props.data.User.Email, "Password": "N/A" }, "Price": this.state.price, "Content": this.state.descirption, "Votes": { "Total": 0, "Up": [], "Down": [] } });
             const response = await axios.post("http://localhost:8080/post", "", { withCredentials: true, headers: {"post-object": data}});
-            this.setState({show: false});
+            getPosts()
         }
     }
 
@@ -55,7 +56,7 @@ class PostController extends Component {
                                 <TextField onChange={(_, newValue) => { this.setState({ descirption: newValue }) }} label="Description" multiline resizable={false} style={{ height: "200px" }} />
                             </Stack>
                             <Stack verticalAlign="space-around" horizontalAlign="center" style={{ width: "50%" }}>
-                                <Post title={this.state.title} price={this.state.price} descirption={this.state.descirption} imageUrl={this.state.imageUrl} />
+                                <Post title={this.state.title} price={this.state.price} descirption={this.state.descirption} imageUrl={this.state.imageUrl} username={this.props.data.User.Username}/>
                             </Stack>
                         </Stack>
                     </Modal.Body>

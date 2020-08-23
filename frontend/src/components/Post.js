@@ -118,12 +118,7 @@ export class Post extends React.Component {
                         <Card.Section styles={CardSectionStyles} tokens={footerCardSectionTokens}>
                             <Stack>
                                 <IconButton iconProps={{ iconName: "CaretUpSolid8" }} styles={iconStyles} onClick={() => { console.log("upvote") }} style={{ outline: 'none' }} />
-
                                 <Text style={{textAlign:"center", fontWeight:FontWeights.bold}}>{this.props.votes}</Text>
-
-                                {/* <Stack.Item grow={1}>
-                                    <span />
-                                </Stack.Item> */}
                                 <IconButton iconProps={{ iconName: "CaretDownSolid8" }} styles={iconStyles} onClick={() => { console.log("downvote") }} style={{ outline: 'none' }} />
                             </Stack>
                         </Card.Section>

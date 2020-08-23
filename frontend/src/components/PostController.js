@@ -52,11 +52,11 @@ class PostController extends Component {
                             <Stack verticalAlign="center" tokens={{ childrenGap: 20 }} style={{ width: "50%" }}>
                                 <TextField onChange={(_, newValue) => { this.setState({ title: newValue }) }} maxlength="10" label="Title:" underlined iconProps={titleIcon} />
                                 <TextField onChange={(_, newValue) => { this.setState({ price: newValue }) }} label="Price:" prefix='$' underlined iconProps={moneyIcon} /> {/* /^(\d*([.,](?=\d{3}))?\d+)+((?!\2)[.,]\d\d)?$/ */}
-                                <TextField onChange={(_, newValue) => { this.setState({ imageUrl: newValue }) }} label="Image Url:" underlined iconProps={imageIcon} />
+                                <input type="file" name="post-image"></input>
                                 <TextField onChange={(_, newValue) => { this.setState({ descirption: newValue }) }} label="Description" multiline resizable={false} style={{ height: "200px" }} />
                             </Stack>
                             <Stack verticalAlign="space-around" horizontalAlign="center" style={{ width: "50%" }}>
-                                <Post title={this.state.title} price={this.state.price} descirption={this.state.descirption} imageUrl={this.state.imageUrl} username={this.props.data.User.Username}/>
+                                <Post title={this.state.title} price={this.state.price} descirption={this.state.descirption} imageUrl={this.state.imageUrl} username={!this.props.data.User ? "" : this.props.data.User.Username }/>
                             </Stack>
                         </Stack>
                     </Modal.Body>

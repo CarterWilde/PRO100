@@ -19,13 +19,13 @@ a {
 }
 
 .lines{
-    border-style: outset;
+    border-style: inset;
     border-color: rgb(16, 185, 118);
     border-radius: 2px;
 }
 
 .bottom{
-    border-style: dotted;
+    border-style: outset;
     border-color: rgb(255, 0,0);
-    border-radius: 10px;
+    border-radius: 2px;
 }

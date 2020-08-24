@@ -21,5 +21,10 @@ a {
 .lines{
     border-style: outset;
     border-color: blue;
-    border-radius: 5px;
+    border-radius: 10px;
+}
+
+.bottom{
+    border:  solid red;
+    border-radius: 10px;
 }

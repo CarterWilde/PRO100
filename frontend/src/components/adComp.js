@@ -19,7 +19,7 @@ export default class AdComp extends Component {
             width: 50,
           };
         return (
-            <div id="post">
+            <div id="post" className = "bottom">
                 <Stack verticalAlign="center" horizontal horizontalAlign="space-between">
                     <Stack verticalAlign="center" >
                         <span style={itemStyles}>1</span>

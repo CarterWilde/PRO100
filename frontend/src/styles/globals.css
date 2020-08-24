@@ -25,6 +25,7 @@ a {
 }
 
 .bottom{
-    border:  solid red;
+    border-style: dotted;
+    border-color:   red;
     border-radius: 10px;
 }

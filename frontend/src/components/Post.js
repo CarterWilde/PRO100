@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { Card, ICardTokens, ICardSectionStyles, ICardSectionTokens } from '@uifabric/react-cards';
-import { FontWeights} from '@uifabric/styling';
-import { Icon, IIconStyles, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
 import { FontWeights } from '@uifabric/styling';
-import { IconButton, IIconStyles, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
+import { IconButton, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
 
 /*
 Post By: and buttons 
@@ -120,7 +118,6 @@ export class Post extends React.Component {
 
                         <Card.Section styles={CardSectionStyles} tokens={footerCardSectionTokens}>
                             <Stack>
-                                <Icon iconName="SingleBookmark" styles={iconStyles} />
                                 <IconButton iconProps={{ iconName: "CaretUpSolid8" }} styles={iconStyles} onClick={() => { console.log("upvote") }} style={{ outline: 'none' }} />
                                 <Text style={{textAlign:"center", fontWeight:FontWeights.bold}}>{this.props.votes}</Text>
                                 <IconButton iconProps={{ iconName: "CaretDownSolid8" }} styles={iconStyles} onClick={() => { console.log("downvote") }} style={{ outline: 'none' }} />

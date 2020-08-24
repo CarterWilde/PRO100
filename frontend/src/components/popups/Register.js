@@ -1,27 +1,31 @@
 import { Modal } from 'react-bootstrap'
 import React, { Component } from 'react'
 import { Stack, TextField, PrimaryButton, ActionButton } from '@fluentui/react';
-import {iconUser, iconMail, iconPass, emailNotValid, backIcon} from "./SharedPopup";
-import {ErrorView} from '../errors/ErrorView'
+import { iconUser, iconMail, iconPass, emailNotValid, backIcon } from "./SharedPopup";
+
 import shajs from "sha.js";
 import axios from 'axios';
+import { connect } from 'react-redux';
 
-export default class Register extends Component {
+import { ErrorView } from '../errors/ErrorView';
+import { loggedIn } from '../../index';
+
+class Register extends Component {
     constructor(props) {
         super(props)
-        this.state = {error: "0"}
+        this.state = { error: "0" }
     }
 
     RegisterHandler = async () => {
         if (!this.email || !this.username || !this.pass || !this.veriPass) {
-            return this.setState({error: "2"})
+            return this.setState({ error: "2" })
         }
         else {
             if (emailNotValid(this.email)) {
-                return this.setState({error: "1"})
+                return this.setState({ error: "1" })
             }
             if (this.pass !== this.veriPass) {
-                return this.setState({error: "5"})
+                return this.setState({ error: "5" })
             }
         }
         const hashPass = shajs('sha256').update(this.pass).digest('hex');
@@ -37,13 +41,18 @@ export default class Register extends Component {
                 }
             })
             const status = res.data.Status;
-            if(status.FailureCode) {
-                this.setState({error: "4"});
+            if (status.FailureCode) {
+                this.setState({ error: "4" });
             } else {
+                const data = await res.data
+                const usr = { Email: data.User.Email, Username: data.User.Username };
+                const login = await (await axios.post('http://localhost:8080/login', { "Email": usr.Email.toLowerCase(), "Password": hashPass }, { withCredentials: true })).data;
+                this.props.dispatch({ type: 'STORE_USER', data: { User: login.User } });
+                loggedIn();
                 this.props.closePrompt();
             }
-            
-        } catch(err) {
+
+        } catch (err) {
             console.log("Couldn't Create User Request Error", err)
         }
     }
@@ -54,14 +63,14 @@ export default class Register extends Component {
                     <Modal.Title id="contained-modal-title-vcenter">Register</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <ErrorView error={this.state.error}/>
-                    <Stack tokens={{childrenGap: 20}}>
-                        <TextField label="Email" iconProps={iconMail} onChange={(_, newValue) => { this.email = newValue}} />
-                        <TextField label="Username" iconProps={iconUser} onChange={(_, newValue) => { this.username = newValue}} />
+                    <ErrorView error={this.state.error} />
+                    <Stack tokens={{ childrenGap: 20 }}>
+                        <TextField label="Email" iconProps={iconMail} onChange={(_, newValue) => { this.email = newValue }} />
+                        <TextField label="Username" iconProps={iconUser} onChange={(_, newValue) => { this.username = newValue }} />
                         <TextField type="password" label="Password" iconProps={iconPass} onChange={(_, newValue) => { this.pass = newValue }} />
-                        <TextField type="password" label="Verify password" iconProps={iconPass} onChange={(_, newValue) => { this.veriPass = newValue}} />
+                        <TextField type="password" label="Verify password" iconProps={iconPass} onChange={(_, newValue) => { this.veriPass = newValue }} />
                     </Stack>
-                    <ActionButton iconProps={backIcon} text="Back" style={{ outline: 'none' }} onClick={() => {this.props.backToLogin()}} />
+                    <ActionButton iconProps={backIcon} text="Back" style={{ outline: 'none' }} onClick={() => { this.props.backToLogin() }} />
                 </Modal.Body>
                 <Modal.Footer>
                     <Stack horizontal tokens={{ childrenGap: 10, reversed: true }}>
@@ -72,3 +81,5 @@ export default class Register extends Component {
         )
     }
 }
+
+export default connect(state => ({ ...state }))(Register);

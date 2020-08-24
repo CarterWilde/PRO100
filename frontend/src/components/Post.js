@@ -1,8 +1,13 @@
 import * as React from 'react';
 import { Card, ICardTokens, ICardSectionStyles, ICardSectionTokens } from '@uifabric/react-cards';
+<<<<<<< HEAD
 import { FontWeights} from '@uifabric/styling';
 import { Icon, IIconStyles, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
 
+=======
+import { FontWeights } from '@uifabric/styling';
+import { IconButton, IIconStyles, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
+>>>>>>> e55f112d712c743913e26d76fdc70a995b1aa5a5
 
 /*
 Post By: and buttons 
@@ -25,9 +30,10 @@ const DocumentCardActivityPeople = [{ name: 'Annie Lindqvist', profileImageSrc: 
 */
 
 const alertClicked = () => {
-  alert('Clicked');
+    alert('Clicked');
 };
 export class Post extends React.Component {
+<<<<<<< HEAD
   constructor(props) {
     super(props)
 
@@ -134,5 +140,108 @@ export class Post extends React.Component {
     );
   }
   
+=======
+    constructor(props) {
+        super(props)
+
+        // TODO: Brandon, The search will return the data needed to complete the post component. The JSON data
+        console.log(this.props.elements) //I added this so you can see it. as of now its only dumby data. It will say only a single string
+    }
+    render() {
+        const fontStyle = {
+            color: '#333333',
+            fontWeight: FontWeights.regular,
+        }
+
+        const titleTextStyles = {
+            root: {
+                ...fontStyle,
+                fontSize: 25
+            },
+        };
+        const priceTextStyles = {
+            root: {
+                ...fontStyle,
+                fontSize: 15
+            },
+        };
+        const descriptionTextStyles = {
+            root: {
+                ...fontStyle,
+                fontSize: 12
+
+            },
+        };
+
+        const postByTextStyles = {
+            root: {
+                ...fontStyle,
+                fontSize: 10
+            },
+        };
+
+        const iconStyles = {
+            root: {
+                color: '#0078D4',
+                fontSize: 16,
+                fontWeight: FontWeights.regular,
+            },
+        };
+        const CardSectionStyles = {
+            root: {
+                alignSelf: 'stretch',
+                borderLeft: '1px solid #F3F2F1',
+            },
+        };
+
+        const sectionStackTokens = { childrenGap: 20, margin: '5px 5px 5px 5px' };
+        const cardTokens = { childrenMargin: 10 };
+        const footerCardSectionTokens = { padding: '0px 0px 0px 12px' };
+        const infoCardSectionTokens = { width: "160px", maxWidth: "160px", maxHeight: "173px", margin: '5px 5px 5px 10px' };
+        const ImageTokens = { maxWidth: "300px", maxHeight: "150px" };
+
+        //dump data 
+        // const DocumentCardActivityPeople = [{ name: 'Annie Lindqvist', profileImageSrc: TestImages.personaFemale }];
+
+        return (
+            <div id="post" >
+                <Stack tokens={sectionStackTokens}>
+                    <Card aria-label="Clickable horizontal card " horizontal tokens={cardTokens} >
+
+                        <Card.Section styles={infoCardSectionTokens} tokens={infoCardSectionTokens}>
+                            <Text maxlength="4" variant="small" styles={titleTextStyles}>
+                                {this.props.title}
+                            </Text>
+
+                            <Text variant="small" styles={priceTextStyles}>
+                                {this.props.price}
+                            </Text>
+
+                            <Text className="overflow" variant="small" styles={descriptionTextStyles}>
+                                {this.props.descirption}
+                            </Text>
+                        </Card.Section>
+
+                        <Card.Item>
+                            <div>
+                                <Image style={ImageTokens} src={this.props.imageUrl} />
+                                <strong style={postByTextStyles} >By: {this.props.username}</strong>
+                            </div>
+                        </Card.Item>
+
+                        <Card.Section styles={CardSectionStyles} tokens={footerCardSectionTokens}>
+                            <Stack>
+                                <IconButton iconProps={{ iconName: "CaretUpSolid8" }} styles={iconStyles} onClick={() => { console.log("upvote") }} style={{ outline: 'none' }} />
+                                <Text style={{textAlign:"center", fontWeight:FontWeights.bold}}>{this.props.votes}</Text>
+                                <IconButton iconProps={{ iconName: "CaretDownSolid8" }} styles={iconStyles} onClick={() => { console.log("downvote") }} style={{ outline: 'none' }} />
+                            </Stack>
+                        </Card.Section>
+                    </Card>
+                </Stack>
+            </div>
+        );
+    }
+
+>>>>>>> e55f112d712c743913e26d76fdc70a995b1aa5a5
 }
 export default Post;

@@ -9,7 +9,7 @@ const port: number = 8080; // default port to listen
 
 
 app.use(cors({credentials: true, origin: 'http://localhost:8081'}));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '1gb'}));
 
 const con = new config(app);
 

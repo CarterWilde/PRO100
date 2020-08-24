@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Card, ICardTokens, ICardSectionStyles, ICardSectionTokens } from '@uifabric/react-cards';
 import { FontWeights} from '@uifabric/styling';
 import { Icon, IIconStyles, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
-import { TestImages } from '@uifabric/example-data';
 
 
 /*
@@ -92,9 +91,6 @@ export class Post extends React.Component {
     const footerCardSectionTokens = { padding: '0px 0px 0px 12px' };
     const infoCardSectionTokens = { width: "160px",maxWidth: "160px",maxHeight: "173px",margin: '5px 5px 5px 10px'};
     const ImageTokens = {maxWidth: "300px",maxHeight: "150px"};
-
-    //dump data 
-    const DocumentCardActivityPeople = [{ name: 'Annie Lindqvist', profileImageSrc: TestImages.personaFemale }];
 
     return (
       <div  id="post" >

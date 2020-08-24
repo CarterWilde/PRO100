@@ -1,27 +1,9 @@
 import * as React from 'react';
 import { Card, ICardTokens, ICardSectionStyles, ICardSectionTokens } from '@uifabric/react-cards';
 import { FontWeights } from '@uifabric/styling';
-import { IconButton, IIconStyles, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
+import { IconButton, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
 
-/*
-Post By: and buttons 
 
-Post By: https://developer.microsoft.com/en-us/fluentui#/controls/web/documentcard
-Work in Progess 
-
-import {
-  DocumentCardActivity
-} from 'office-ui-fabric-react/lib/DocumentCard';
-import { TestImages } from '@uifabric/example-data';
-
-const DocumentCardActivityPeople = [{ name: 'Annie Lindqvist', profileImageSrc: TestImages.personaFemale }];
-<DocumentCardActivity activity="Created a few minutes ago" people={DocumentCardActivityPeople} />
-*/
-
-/*
-   <Icon iconName="RedEye" styles={iconStyles}  onClick={_alertClicked}  allowDisabledFocus disabled={disabled} checked={checked} />
-   const { disabled, checked } = props;
-*/
 
 const alertClicked = () => {
     alert('Clicked');
@@ -29,11 +11,10 @@ const alertClicked = () => {
 export class Post extends React.Component {
     constructor(props) {
         super(props)
-
-        // TODO: Brandon, The search will return the data needed to complete the post component. The JSON data
-        console.log(this.props.elements) //I added this so you can see it. as of now its only dumby data. It will say only a single string
+        console.log(this.props.elements) 
     }
-    render() {
+    render() 
+    {
         const fontStyle = {
             color: '#333333',
             fontWeight: FontWeights.regular,
@@ -86,13 +67,10 @@ export class Post extends React.Component {
         const infoCardSectionTokens = { width: "160px", padding: '5%' };
         const ImageTokens = { maxHeight: "150px", padding: '5%' };
 
-        //dump data 
-        // const DocumentCardActivityPeople = [{ name: 'Annie Lindqvist', profileImageSrc: TestImages.personaFemale }];
-
         return (
-            <div id="post" >
-                <Stack tokens={sectionStackTokens}>
-                    <Card aria-label="Clickable horizontal card " horizontal tokens={cardTokens} style={{display:"grid", gridTemplateColumns:"5fr 3fr 1fr"}}>
+            <div id="post">
+                <Stack tokens={sectionStackTokens} style={{width: "800px"}}>
+                    <Card aria-label="Clickable horizontal card " horizontal tokens={cardTokens} style={{width: "800px",height: "200px",display:"grid", gridTemplateColumns:"5fr 3fr 1fr"}}>
                         <Card.Section styles={infoCardSectionTokens} tokens={infoCardSectionTokens}>
                             <Text maxlength="4" variant="small" styles={titleTextStyles}>
                                 {this.props.title}
@@ -126,6 +104,5 @@ export class Post extends React.Component {
             </div>
         );
     }
-
 }
 export default Post;

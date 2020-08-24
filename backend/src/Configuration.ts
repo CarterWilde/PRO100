@@ -36,7 +36,7 @@ export default class Configuration {
 
     public passportConfiguration(): void {
         this.app.use(flash());
-        this.app.use(session({ secret: SESSION }))
+        this.app.use(session({ secret: SESSION, resave:true, saveUninitialized:false }))
 
         this.app.use(passport.initialize());
         this.app.use(passport.session());
@@ -61,6 +61,7 @@ export default class Configuration {
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             })
+            mongoose.set('useCreateIndex', true)
         } catch (err) {
             console.log('error connecting to mongoDB', err)
         }

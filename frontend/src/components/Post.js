@@ -11,7 +11,6 @@ const alertClicked = () => {
 export class Post extends React.Component {
     constructor(props) {
         super(props)
-        console.log(this.props.elements) 
     }
     render() 
     {
@@ -68,7 +67,7 @@ export class Post extends React.Component {
         const ImageTokens = { maxHeight: "150px", padding: '5%' };
 
         return (
-            <div id="post">
+            <div id="post" className="lines" >
                 <Stack tokens={sectionStackTokens}>
                     <Card aria-label="Clickable horizontal card " horizontal tokens={cardTokens} style={{height: "200px",display:"grid", gridTemplateColumns:"5fr 3fr 1fr"}}>
                         <Card.Section styles={infoCardSectionTokens} tokens={infoCardSectionTokens}>

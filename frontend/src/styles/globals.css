@@ -17,3 +17,9 @@ a {
 .overflow {
     overflow: auto;
 }
+
+.lines{
+    border-style: outset;
+    border-color: blue;
+    border-radius: 5px;
+}

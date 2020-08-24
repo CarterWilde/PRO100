@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Card, ICardTokens, ICardSectionStyles, ICardSectionTokens } from '@uifabric/react-cards';
 import { FontWeights } from '@uifabric/styling';
-import { IconButton, IIconStyles, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
+import { IconButton, Image, Stack, IStackTokens, Text, ITextStyles } from 'office-ui-fabric-react';
 
 /*
 Post By: and buttons 
@@ -27,6 +27,7 @@ const alertClicked = () => {
     alert('Clicked');
 };
 export class Post extends React.Component {
+
     constructor(props) {
         super(props)
 
@@ -92,8 +93,7 @@ export class Post extends React.Component {
         return (
             <div id="post" >
                 <Stack tokens={sectionStackTokens}>
-                    <Card aria-label="Clickable horizontal card " horizontal tokens={cardTokens} >
-
+                    <Card aria-label="Clickable horizontal card " horizontal tokens={cardTokens} style={{display:"grid", gridTemplateColumns:"5fr 3fr 1fr"}}>
                         <Card.Section styles={infoCardSectionTokens} tokens={infoCardSectionTokens}>
                             <Text maxlength="4" variant="small" styles={titleTextStyles}>
                                 {this.props.title}
@@ -115,8 +115,8 @@ export class Post extends React.Component {
                             </div>
                         </Card.Item>
 
-                        <Card.Section styles={CardSectionStyles} tokens={footerCardSectionTokens}>
-                            <Stack>
+                        <Card.Section style={{display:"grid", justifyContent:"center", alignItems:"center"}} styles={CardSectionStyles} tokens={footerCardSectionTokens}>
+                            <Stack width="100%">
                                 <IconButton iconProps={{ iconName: "CaretUpSolid8" }} styles={iconStyles} onClick={() => { console.log("upvote") }} style={{ outline: 'none' }} />
                                 <Text style={{textAlign:"center", fontWeight:FontWeights.bold}}>{this.props.votes}</Text>
                                 <IconButton iconProps={{ iconName: "CaretDownSolid8" }} styles={iconStyles} onClick={() => { console.log("downvote") }} style={{ outline: 'none' }} />
@@ -127,6 +127,5 @@ export class Post extends React.Component {
             </div>
         );
     }
-
 }
 export default Post;

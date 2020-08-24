@@ -4,6 +4,7 @@ import axios from 'axios';
 const defaultState = {
     data: {
         User: {
+            _id: null,
             Username: null,
             Email: null
         },
@@ -21,6 +22,7 @@ const reducer = (state = defaultState, action) => {
                 data: {
                     ...state.data,
                     User: {
+                        _id: action.data.User._id,
                         Username: action.data.User.Username,
                         Email: action.data.User.Email
                     },

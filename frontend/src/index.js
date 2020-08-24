@@ -26,7 +26,7 @@ export const loggedIn = () => {
             if(data == null || data == ''){
                 store.dispatch({type: 'IS_LOGGED', data: {isLogged: false}})
             } else {
-                store.dispatch({type: 'IS_LOGGED', data: {User: {Email: data.Email, Username: data.Username}, isLogged: true}});
+                store.dispatch({type: 'IS_LOGGED', data: {User: {_id: data._id, Email: data.Email, Username: data.Username}, isLogged: true}});
             }
         })
         .catch(err => {

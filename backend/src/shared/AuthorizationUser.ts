@@ -1,9 +1,9 @@
 import User, {UserDocument} from "./User"
 import { Schema } from "mongoose";
+import IdUser from "./IdUser";
 
-export default class AuthorizationUser extends User {
+export default class AuthorizationUser extends IdUser {
     public Password: string;
-    public _id: Schema.Types.ObjectId;
 
     constructor(email:string, password: string, username?: string) {
         super(email, username)

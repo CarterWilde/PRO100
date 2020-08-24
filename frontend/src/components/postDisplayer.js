@@ -22,7 +22,7 @@ class PostComp extends Component {
         }
 
         return (
-            <div style={{marginBottom:"50px", width:"100%", marginTop:"100px", display:"grid", alignItems:"center", justifyContent: "center",}}>
+            <div style={{marginBottom:"50px", width:"100%", marginTop:"100px", display:"grid", alignItems:"center", justifyContent: "center", gridTemplateColumns: "1fr 1fr"}}>
                 {posts}
             </div>
         )

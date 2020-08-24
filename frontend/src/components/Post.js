@@ -70,9 +70,9 @@ export class Post extends React.Component {
         const ImageTokens = { maxWidth: "300px", maxHeight: "150px" };
 
         return (
-            <div id="post" style={{width: "800px"}}>
+            <div id="post">
                 <Stack tokens={sectionStackTokens} style={{width: "800px"}}>
-                    <Card aria-label="Clickable horizontal card " horizontal tokens={cardTokens} style={{width: "800px",height: "200px",display:"grid", gridTemplateColumns:"10fr 5fr 3fr"}}>
+                    <Card aria-label="Clickable horizontal card " horizontal tokens={cardTokens} style={{width: "800px",height: "200px",display:"grid", gridTemplateColumns:"5fr 3fr 1fr"}}>
                         <Card.Section styles={infoCardSectionTokens} tokens={infoCardSectionTokens}>
                             <Text maxlength="4" variant="small" styles={titleTextStyles}>
                                 {this.props.title}

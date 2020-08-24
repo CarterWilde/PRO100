@@ -18,14 +18,14 @@ a {
     overflow: auto;
 }
 
-.lines{
+.lines {
     border-style: inset;
     border-color: rgb(16, 185, 118);
     border-radius: 2px;
 }
 
-.bottom{
+.bottom {
     border-style: outset;
-    border-color: rgb(255, 0,0);
+    border-color: rgb(255, 0, 0);
     border-radius: 2px;
 }

@@ -13,20 +13,10 @@ export default class Header extends Component {
         this.state = {addLoginModal: false, addPostModal: false}
     }
 
-    //As of now, search anything as 4 results and 1 ad will populate
     SearchForPosts = (val) => {
         this.setSearch(val)
-        console.log("SEARCH: ", this.search)
-        //Fetch and display results
-        if (this.search === "") {
-            getPosts()
-        }
-        else {
-            searchPosts(val)
-            // this.props.setJSON({
-            //     "search": ["this is a list of json elements", "more data", "even more data", "some more"]
-            // })
-        }
+        if (this.search === "") getPosts()
+        else searchPosts(val)
     }
 
     setSearch = (val) => { this.search = val }

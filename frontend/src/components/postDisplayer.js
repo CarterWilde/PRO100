@@ -27,8 +27,8 @@ class PostComp extends Component {
         )
 
         const loader = (
-            <div style={{ marginBottom: "50px", width: "100%", marginTop: "100px", alignItems: "center", justifyContent: "center"}}>
-                <Spinner label="Posts loading..." size={SpinnerSize.large} style={{ width: "100%" }} />
+            <div style={{textAlign:"center", display:"flex", alignItems: "center", justifyContent: "center"}}>
+                <Spinner label="Posts loading..." size={SpinnerSize.large} style={{position:"absolute",top:"50%", left:"50%", transform:"transform(-50%,-50%)"}} />
             </div>
         )
 

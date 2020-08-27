@@ -12,7 +12,7 @@ const defaultState = {
     show: false,
     title: "Example",
     price: "100",
-    descirption: "This is exmaple of what you want to tell the people who see ",
+    descirption: "Describe your post. Be descriptive.",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0XsKvLjkn5XZG9XP1S2FO0qQp8qO5E6HJ5w&usqp=CAU"
 };
 

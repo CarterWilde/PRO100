@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import store from './stores/configureStore';
 
 export const getPosts = async () => {
+    console.log("updating...")
     let posts = await (await axios.get("http://localhost:8080/posts")).data
     store.dispatch({type: 'GET_POSTS', data: {
         Posts: posts
@@ -34,7 +35,13 @@ export const loggedIn = () => {
             store.dispatch({type: 'IS_LOGGED', data: {isLogged: false}})
         });
 };
-
 loggedIn()
+
+export const searchPosts = async (val) => {
+    store.dispatch({type: 'GET_POSTS', data: {
+        Posts: []
+    }})
+    console.log(`Searched for: ${val}`)
+}
 
 ReactDOM.render(<Provider store={store}><Home /></Provider>, document.getElementById("app"));

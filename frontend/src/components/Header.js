@@ -5,7 +5,7 @@ import PopUpController from './PopUpController'
 import PostController from './PostController'
 import Logo from "../public/images/logo.png"
 import MyPostController from './myPostController'
-
+import {searchPosts, loggedIn, getPosts} from '../index'
 
 export default class Header extends Component {
     constructor(props) {
@@ -19,19 +19,17 @@ export default class Header extends Component {
         console.log("SEARCH: ", this.search)
         //Fetch and display results
         if (this.search === "") {
-            this.props.setJSON(null)
+            getPosts()
         }
         else {
-            this.props.setJSON({
-                "search": ["this is a list of json elements", "more data", "even more data", "some more"]
-            })
+            searchPosts(val)
+            // this.props.setJSON({
+            //     "search": ["this is a list of json elements", "more data", "even more data", "some more"]
+            // })
         }
     }
 
-    setSearch = (val) => { 
-        this.search = val
-        console.log(this.search)
-    }
+    setSearch = (val) => { this.search = val }
 
     render() {
         let closeLoginModal = () => this.setState({ addLoginModal: false })

@@ -4,6 +4,7 @@ import { SearchBox, PrimaryButton, Stack } from '@fluentui/react';
 import PopUpController from './PopUpController'
 import PostController from './PostController'
 import Logo from "../public/images/logo.png"
+import MyPostController from './myPostController'
 
 
 export default class Header extends Component {
@@ -25,7 +26,6 @@ export default class Header extends Component {
                 "search": ["this is a list of json elements", "more data", "even more data", "some more"]
             })
         }
-        
     }
 
     setSearch = (val) => { 
@@ -56,6 +56,7 @@ export default class Header extends Component {
                     </div>
                     <div className="right nav-col">
                         <Stack horizontal tokens={stackTokens}>
+                            <MyPostController/>
                             <PostController/>
                             <PopUpController/>
                         </Stack>

@@ -3,11 +3,6 @@ import { Card } from '@uifabric/react-cards';
 import { FontWeights } from '@uifabric/styling';
 import { IconButton, Image, Stack, Text } from 'office-ui-fabric-react';
 
-
-
-const alertClicked = () => {
-    alert('Clicked');
-};
 export class Post extends React.Component {
     constructor(props) {
         super(props)

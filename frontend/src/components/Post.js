@@ -30,7 +30,7 @@ export class Post extends React.Component {
                             </div>
                         </Card.Item>
 
-                        <Card.Section style={{ display: "grid", justifyContent: "center", alignItems: "center" }} styles={{alignSelf:"stretch", borderLeft:"1px solid #F3F2F1"}} tokens={{padding:"0px"}}>
+                        <Card.Section style={{ display: "grid", justifyContent: "center", alignItems: "center", alignSelf:"stretch", borderLeft:"1px solid #F3F2F1"}} tokens={{padding:"0px"}}>
                             <Stack width="100%">
                                 <IconButton iconProps={{ iconName: "CaretUpSolid8" }} style={{color:"#0078D4", fontSize:16,fontWeight:FontWeights.regular}} onClick={() => { console.log("upvote") }} style={{ outline: 'none' }} />
                                 <Text style={{ textAlign: "center", fontWeight: FontWeights.bold }}>{this.props.votes}</Text>

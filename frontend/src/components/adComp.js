@@ -9,51 +9,23 @@ export default class AdComp extends Component {
     render() {
         const randAd = Math.floor(Math.random() * (7 + 1));
         const data = adJSON[randAd]
-        const fontStyle = {
-            color: '#333333',
-            fontWeight: FontWeights.regular,
-        }
-
-        const titleTextStyles = {
-            root: {
-                ...fontStyle,
-                fontSize: 25
-            },
-        };
-        const priceTextStyles = {
-            root: {
-                ...fontStyle,
-                fontSize: 15
-            },
-        };
-        const postByTextStyles = {
-            root: {
-                ...fontStyle,
-                fontSize: 10
-            },
-        };
-        const sectionStackTokens = { childrenGap: 20, margin: '5px 5px 5px 5px' };
-        const cardTokens = { childrenMargin: 10, width: '100%', height:"400px", maxWidth: 'none !important' };
-        const infoCardSectionTokens = { width: "160px", padding: '5%' };
-        const ImageTokens = { maxHeight: "150px", padding: '5%' };
         return (
-            <div id="post" className="lines" >
-                <a target="_blank" rel="noopener noreferrer" href={data.link} style={{textDecoration:"none"}}>
-                    <Stack tokens={sectionStackTokens}>
-                        <Card aria-label="Clickable horizontal card " horizontal tokens={cardTokens} style={{height: "200px",display:"grid", gridTemplateColumns:"5fr 3fr 1fr"}}>
-                            <Card.Item>
-                                <>
-                                    <strong style={postByTextStyles} >Sponsored by: {data.spnsoredBy}</strong>
-                                    <Image style={ImageTokens} src={`/src/ads/images/${data.image}`} />
-                                </>
+            <div id="post" className="ad" >
+                <a target="_blank" rel="noopener noreferrer" href={data.link} style={{ textDecoration: "none" }}>
+                    <Stack tokens={{childrenGap:20, margin:"5px"}}>
+                        <Card aria-label="Basic vertical card" tokens={{childrenMargin:10, width:"100%", height:"400px", maxWidth:"none !important"}} style={{ height: "200px" }}>
+                            <Card.Item className="gradient-border">
+                                <strong style={{fontWeight:FontWeights.bold}} >Sponsored by: {data.spnsoredBy}</strong>
                             </Card.Item>
-                            <Card.Section styles={infoCardSectionTokens} tokens={infoCardSectionTokens}>
-                                <Text maxlength="4" variant="small" styles={titleTextStyles}>
-                                    {data.name}
-                                </Text>
-                                <Text variant="small" styles={priceTextStyles}>
-                                    {data.price}
-                                </Text>
+                            <Card.Section horizontal style={{ width: "100%", cursor: "pointer" }}>
+                                <Card.Item>
+                                    <Image style={{maxHeight:"150px", padding:"5px"}} src={`/src/ads/images/${data.image}`} />
+                                </Card.Item>
+                                <Card.Section styles={{width:"160px", padding:"5px"}} tokens={{width:"160px", padding:"5%"}}>
+                                    <Text maxlength="4" variant="small" style={{fontWeight:FontWeights.regular, fontSize:25}}>{data.name}</Text>
+                                    <Text variant="small" style={{fontWeight:FontWeights.regular, fontSize:15}}>{data.price}</Text>
+                                    <Text variant="small" style={{fontWeight:FontWeights.regular, fontSize:12}}>Click to view product information.</Text>
+                                </Card.Section>
                             </Card.Section>
                         </Card>
                     </Stack>

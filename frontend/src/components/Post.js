@@ -18,15 +18,15 @@ export class Post extends React.Component {
                 <Stack tokens={{childrenGap:20, margin:"5px"}}>
                     <Card aria-label="Clickable horizontal card " horizontal tokens={{childrenMargin:10, width:"100%",height:"400px", maxWidth:"none !important"}} style={{ height: "200px", display: "grid", gridTemplateColumns: "5fr 3fr 1fr" }}>
                         <Card.Section styles={{width:"160px", padding:"5px"}} tokens={{width:"160px", padding:"5px"}}>
-                            <Text maxlength="4" variant="small" styles={{fontWeight:FontWeights.regular, fontSize:25}}>{this.props.title}</Text>
-                            <Text variant="small" styles={{fontWeight:FontWeights.regular, fontSize:15}}>{this.props.price}</Text>
-                            <Text className="overflow" variant="small" styles={{fontWeight:FontWeights.regular, fontSize:12}}>{this.props.descirption}</Text>
+                            <Text maxlength="4" variant="small" style={{fontWeight:FontWeights.regular, fontSize:25}}>{this.props.title}</Text>
+                            <Text variant="small" style={{fontWeight:FontWeights.regular, fontSize:15}}>{this.props.price}</Text>
+                            <Text className="overflow" variant="small" style={{fontWeight:FontWeights.regular, fontSize:12}}>{this.props.descirption}</Text>
                         </Card.Section>
 
                         <Card.Item>
                             <div>
                                 <Image style={{maxHeight:"150px", padding:"5px"}} src={this.props.imageUrl} />
-                                <strong style={{fontWeight:FontWeights.regular, fontSize:10}} >By: {this.props.username}</strong>
+                                <strong style={{fontWeight:FontWeights.bold, fontSize:18}} >By: {this.props.username}</strong>
                             </div>
                         </Card.Item>
 

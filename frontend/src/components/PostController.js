@@ -33,7 +33,7 @@ class PostController extends Component {
         const reader = new FileReader();
         reader.addEventListener('load', (event) => {
             console.log(event);
-            this.setState({imageUrl: event.target.result});
+            this.setState({ imageUrl: event.target.result });
         });
         reader.readAsDataURL(file);
     }
@@ -45,7 +45,7 @@ class PostController extends Component {
         if (this.props.data.User != 'undefined') {
             this.setState({ show: false });
             const data = JSON.stringify({ "Title": this.state.title, "PostedBy": { "_id": this.props.data.User._id, "Username": this.props.data.User.Username, "Email": this.props.data.User.Email, "Password": "N/A" }, "Price": this.state.price, "Content": this.state.descirption, "Image": this.state.imageUrl, "Votes": { "Total": 0, "Up": [], "Down": [] } });
-            const response = await axios.post("http://localhost:8080/post", data, { withCredentials: true, headers: {'Content-Type': 'application/json'} });
+            const response = await axios.post("http://localhost:8080/post", data, { withCredentials: true, headers: { 'Content-Type': 'application/json' } });
             getPosts()
         }
     }

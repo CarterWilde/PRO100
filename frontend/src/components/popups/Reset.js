@@ -34,7 +34,7 @@ export default class Reset extends Component {
                     <ErrorView error={this.state.error}/>
                     <Stack>
                         <Label disabled>Enter email for password reset.</Label>
-                        <TextField label="Email" iconProps={iconMail} onChange={(_, newValue) => { this.email = newValue}} />
+                        <TextField label="Email" iconProps={iconMail} onChange={(_, newValue) => { this.email = newValue; this.setState({error: "0"})}} />
                     </Stack>
                     <ActionButton iconProps={backIcon} text="Back" style={{ outline: 'none' }} onClick={() => {this.props.backToLogin()}} />
                 </Modal.Body>

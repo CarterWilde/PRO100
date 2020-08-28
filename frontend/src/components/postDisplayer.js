@@ -18,7 +18,7 @@ class PostComp extends Component {
             for (let i = postData.length - 1; i >= 0; i--) {
                 const post = postData[i];
                 if ((i % 5 === 0) && (i !== postData.length - 1)) posts.push(<AdComp key={`ad${i}`} />)
-                posts.push(<Post key={post._id} title={post.Title} price={`$${post.Price}`} descirption={post.Content} imageUrl={post.Image} username={post.PostedBy.Username} votes={post.Votes.Total} />)
+                posts.push(<Post key={post._id} id={post._id} title={post.Title} price={`$${post.Price}`} descirption={post.Content} imageUrl={post.Image} username={post.PostedBy.Username} votes={post.Votes.Total} />)
             }
         }
         const displayPosts = (

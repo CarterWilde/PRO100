@@ -180,7 +180,6 @@ export const Routes: Route[] = [
                     else { console.log("updated") }
                 })
             }
-            
         }
     }
 ]

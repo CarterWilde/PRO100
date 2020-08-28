@@ -4,6 +4,7 @@ import { Spinner, SpinnerSize , Text} from '@fluentui/react'
 import {NoSearchResults} from './errors/noSearchResults'
 import AdComp from '../components/adComp'
 import Post from '../components/Post';
+import { PasswordNoMatchError } from './errors/PasswordNoMatchError'
 
 class PostComp extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class PostComp extends Component {
     render() {
         let posts = []
         const postData = this.props.data.Posts;
+        postData.sort((a,b) => a.Votes.Total - b.Votes.Total)
         if((postData[0]) && (postData[0].Content !== null && postData.length > 0)){
             for (let i = postData.length - 1; i >= 0; i--) {
                 const post = postData[i];

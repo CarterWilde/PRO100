@@ -14,26 +14,14 @@ class Post extends React.Component {
         }
     }
 
-    UpVote = async () => {
-        console.log("Upvoted Post: ", this.props.id, " From: ", this.props.data.User._id)
-        this.setState({countVotes: (this.state.countVotes + 1)})
+    Vote = async type => {
+        if(type === 1) this.setState({countVotes: this.state.countVotes + 1})
+        else this.setState({countVotes: this.state.countVotes - 1})
         await axios.put('http://localhost:8080/vote', {
             data: {
                 "id": this.props.id,
                 "user": this.props.data.User._id,
-                "inc": 1
-            }
-        })
-    }
-
-    DownVote = async () => {
-        console.log("Downvoted Post: ", this.props.id)
-        this.setState({countVotes: (this.state.countVotes - 1)})
-        await axios.put('http://localhost:8080/vote', {
-            data: {
-                "id": this.props.id,
-                "user": this.props.data.User._id,
-                "inc": -1
+                "inc": type
             }
         })
     }
@@ -58,9 +46,9 @@ class Post extends React.Component {
 
                         <Card.Section style={{ display: "grid", justifyContent: "center", alignItems: "center", alignSelf: "stretch", borderLeft: "1px solid #F3F2F1" }} tokens={{ padding: "0px" }}>
                             <Stack width="100%">
-                                <IconButton iconProps={{ iconName: "CaretUpSolid8" }} style={{ color: "#0078D4", fontSize: 16, fontWeight: FontWeights.regular }} onClick={() => { this.UpVote() }} style={{ outline: 'none' }} />
+                                <IconButton iconProps={{ iconName: "CaretUpSolid8" }} style={{ color: "#0078D4", fontSize: 16, fontWeight: FontWeights.regular }} onClick={() => { this.Vote(1) }} style={{ outline: 'none' }} />
                                 <Text style={{ textAlign: "center", fontWeight: FontWeights.bold }}>{this.state.countVotes}</Text>
-                                <IconButton iconProps={{ iconName: "CaretDownSolid8" }} style={{ color: "#0078D4", fontSize: 15, fontWeight: FontWeights.regular }} onClick={() => { this.DownVote() }} style={{ outline: 'none' }} />
+                                <IconButton iconProps={{ iconName: "CaretDownSolid8" }} style={{ color: "#0078D4", fontSize: 15, fontWeight: FontWeights.regular }} onClick={() => { this.Vote(-1) }} style={{ outline: 'none' }} />
                             </Stack>
                         </Card.Section>
                     </Card>

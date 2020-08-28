@@ -13,7 +13,7 @@ export default class AdComp extends Component {
             <div id="post" className="ad" >
                 <a target="_blank" rel="noopener noreferrer" href={data.link} style={{ textDecoration: "none" }}>
                     <Stack tokens={{childrenGap:20, margin:"5px"}}>
-                        <Card aria-label="Basic vertical card" tokens={{childrenMargin:10, width:"100%", height:"400px", maxWidth:"none !important"}} style={{ height: "200px" }}>
+                        <Card aria-label="Basic vertical card" tokens={{childrenMargin:10, width:"100%", height:"450px", maxWidth:"none !important"}} style={{ height: "200px" }}>
                             <Card.Item className="gradient-border">
                                 <strong style={{fontWeight:FontWeights.bold}} >Sponsored by: {data.spnsoredBy}</strong>
                             </Card.Item>
@@ -23,8 +23,8 @@ export default class AdComp extends Component {
                                 </Card.Item>
                                 <Card.Section styles={{width:"160px", padding:"5px"}} tokens={{width:"160px", padding:"5%"}}>
                                     <Text maxlength="4" variant="small" style={{fontWeight:FontWeights.regular, fontSize:25}}>{data.name}</Text>
-                                    <Text variant="small" style={{fontWeight:FontWeights.regular, fontSize:15}}>{data.price}</Text>
-                                    <Text variant="small" style={{fontWeight:FontWeights.regular, fontSize:12}}>Click to view product information.</Text>
+                                    <Text variant="small" style={{fontWeight:FontWeights.regular, fontSize:17}}>{data.price}</Text>
+                                    <Text variant="small" style={{fontWeight:FontWeights.regular, fontSize:14}}>Click to view product information.</Text>
                                 </Card.Section>
                             </Card.Section>
                         </Card>

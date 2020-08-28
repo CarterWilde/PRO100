@@ -11,11 +11,11 @@ export class Post extends React.Component {
         return (
             <div id="post" className="lines" >
                 <Stack tokens={{childrenGap:20, margin:"5px"}}>
-                    <Card aria-label="Clickable horizontal card " horizontal tokens={{childrenMargin:10, width:"100%",height:"400px", maxWidth:"none !important"}} style={{ height: "200px", display: "grid", gridTemplateColumns: "5fr 3fr 1fr" }}>
+                    <Card aria-label="Clickable horizontal card " horizontal tokens={{childrenMargin:10, width:"100%",height:"450px", maxWidth:"none !important"}} style={{ height: "200px", display: "grid", gridTemplateColumns: "5fr 3fr 1fr" }}>
                         <Card.Section styles={{width:"160px", padding:"5px"}} tokens={{width:"160px", padding:"5px"}}>
                             <Text maxlength="4" variant="small" style={{fontWeight:FontWeights.regular, fontSize:25}}>{this.props.title}</Text>
-                            <Text variant="small" style={{fontWeight:FontWeights.regular, fontSize:15}}>{this.props.price}</Text>
-                            <Text className="overflow" variant="small" style={{fontWeight:FontWeights.regular, fontSize:12}}>{this.props.descirption}</Text>
+                            <Text variant="small" style={{fontWeight:FontWeights.regular, fontSize:17}}>{this.props.price}</Text>
+                            <Text className="overflow" variant="small" style={{fontWeight:FontWeights.regular, fontSize:16}}>{this.props.descirption}</Text>
                         </Card.Section>
 
                         <Card.Item>
@@ -29,7 +29,7 @@ export class Post extends React.Component {
                             <Stack width="100%">
                                 <IconButton iconProps={{ iconName: "CaretUpSolid8" }} style={{color:"#0078D4", fontSize:16,fontWeight:FontWeights.regular}} onClick={() => { console.log("upvote") }} style={{ outline: 'none' }} />
                                 <Text style={{ textAlign: "center", fontWeight: FontWeights.bold }}>{this.props.votes}</Text>
-                                <IconButton iconProps={{ iconName: "CaretDownSolid8" }} style={{color:"#0078D4", fontSize:16,fontWeight:FontWeights.regular}} onClick={() => { console.log("downvote") }} style={{ outline: 'none' }} />
+                                <IconButton iconProps={{ iconName: "CaretDownSolid8" }} style={{color:"#0078D4", fontSize:15,fontWeight:FontWeights.regular}} onClick={() => { console.log("downvote") }} style={{ outline: 'none' }} />
                             </Stack>
                         </Card.Section>
                     </Card>

@@ -12,7 +12,7 @@ const defaultState = {
     show: false,
     title: "Example",
     price: "100",
-    descirption: "This is exmaple of what you want to tell the people who see ",
+    descirption: "Describe your post. Be descriptive.",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0XsKvLjkn5XZG9XP1S2FO0qQp8qO5E6HJ5w&usqp=CAU"
 };
 
@@ -33,7 +33,7 @@ class PostController extends Component {
         const reader = new FileReader();
         reader.addEventListener('load', (event) => {
             console.log(event);
-            this.setState({imageUrl: event.target.result});
+            this.setState({ imageUrl: event.target.result });
         });
         reader.readAsDataURL(file);
     }
@@ -45,7 +45,7 @@ class PostController extends Component {
         if (this.props.data.User != 'undefined') {
             this.setState({ show: false });
             const data = JSON.stringify({ "Title": this.state.title, "PostedBy": { "_id": this.props.data.User._id, "Username": this.props.data.User.Username, "Email": this.props.data.User.Email, "Password": "N/A" }, "Price": this.state.price, "Content": this.state.descirption, "Image": this.state.imageUrl, "Votes": { "Total": 0, "Up": [], "Down": [] } });
-            const response = await axios.post("http://localhost:8080/post", data, { withCredentials: true, headers: {'Content-Type': 'application/json'} });
+            await axios.post("http://localhost:8080/post", data, { withCredentials: true, headers: { 'Content-Type': 'application/json' } });
             getPosts()
         }
     }

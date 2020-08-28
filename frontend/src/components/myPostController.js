@@ -9,15 +9,22 @@ export default class myPostController extends Component  {
         super(props);
         this.state = {
             show: false
+
         }
     }
 
     handleClose = () => {
-        this.setState({ ...defaultState });
+        this.setState({ show: false });
     }
-
+   
+    getPost = async () => 
+    {
+        return await (await axios.get("http://localhost:8080/posts")).data;
+    }
     render() {
+        
         return (
+
             <div>
                 {/*
                  {this.props.data.hasUser && this.props.data.isLogged ? <DefaultButton text="Post" onClick={() => { this.setState({ show: true }) }} style={{ outline: 'none' }} /> : <></>}
@@ -25,13 +32,14 @@ export default class myPostController extends Component  {
                 {/*
                  <Modal show={this.state.show} onHide={this.handleClose} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
                 */}
-                 <Modal show={this.state.show}>
+                <DefaultButton text="My Post" onClick={() => { this.setState({ show: true }) }} style={{ outline: 'none' }}/>
+                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">My Posts</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Stack horizontal horizontalAlign="space-around" tokens={{ childrenGap: 20 }}>
-                           
+                            {this.getPost()}      
                         </Stack>
                     </Modal.Body>
         

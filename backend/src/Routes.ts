@@ -162,14 +162,25 @@ export const Routes: Route[] = [
         url: '/vote',
         type: ERequestType.PUT,
         handler: async (req, res) => {
-            console.log("called backend: ", req.body.data.id , "USER: ", req.body.data.user)
-            Post.updateOne({"_id": req.body.data.id}, {
-                $push: {'Votes.Up': UserModel.default.find({"_id": req.body.data.user})},
-                $inc: {'Votes.Total': req.body.data.inc}
-            }, (err, doc)=>{
-                if(err) { console.log(err) }
-                else { console.log("updated") }
-            })
+            if(req.body.data.inc === 1) {
+                Post.updateOne({"_id": req.body.data.id}, {
+                    $push: {'Votes.Up': UserModel.default.find({"_id": req.body.data.user})},
+                    $inc: {'Votes.Total': req.body.data.inc}
+                }, (err, doc)=>{
+                    if(err) { console.log(err) }
+                    else { console.log("updated") }
+                })
+            }
+            else{
+                Post.updateOne({"_id": req.body.data.id}, {
+                    $push: {'Votes.Down': UserModel.default.find({"_id": req.body.data.user})},
+                    $inc: {'Votes.Total': req.body.data.inc}
+                }, (err, doc)=>{
+                    if(err) { console.log(err) }
+                    else { console.log("updated") }
+                })
+            }
+            
         }
     }
 ]

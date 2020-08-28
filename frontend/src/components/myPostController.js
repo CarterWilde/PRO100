@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import { Stack, TextField, DefaultButton, PrimaryButton, imgProperties } from '@fluentui/react';
 import { loggedIn, getPosts } from '../index';
+import axios from 'axios'
 
 
 export default class myPostController extends Component  {

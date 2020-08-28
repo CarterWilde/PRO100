@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap'
 import { Stack, TextField, DefaultButton, PrimaryButton, imgProperties } from '@fluentui/react';
 import { loggedIn, getPosts } from '../index';
 import axios from 'axios'
 
 
-export default class myPostController extends Component  {
+class myPostController extends Component  {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,7 +34,7 @@ export default class myPostController extends Component  {
                 {/*
                  <Modal show={this.state.show} onHide={this.handleClose} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
                 */}
-                <DefaultButton text="My Post" onClick={() => { this.setState({ show: true }) }} style={{ outline: 'none' }}/>
+                {this.props.data.hasUser && this.props.data.isLogged ? <DefaultButton text="My Post" onClick={() => { this.setState({ show: true }) }} style={{ outline: 'none' }}/> : null}
                  <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">My Posts</Modal.Title>
@@ -49,3 +50,5 @@ export default class myPostController extends Component  {
         )
     }
 }
+
+export default connect((state) => ({ ...state }))(myPostController);

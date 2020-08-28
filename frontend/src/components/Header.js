@@ -16,7 +16,11 @@ export default class Header extends Component {
     SearchForPosts = (val) => {
         this.setSearch(val)
         if (this.search === "") getPosts()
-        else searchPosts(val)
+        else {
+            if(searchPosts(val) === -1) {
+                
+            }
+        }
     }
 
     setSearch = (val) => { this.search = val }

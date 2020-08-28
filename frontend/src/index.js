@@ -42,14 +42,19 @@ loggedIn()
 export const searchPosts = async (val) => {
     store.dispatch({ type: 'GET_POSTS', data: { Posts: [] } });
     let posts = await (await axios.get("http://localhost:8080/posts")).data
-    const filteredPosts = posts.filter(post=>{
-        return (post.Content !== undefined && post.Content.toLowerCase().includes(val.toLowerCase())) || (post.Title !== undefined && post.Title.toLowerCase().includes(val.toLowerCase()));
+    const filteredPosts = posts.filter(post => {
+        return (post.Content !== undefined && post.Content.toLowerCase().includes(val.toLowerCase())) || (post.Title !== undefined && post.Title.toLowerCase().includes(val.toLowerCase()) || (post.PostedBy.Username !== undefined && post.PostedBy.Username.toLowerCase().includes(val.toLowerCase())));
     })
-    store.dispatch({
-        type: 'GET_POSTS', data: {
-            Posts: filteredPosts
-        }
-    });
+    if (filteredPosts.length === 0) {
+        store.dispatch({ type: 'GET_POSTS', data: { Posts: [{ "Content": null, "PostedBy": null, "Price": null, "Title": null, "Votes": null }] } });
+    }
+    else {
+        store.dispatch({
+            type: 'GET_POSTS', data: {
+                Posts: filteredPosts
+            }
+        });
+    }
 }
 
 ReactDOM.render(<Provider store={store}><Home /></Provider>, document.getElementById("app"));

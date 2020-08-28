@@ -1,9 +1,12 @@
 import * as React from 'react';
+import { connect } from 'react-redux'
 import { Card } from '@uifabric/react-cards';
 import { FontWeights } from '@uifabric/styling';
 import { IconButton, Image, Stack, Text } from 'office-ui-fabric-react';
+import axios from 'axios'
+import {} from '../stores/configureStore'
 
-export class Post extends React.Component {
+class Post extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -12,13 +15,27 @@ export class Post extends React.Component {
     }
 
     UpVote = async () => {
-        console.log("Upvoted Post: ", this.props.id)
+        console.log("Upvoted Post: ", this.props.id, " From: ", this.props.data.User._id)
         this.setState({countVotes: (this.state.countVotes + 1)})
+        await axios.put('http://localhost:8080/vote', {
+            data: {
+                "id": this.props.id,
+                "user": this.props.data.User._id,
+                "inc": 1
+            }
+        })
     }
 
     DownVote = async () => {
         console.log("Downvoted Post: ", this.props.id)
         this.setState({countVotes: (this.state.countVotes - 1)})
+        await axios.put('http://localhost:8080/vote', {
+            data: {
+                "id": this.props.id,
+                "user": this.props.data.User._id,
+                "inc": -1
+            }
+        })
     }
 
     render() {
@@ -52,4 +69,6 @@ export class Post extends React.Component {
         );
     }
 }
-export default Post;
+
+
+export default connect(state => ({ ...state }))(Post);

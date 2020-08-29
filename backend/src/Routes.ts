@@ -16,6 +16,7 @@ import Message from "./shared/Message";
 import Failure from "./shared/Failure";
 import { FailureCodes } from "./shared/FailureCodes";
 import IdUser from "./shared/IdUser";
+import e from "express";
 
 export const Routes: Route[] = [
     {
@@ -155,6 +156,28 @@ export const Routes: Route[] = [
         type: ERequestType.DELETE,
         handler: (req, res) => {
             res.send("Hi");
+        }
+    },
+    {
+        url: '/vote',
+        type: ERequestType.PUT,
+        handler: async (req, res) => {
+            if(req.body.data.inc === 1) {
+                Post.updateOne({"_id": req.body.data.id}, {
+                    $push: {'Votes.Up': await UserModel.default.findOne({"_id": req.body.data.user})},
+                    $inc: {'Votes.Total': req.body.data.inc}
+                }, (err, doc)=>{
+                    if(err) { console.log(err) }
+                })
+            }
+            else{
+                Post.updateOne({"_id": req.body.data.id}, {
+                    $push: {'Votes.Down': await UserModel.default.findOne({"_id": req.body.data.user})},
+                    $inc: {'Votes.Total': req.body.data.inc}
+                }, (err, doc)=>{
+                    if(err) { console.log(err) }
+                })
+            }
         }
     }
 ]

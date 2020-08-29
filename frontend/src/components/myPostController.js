@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap'
 import { Stack, TextField, DefaultButton, PrimaryButton, imgProperties } from '@fluentui/react';
 import { loggedIn, getPosts } from '../index';
 import axios from 'axios';
 
 
-export default class myPostController extends Component  {
+class myPostController extends Component  {
     constructor(props) {
         super(props);
         this.state = {
@@ -58,3 +59,5 @@ export default class myPostController extends Component  {
         )
     }
 }
+
+export default connect((state) => ({ ...state }))(myPostController);

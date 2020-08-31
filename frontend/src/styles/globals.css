@@ -24,8 +24,8 @@ a {
     border-radius: 2px;
 }
 
-.bottom {
-    border-style: outset;
-    border-color: rgb(255, 0, 0);
-    border-radius: 2px;
+.title {
+    border-style: inset;
+    border-color: rgb(16, 174, 185);
+    border-radius: 5px;
 }

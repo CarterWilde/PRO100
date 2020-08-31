@@ -32,8 +32,8 @@ class Post extends React.Component {
                 <Stack tokens={{ childrenGap: 20, margin: "5px" }}>
                     <Card aria-label="Clickable horizontal card " horizontal tokens={{ childrenMargin: 10, width: "100%", height: "450px", maxWidth: "none !important" }} style={{ height: "200px", display: "grid", gridTemplateColumns: "5fr 3fr 1fr" }}>
                         <Card.Section styles={{ width: "160px", padding: "5px" }} tokens={{ width: "160px", padding: "5px" }}>
-                            <Text maxlength="4" variant="small" style={{ fontWeight: FontWeights.regular, fontSize: 25 }}>{this.props.title}</Text>
-                            <Text variant="small" style={{ fontWeight: FontWeights.regular, fontSize: 17 }}>{this.props.price}</Text>
+                            <Text  className="title" maxlength="4" variant="small" style={{ fontWeight: FontWeights.regular, fontSize: 25 }}>{this.props.title}</Text>
+                            <Text  variant="small" style={{ fontWeight: FontWeights.regular, fontSize: 17 }}>{this.props.price}</Text>
                             <Text className="overflow" variant="small" style={{ fontWeight: FontWeights.regular, fontSize: 16 }}>{this.props.descirption}</Text>
                         </Card.Section>
 
